@@ -1,4 +1,4 @@
-package com.savaz.DeliveryService;
+package com.savaz.delivery;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

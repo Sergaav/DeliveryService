@@ -1,4 +1,4 @@
-package com.savaz.DeliveryService;
+package com.savaz.delivery;
 
 import java.io.*;
 import javax.servlet.http.*;

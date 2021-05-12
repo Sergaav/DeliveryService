@@ -1,4 +1,4 @@
-package com.savaz.DeliveryService.model.entity.enums;
+package com.savaz.delivery.model.entity.enums;
 
 public enum City {
     KIEV,KHARKIV,ODESA,DONETSK,DNIPRO,ZAPORIZHIA,LVIV,LUHANSK,VINNITSIA,

@@ -29,7 +29,7 @@
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
             </ul>
-            <form>
+            <form method="post" action="hello-servlet">
                 <div class="form-row align-items-right">
                     <div class="col-auto">
                         <label class="sr-only" for="inlineFormInput">Login</label>
