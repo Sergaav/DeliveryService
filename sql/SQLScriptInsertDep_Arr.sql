@@ -22,29 +22,29 @@ INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,21,1.2)
 INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,22,1.1);
 INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,23,1.2);
 
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,1,1);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,2,1.1);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,3,1.4);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,4,1.1);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,5,1.2);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,6,1.3);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,7,1.4);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,8,1.1);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,9,1.3);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,10,1.3);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,11,1.3);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,12,1.1);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,13,1.3);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,14,1.1);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,15,1.3);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,16,1.1);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,17,1.1);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,18,1.2);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,19,1.1);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,20,1.2);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,21,1.2);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,22,1.1);
-INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,23,1.2);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,1,1);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,2,1.1);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,3,1.4);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,4,1.1);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,5,1.2);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,6,1.3);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,7,1.4);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,8,1.1);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,9,1.3);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,10,1.3);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,11,1.3);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,12,1.1);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,13,1.3);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,14,1.1);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,15,1.3);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,16,1.1);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,17,1.1);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,18,1.2);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,19,1.1);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,20,1.2);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,21,1.2);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,22,1.1);
+INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (2,23,1.2);
 
 INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,1,1);
 INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,2,1.1);
@@ -525,5 +525,9 @@ INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,20,1.2)
 INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,21,1.2);
 INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,22,1.1);
 INSERT INTO departure_has_arrive (departure_id,arrive_id,rate) values (1,23,1.2);
+
+TRUNCATE TABLE departure_has_arrive;
+
+SELECT * from departure_has_arrive;
 
 

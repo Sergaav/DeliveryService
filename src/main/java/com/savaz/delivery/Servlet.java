@@ -13,10 +13,10 @@ public class Servlet extends HttpServlet {
     private Map<String, Command> commands = new HashMap<>();
 
     public void init(){
-        commands.put("logout", new LogOut());
-        commands.put("login", new Login());
-        commands.put("registration", new Registration());
-        commands.put("exception" , new Exception());
+//        commands.put("logout", new LogOut());
+//        commands.put("login", new Login());
+//        commands.put("registration", new Registration());
+//        commands.put("exception" , new Exception());
     }
 
     public void doGet(HttpServletRequest request,
