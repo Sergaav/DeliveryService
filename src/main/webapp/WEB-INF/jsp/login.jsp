@@ -1,12 +1,23 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"  %>
 <html>
 <head>
     <title>Login</title>
     <%@ include file="/WEB-INF/jspf/head.jspf" %>
 </head>
 <body>
-<form method="post" action="hello-servlet">
-    <div class="form-row align-items-right">
+<br>
+<br>
+<br>
+<br>
+<br>
+<h5>
+Please sign in or register
+</h5>
+<br>
+<br>
+<br>
+<form method="post" action="servlet">
+    <div class="form-row justify-content-center">
         <div class="col-auto">
             <label class="sr-only" for="inlineFormInput">Login</label>
             <input type="text" pattern="[A-Za-z0-9]{5,10}" class="form-control mb-2" id="inlineFormInput" placeholder="Enter your login">
@@ -20,9 +31,10 @@
         <div class="col-auto">
             <button type="submit" class="btn btn-primary mb-2">Submit</button>
         </div>
+        <a href="registration">Click for registration.</a>
     </div>
-</form>
 
+</form>
 
 </body>
 </html>
