@@ -26,7 +26,7 @@
                     <a class="nav-link" href="hello-servlet">Pricing</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="WEB-INF/jsp/login.jsp">Login/Register</a>
+                    <a class="nav-link" href="login">Login/Register</a>
                 </li>
             </ul>
         </div>
