@@ -24,7 +24,7 @@
 
     <servlet>
         <servlet-name>Servlet</servlet-name>
-        <servlet-class>com.savaz.delivery.Servlet</servlet-class>
+        <servlet-class>com.savaz.delivery.controller.Servlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Servlet</servlet-name>

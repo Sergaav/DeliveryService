@@ -1,4 +1,4 @@
-package com.savaz.delivery;
+package com.savaz.delivery.controller;
 
 import com.savaz.delivery.controller.command.Command;
 import javax.servlet.ServletException;
