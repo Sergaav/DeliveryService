@@ -13,6 +13,6 @@ public class LoginCommand implements Command{
         HttpSession session = request.getSession();
 
 
-       return "user_menu.jsp";
+       return "userMenu.jsp";
     }
 }

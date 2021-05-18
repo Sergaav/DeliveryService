@@ -23,7 +23,8 @@ CREATE TABLE IF NOT EXISTS `delivery`.`users` (
   `password` VARCHAR(45) NOT NULL,
   `first_name` VARCHAR(10) NULL,
   `last_name` VARCHAR(15) NULL,
-  `role` VARCHAR(15) NOT NULL,
+  `locale` VARCHAR(45) NOT NULL,
+  `role` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE)
 ENGINE = InnoDB;

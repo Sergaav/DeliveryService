@@ -8,7 +8,7 @@
       </options>
     </properties>
     <root id="archive" name="DeliveryService-1.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="DeliveryService:war exploded" />
+      <element id="artifact" artifact-name="DeliveryService" />
     </root>
   </artifact>
 </component>

@@ -22,14 +22,6 @@
 
     <!-- jsp-pages  -->
     <servlet>
-        <servlet-name>Main</servlet-name>
-        <jsp-file>/DeliveryService_war_exploded/index.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Main</servlet-name>
-        <url-pattern>/main</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>Login</servlet-name>
         <jsp-file>/WEB-INF/jsp/login.jsp</jsp-file>
     </servlet>

@@ -1,15 +1,5 @@
 use delivery;
 
-INSERT INTO roles (id,name) values (0,'admin');
-INSERT INTO roles (id,name) values (1,'client');
-select * from roles;
-
-INSERT INTO statuses (id,name) values (0,'OPENED');
-INSERT INTO statuses (id,name) values (1,'CONFIRMED');
-INSERT INTO statuses (id,name) values (2,'PAID');
-INSERT INTO statuses (id,name) values (3,'CLOSED');
-select * from statuses;
-
 INSERT INTO departure (id,city_departure) values (0,'Kyiv');
 INSERT INTO departure (id,city_departure) values (1,'Kharkiv');
 INSERT INTO departure (id,city_departure) values (2,'Odesa');

@@ -6,13 +6,22 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
-    private String role;
+    private String locale;
+    private int role;
 
-    public String getRole() {
+    public String getLocale() {
+        return locale;
+    }
+
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
+
+    public int getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(int role) {
         this.role = role;
     }
 

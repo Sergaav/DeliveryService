@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="/WEB-INF/jspf/directive/page.jspf" %>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,8 @@
 </head>
 <body>
 <%@include file="WEB-INF/jspf/header.jspf"%>
+
+
 
 </body>
 </html>
