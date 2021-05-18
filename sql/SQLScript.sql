@@ -15,17 +15,6 @@ CREATE SCHEMA IF NOT EXISTS `delivery` DEFAULT CHARACTER SET utf8 ;
 USE `delivery` ;
 
 -- -----------------------------------------------------
--- Table `delivery`.`roles`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `delivery`.`roles` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(10) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `delivery`.`users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `delivery`.`users` (
@@ -34,26 +23,9 @@ CREATE TABLE IF NOT EXISTS `delivery`.`users` (
   `password` VARCHAR(45) NOT NULL,
   `first_name` VARCHAR(10) NULL,
   `last_name` VARCHAR(15) NULL,
-  `roles_id` INT NOT NULL,
+  `role` VARCHAR(15) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE,
-  INDEX `fk_users_roles_idx` (`roles_id` ASC) VISIBLE,
-  CONSTRAINT `fk_users_roles`
-    FOREIGN KEY (`roles_id`)
-    REFERENCES `delivery`.`roles` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `delivery`.`statuses`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `delivery`.`statuses` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
+  UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -111,25 +83,19 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `delivery`.`orders` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `address` VARCHAR(45) NOT NULL,
+  `status` VARCHAR(45) NOT NULL,
   `date_creation` DATE NOT NULL,
-  `statuses_id` INT NOT NULL,
   `parsels_id` INT NOT NULL,
   `users_id` INT NOT NULL,
   `departure_id` INT NOT NULL,
   `arrive_id` INT NOT NULL,
   `weight_rate_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_orders_statuses1_idx` (`statuses_id` ASC) VISIBLE,
   INDEX `fk_orders_parsels1_idx` (`parsels_id` ASC) VISIBLE,
   INDEX `fk_orders_users1_idx` (`users_id` ASC) VISIBLE,
   INDEX `fk_orders_departure1_idx` (`departure_id` ASC) VISIBLE,
   INDEX `fk_orders_arrive1_idx` (`arrive_id` ASC) VISIBLE,
   INDEX `fk_orders_weight_rate1_idx` (`weight_rate_id` ASC) VISIBLE,
-  CONSTRAINT `fk_orders_statuses1`
-    FOREIGN KEY (`statuses_id`)
-    REFERENCES `delivery`.`statuses` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_orders_parsels1`
     FOREIGN KEY (`parsels_id`)
     REFERENCES `delivery`.`parsels` (`id`)
