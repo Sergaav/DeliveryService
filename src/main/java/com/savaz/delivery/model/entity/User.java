@@ -6,7 +6,15 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
-    private int roleId;
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public int getId() {
         return id;
@@ -48,14 +56,6 @@ public class User {
         this.lastName = lastName;
     }
 
-    public int getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -64,7 +64,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", roleId=" + roleId +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

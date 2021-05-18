@@ -1,40 +1,34 @@
-<%@ page contentType="text/html;charset=UTF-8"  %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Login</title>
     <%@ include file="/WEB-INF/jspf/head.jspf" %>
 </head>
 <body>
-<br>
-<br>
-<br>
-<br>
-<br>
-<h5>
-Please sign in or register
-</h5>
-<br>
-<br>
-<br>
-<form method="post" action="servlet">
-    <div class="form-row justify-content-center">
-        <div class="col-auto">
-            <label class="sr-only" for="inlineFormInput">Login</label>
-            <input type="text" pattern="[A-Za-z0-9]{5,10}" class="form-control mb-2" id="inlineFormInput" placeholder="Enter your login">
+<%@include file="/WEB-INF/jspf/header.jspf"%>
+<tr >
+    <td class="content center">
+<form action="controller" method="get">
+    <input type="hidden" name="command" value="login">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Login</label>
+            <input pattern="[A-Za-z0-9]{5,10}" type="text" name="login" class="form-control" id="exampleInputEmail1"
+                   aria-describedby="emailHelp" placeholder="Enter login">
+            <small id="emailHelp" class="form-text text-muted">Only latin letters and digits!</small>
         </div>
-        <div class="col-auto">
-            <label class="sr-only" for="inlineFormInputGroup">Password</label>
-            <div class="input-group mb-2">
-                <input type="password" class="form-control" id="inlineFormInputGroup" placeholder="Enter password">
-            </div>
-        </div>
-        <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-2">Submit</button>
-        </div>
-        <a href="registration">Click for registration.</a>
     </div>
-
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1"
+                   placeholder="Password">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="registration">Registration</a>
 </form>
-
+    </td>
+</tr>
 </body>
 </html>

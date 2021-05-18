@@ -5,6 +5,9 @@
     <%@ include file="/WEB-INF/jspf/head.jspf" %>
 </head>
 <body>
+<%@include file="/WEB-INF/jspf/header.jspf"%>
+<tr >
+    <td class="content center">
 <form action="controller" method="get">
     <input type="hidden" name="command" value="login">
     <div class="col-md-6">
@@ -25,5 +28,7 @@
     <button type="submit" class="btn btn-primary">Submit</button>
     <a href="registration">Registration</a>
 </form>
+    </td>
+</tr>
 </body>
 </html>
