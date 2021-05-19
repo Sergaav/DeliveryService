@@ -2,7 +2,6 @@ package com.savaz.delivery.model.dao;
 
 import com.savaz.delivery.model.Fields;
 import com.savaz.delivery.model.entity.User;
-import com.savaz.delivery.model.entity.enums.Roles;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +13,9 @@ public class UserDao {
     private static final String SQL_FIND_USER_BY_LOGIN_AND_PASS =
             "SELECT * FROM users WHERE login=? AND password=?";
 
+    private static final String SQL_FIND_USER_BY_LOGIN =
+            "SELECT * FROM users WHERE login=?";
+
     private static final String SQL_FIND_USER_BY_ID =
             "SELECT * FROM users WHERE id=?";
 
@@ -21,16 +23,14 @@ public class UserDao {
             "UPDATE users SET password=?, first_name=?, last_name=?, locale_name=?" +
                     "	WHERE id=?";
 
-    Connection connection;
-
-    public UserDao(Connection connection) {
-        this.connection = connection;
-    }
-
     public User findUserByLoginAndPass(String login, String password) {
+        Connection connection=null;
         User user = null;
         ResultSet resultSet = null;
-        try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_USER_BY_LOGIN_AND_PASS);) {
+        PreparedStatement statement=null;
+        try {
+            connection = DBManager.getInstance().getConnection();
+            statement = connection.prepareStatement(SQL_FIND_USER_BY_LOGIN_AND_PASS);
             statement.setString(1, login);
             statement.setString(2, password);
             resultSet = statement.executeQuery();
@@ -40,15 +40,64 @@ public class UserDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
+           closeResultSet(resultSet);
+           closeStatement(statement);
+           closeConnection(connection);
+        }
+        return user;
+    }
+
+    public User findUserByLogin(String login) {
+        Connection connection = null;
+        User user = null;
+        ResultSet resultSet = null;
+        PreparedStatement statement = null;
+        try {
+            connection = DBManager.getInstance().getConnection();
+            statement = connection.prepareStatement(SQL_FIND_USER_BY_LOGIN);
+            statement.setString(1, login);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                user = new UserMapper().mapRow(resultSet);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            closeResultSet(resultSet);
+            closeStatement(statement);
+            closeConnection(connection);
+        }
+        return user;
+    }
+
+    public static void closeConnection (Connection connection){
+        if (connection !=null){
             try {
-                if (resultSet != null) {
-                    resultSet.close();
-                }
+                connection.close();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }
-        return user;
+    }
+
+    public static void closeStatement (PreparedStatement statement){
+        if (statement !=null){
+            try {
+                statement.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+    }
+
+    public static void closeResultSet (ResultSet resultSet){
+        if (resultSet !=null){
+            try {
+                resultSet.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
     }
 
     public boolean userIsExist(String login, String password) {
@@ -80,10 +129,6 @@ public class UserDao {
 
     }
 
-
-    public void close() throws Exception {
-
-    }
 
     private static class UserMapper implements EntityMapper<User> {
 

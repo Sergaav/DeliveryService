@@ -1,6 +1,5 @@
 package com.savaz.delivery.controller.filters;
 
-import com.savaz.delivery.model.dao.DBManager;
 import com.savaz.delivery.model.dao.UserDao;
 import com.savaz.delivery.model.entity.User;
 import com.savaz.delivery.model.entity.enums.Roles;
@@ -20,7 +19,7 @@ public class AuthFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        UserDao dao = new UserDao(DBManager.getInstance().getConnection());
+        UserDao dao = new UserDao();
         final HttpServletRequest req = (HttpServletRequest) servletRequest;
         final HttpServletResponse res = (HttpServletResponse) servletResponse;
         final HttpSession session = req.getSession();
@@ -36,12 +35,12 @@ public class AuthFilter implements Filter {
             req.getSession().setAttribute("login", login);
             req.getSession().setAttribute("password", password);
             req.getSession().setAttribute("role", role);
+            System.out.println(user);
             moveToMenu(req, res, role);
         } else {
             moveToMenu(req, res, Roles.UNKNOWN);
         }
-
-
+        filterChain.doFilter(req,res);
     }
 
     private void moveToMenu(ServletRequest servletRequest, ServletResponse servletResponse, Roles role) throws ServletException, IOException {

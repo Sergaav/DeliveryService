@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class DBManager {
     private static DBManager instance;
 
-    public static synchronized DBManager getInstance() {
+    public static DBManager getInstance() {
         if (instance == null)
             instance = new DBManager();
         return instance;
@@ -18,12 +18,14 @@ public class DBManager {
 
 
     public Connection getConnection() {
-        Context ctx;
+        InitialContext ctx;
         Connection c = null;
+        DataSource dataSource = null;
         try {
             ctx = new InitialContext();
-            DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/deliveryPool");
-            c = ds.getConnection();
+            Context context = (Context) ctx.lookup("java:/comp/env");
+            dataSource = (DataSource) context.lookup("jdbc/deliveryPool");
+            c = dataSource.getConnection();
         } catch (NamingException | SQLException e) {
             e.printStackTrace();
         }

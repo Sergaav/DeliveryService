@@ -1,6 +1,10 @@
 package com.savaz.delivery.controller;
 
 import com.savaz.delivery.controller.command.Command;
+import com.savaz.delivery.controller.command.CommandContainer;
+import com.savaz.delivery.controller.command.LoginCommand;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +17,8 @@ public class Servlet extends HttpServlet {
     private Map<String, Command> commands = new HashMap<>();
 
     public void init(){
-//        commands.put("logout", new LogOut());
-//        commands.put("login", new Login());
+//      commands.put("logout", new LogOut());
+       commands.put("login", new LoginCommand());
 //        commands.put("registration", new Registration());
 //        commands.put("exception" , new Exception());
     }
@@ -32,18 +36,12 @@ public class Servlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String path = request.getRequestURI();
-        System.out.println(path);
-        path = path.replaceAll(".*/app/" , "");
-        System.out.println(path);
-        Command command = commands.getOrDefault(path ,
-                (r)->"/index.jsp)");
-        String page = command.execute(request);
-        if(page.contains("redirect:")){
-            response.sendRedirect(page.replace("redirect:", "/api"));
-        }else {
-            request.getRequestDispatcher(page).forward(request, response);
+        String commandName = request.getParameter("command");
+        Command command = CommandContainer.get(commandName);
+        String forward = command.execute(request, response);
+        if (forward != null) {
+            RequestDispatcher disp = request.getRequestDispatcher(forward);
+            disp.forward(request, response);
         }
     }
 }
