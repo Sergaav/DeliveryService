@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 
 public class LoginCommand implements Command {
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String login = request.getParameter("login");
@@ -24,6 +25,12 @@ public class LoginCommand implements Command {
 
             if (login == null || password == null || login.isEmpty() || password.isEmpty()) {
                 errorMessage = "Login/password cannot be empty";
+                request.setAttribute("errorMessage", errorMessage);
+                return forward;
+            }
+            String regexLogin = "^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$";
+            if (login.matches(regexLogin)) {
+                errorMessage = "Login/password must be valid";
                 request.setAttribute("errorMessage", errorMessage);
                 return forward;
             }
@@ -51,7 +58,6 @@ public class LoginCommand implements Command {
                 String userLocaleName = user.getLocale();
                 if (userLocaleName != null && !userLocaleName.isEmpty()) {
                     Config.set(session, "javax.servlet.jsp.jstl.fmt.locale", userLocaleName);
-
                     session.setAttribute("defaultLocale", userLocaleName);
                 }
             }

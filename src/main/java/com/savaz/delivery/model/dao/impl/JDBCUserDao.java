@@ -30,6 +30,9 @@ public class JDBCUserDao implements UserDao {
             "UPDATE users SET password=?, first_name=?, last_name=?, locale_name=?" +
                     "	WHERE id=?";
 
+    private static final String SQL_CREATE_USER =
+            "INSERT INTO users VALUES (default,?,?,?,?,?,?)";
+
     public User findUserByLoginAndPass(String login, String password) {
         User user = null;
         ResultSet resultSet = null;
@@ -98,12 +101,51 @@ public class JDBCUserDao implements UserDao {
 
 
     public void create(User entity) {
+        PreparedStatement preparedStatement=null;
+        ResultSet resultSet = null;
+
+        try {
+            preparedStatement = connection.prepareStatement(SQL_CREATE_USER);
+            preparedStatement.setString(1, entity.getLogin());
+            preparedStatement.setString(2, entity.getPassword());
+            preparedStatement.setString(3, entity.getFirstName());
+            preparedStatement.setString(4, entity.getLastName());
+            preparedStatement.setString(5, entity.getLocale());
+            preparedStatement.setInt(6, entity.getRole());
+            preparedStatement.executeUpdate();
+            resultSet = preparedStatement.getGeneratedKeys();
+            while (resultSet.next()){
+                entity.setId(resultSet.getInt("id"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }finally {
+            closeResultSet(resultSet);
+            closeStatement(preparedStatement);
+        }
+
 
     }
 
 
     public User findById(int id) {
-        return null;
+        User user = null;
+        ResultSet resultSet = null;
+        PreparedStatement statement=null;
+        try {
+            statement = connection.prepareStatement(SQL_FIND_USER_BY_ID);
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                user = new UserMapper().mapRow(resultSet);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            closeResultSet(resultSet);
+            closeStatement(statement);
+        }
+        return user;
     }
 
 
