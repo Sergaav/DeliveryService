@@ -1,7 +1,6 @@
 package com.savaz.delivery.model.dao.impl;
 
 import com.savaz.delivery.model.Fields;
-import com.savaz.delivery.model.dao.DBManager;
 import com.savaz.delivery.model.dao.EntityMapper;
 import com.savaz.delivery.model.dao.UserDao;
 import com.savaz.delivery.model.entity.User;
@@ -36,7 +35,6 @@ public class JDBCUserDao implements UserDao {
         ResultSet resultSet = null;
         PreparedStatement statement=null;
         try {
-            connection = DBManager.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_FIND_USER_BY_LOGIN_AND_PASS);
             statement.setString(1, login);
             statement.setString(2, password);
@@ -54,12 +52,10 @@ public class JDBCUserDao implements UserDao {
     }
 
     public User findUserByLogin(String login) {
-        Connection connection = null;
         User user = null;
         ResultSet resultSet = null;
         PreparedStatement statement = null;
         try {
-            connection = DBManager.getInstance().getConnection();
             statement = connection.prepareStatement(SQL_FIND_USER_BY_LOGIN);
             statement.setString(1, login);
             resultSet = statement.executeQuery();

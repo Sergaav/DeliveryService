@@ -1,4 +1,6 @@
 package com.savaz.delivery.model.entity;
 
-public class Parcel {
+import java.io.Serializable;
+
+public class Parcel implements Serializable {
 }

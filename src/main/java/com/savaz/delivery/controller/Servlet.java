@@ -1,8 +1,6 @@
 package com.savaz.delivery.controller;
 
-import com.savaz.delivery.controller.command.Command;
-import com.savaz.delivery.controller.command.CommandContainer;
-import com.savaz.delivery.controller.command.LoginCommand;
+import com.savaz.delivery.controller.command.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,11 +14,11 @@ import java.util.Map;
 public class Servlet extends HttpServlet {
     private Map<String, Command> commands = new HashMap<>();
 
-    public void init(){
-//      commands.put("logout", new LogOut());
-       commands.put("login", new LoginCommand());
-//        commands.put("registration", new Registration());
-//        commands.put("exception" , new Exception());
+    public void init() {
+        commands.put("logout", new LogoutCommand());
+        commands.put("login", new LoginCommand());
+        commands.put("registration", new RegistrationCommand());
+        commands.put("exception", new ExceptionCommand());
     }
 
     public void doGet(HttpServletRequest request,

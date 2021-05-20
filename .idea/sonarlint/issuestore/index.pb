@@ -8,8 +8,6 @@ V
 _
 /src/main/webapp/WEB-INF/jsp/admin/adminMenu.jsp,4\b\4b6e49920728fd74f58799ba494aa957c76e0e5b
 S
-#src/main/webapp/WEB-INF/context.xml,d\c\dc48cb9794801085f0dffc466f0b3db0586a4fa7
-S
 #.idea/artifacts/DeliveryService.xml,c\6\c6829e9ff723711832b7cd11e57c5365dcef77a4
 W
 '.idea/artifacts/DeliveryService_war.xml,d\e\de5a107204f18c58387b4a0ce02dd95f54801b32
@@ -25,3 +23,11 @@ b
 -src/main/webapp/WEB-INF/jsp/user/userMenu.jsp,0\0\006cbc6b17aefd4883eccf5b533db4d230e459a4
 D
 sql/SQLUserAdmin.sql,c\3\c36504761818b06c7c31bb2de91f09cea1c80152
+b
+2src/main/java/com/savaz/delivery/model/Fields.java,3\0\30a42557dd7ff856722720a11410d5034829cdd8
+I
+src/main/webapp/index.jsp,8\e\8e6d3b70c9f5b02570779b0441540d45eceb0ded
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+O
+src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
