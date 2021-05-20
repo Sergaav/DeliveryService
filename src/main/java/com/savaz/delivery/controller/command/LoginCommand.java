@@ -1,6 +1,8 @@
 package com.savaz.delivery.controller.command;
 
 import com.savaz.delivery.Path;
+import com.savaz.delivery.model.dao.DaoFactory;
+import com.savaz.delivery.model.dao.UserDao;
 import com.savaz.delivery.model.dao.impl.JDBCUserDao;
 import com.savaz.delivery.model.entity.User;
 import com.savaz.delivery.model.entity.enums.Roles;
@@ -18,6 +20,8 @@ public class LoginCommand implements Command {
         HttpSession session = request.getSession();
         String errorMessage = null;
         String forward = Path.PAGE_ERROR_PAGE;
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        UserDao dao = daoFactory.createUserDao();
 
         if (login == null || password == null || login.isEmpty() || password.isEmpty()) {
             errorMessage = "Login/password cannot be empty";
@@ -25,7 +29,7 @@ public class LoginCommand implements Command {
             return forward;
         }
 
-        User user = new JDBCUserDao().findUserByLogin(login);
+        User user = dao.findUserByLogin(login);
 
         if (user == null || !password.equals(user.getPassword())) {
             errorMessage = "Cannot find user with such login/password";

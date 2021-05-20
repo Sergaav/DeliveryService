@@ -12,9 +12,10 @@ import java.sql.SQLException;
 public class JDBCDaoFactory extends DaoFactory {
     private DataSource dataSource = ConnectionPoolHolder.getDataSource();
 
+
     @Override
     public UserDao createUserDao() {
-        return null;
+        return new JDBCUserDao(getConnection());
     }
 
     @Override
@@ -27,8 +28,9 @@ public class JDBCDaoFactory extends DaoFactory {
         return null;
     }
 
-    private Connection getConnection(){
+    private Connection getConnection() {
         try {
+          //  Class.forName("com.mysql.cj.jdbc.Driver");
             return dataSource.getConnection();
         } catch (SQLException e) {
             throw new RuntimeException(e);
