@@ -1,6 +1,6 @@
 package com.savaz.delivery.controller.filters;
 
-import com.savaz.delivery.model.dao.UserDao;
+import com.savaz.delivery.model.dao.impl.JDBCUserDao;
 import com.savaz.delivery.model.entity.User;
 import com.savaz.delivery.model.entity.enums.Roles;
 
@@ -19,7 +19,7 @@ public class AuthFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        UserDao dao = new UserDao();
+        JDBCUserDao dao = new JDBCUserDao();
         final HttpServletRequest req = (HttpServletRequest) servletRequest;
         final HttpServletResponse res = (HttpServletResponse) servletResponse;
         final HttpSession session = req.getSession();

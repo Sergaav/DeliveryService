@@ -1,7 +1,7 @@
 package com.savaz.delivery.controller.command;
 
 import com.savaz.delivery.Path;
-import com.savaz.delivery.model.dao.UserDao;
+import com.savaz.delivery.model.dao.impl.JDBCUserDao;
 import com.savaz.delivery.model.entity.User;
 import com.savaz.delivery.model.entity.enums.Roles;
 
@@ -25,7 +25,7 @@ public class LoginCommand implements Command {
             return forward;
         }
 
-        User user = new UserDao().findUserByLogin(login);
+        User user = new JDBCUserDao().findUserByLogin(login);
 
         if (user == null || !password.equals(user.getPassword())) {
             errorMessage = "Cannot find user with such login/password";
