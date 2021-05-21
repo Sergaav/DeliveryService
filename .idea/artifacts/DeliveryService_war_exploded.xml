@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="DeliveryService">
+  <artifact type="exploded-war" name="DeliveryService_war_exploded">
     <output-path>$PROJECT_DIR$/target/DeliveryService-1.0-SNAPSHOT</output-path>
     <properties id="maven-jee-properties">
       <options>
