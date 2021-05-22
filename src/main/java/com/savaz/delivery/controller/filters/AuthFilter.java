@@ -6,6 +6,7 @@ import com.savaz.delivery.model.dao.impl.JDBCUserDao;
 import com.savaz.delivery.model.entity.User;
 import com.savaz.delivery.model.entity.enums.Roles;
 
+import javax.naming.Context;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,8 +27,9 @@ public class AuthFilter implements Filter {
             final HttpServletRequest req = (HttpServletRequest) servletRequest;
             final HttpServletResponse res = (HttpServletResponse) servletResponse;
             final HttpSession session = req.getSession();
-            String login = servletRequest.getParameter("login");
-            String password = servletRequest.getParameter("password");
+            ServletContext context = req.getServletContext();
+            String login = req.getParameter("login");
+            String password = req.getParameter("password");
 
             if (session != null && session.getAttribute("login") != null && session.getAttribute("password") != null) {
                 final Roles role = (Roles) session.getAttribute("role");
@@ -38,6 +40,7 @@ public class AuthFilter implements Filter {
                 req.getSession().setAttribute("login", login);
                 req.getSession().setAttribute("password", password);
                 req.getSession().setAttribute("role", role);
+
                 System.out.println(user);
                 moveToMenu(req, res, role);
             } else {
