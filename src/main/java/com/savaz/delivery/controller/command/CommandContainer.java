@@ -9,8 +9,10 @@ public class CommandContainer {
 
     static {
         // common commands
+        commands.put("logout", new LogoutCommand());
         commands.put("login", new LoginCommand());
-        commands.put("registration",new RegistrationCommand());
+        commands.put("registration", new RegistrationCommand());
+        commands.put("exception", new ExceptionCommand());
 //        commands.put("logout", new LogoutCommand());
 //        commands.put("noCommand", new NoCommand());
 //        commands.put("viewSettings", new ViewSettingsCommand());

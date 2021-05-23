@@ -46,13 +46,14 @@ public class LoginCommand implements Command {
                 Roles userRole = Roles.values()[user.getRole()];
 
                 if (userRole == Roles.ADMIN)
-                    forward = Path.PAGE_LIST_ORDERS;
+                    forward = "redirect:"+Path.PAGE_LIST_ORDERS;
 
                 if (userRole == Roles.USER)
-                    forward = Path.COMMAND_LIST_MENU;
+                    forward = "redirect:"+Path.COMMAND_LIST_MENU;
 
-                session.setAttribute("user", user);
-                session.setAttribute("userRole", userRole);
+                session.setAttribute("login", user.getLogin());
+                session.setAttribute("password",user.getPassword());
+                session.setAttribute("role", user.getRole());
 
                 // work with i18n
                 String userLocaleName = user.getLocale();
