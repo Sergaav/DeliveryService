@@ -20,7 +20,7 @@
         <url-pattern>/controller</url-pattern>
     </servlet-mapping>
 
-     jsp-pages
+<!--    jsp-pages-->
     <servlet>
         <servlet-name>Login</servlet-name>
         <jsp-file>/WEB-INF/jsp/login.jsp</jsp-file>
