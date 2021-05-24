@@ -96,7 +96,12 @@ public class JDBCUserDao implements UserDao {
     }
 
     public boolean userIsExist(String login, String password) {
-        return false;
+        boolean temp=false;
+        User user = findUserByLoginAndPass(login, password);
+        if (user !=null){
+           temp=true;
+        }
+        return temp;
     }
 
 

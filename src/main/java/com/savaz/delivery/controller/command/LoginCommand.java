@@ -21,6 +21,7 @@ public class LoginCommand implements Command {
         String errorMessage = null;
         String forward = Path.PAGE_ERROR_PAGE;
         DaoFactory daoFactory = DaoFactory.getInstance();
+
         try (UserDao dao = daoFactory.createUserDao()) {
 
             if (login == null || password == null || login.isEmpty() || password.isEmpty()) {
@@ -54,6 +55,7 @@ public class LoginCommand implements Command {
                 session.setAttribute("login", user.getLogin());
                 session.setAttribute("password",user.getPassword());
                 session.setAttribute("role", user.getRole());
+                session.getServletContext().setAttribute("login",login);
 
                 // work with i18n
                 String userLocaleName = user.getLocale();

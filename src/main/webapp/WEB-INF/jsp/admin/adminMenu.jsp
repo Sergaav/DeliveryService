@@ -15,13 +15,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Main</a>
+                    <a class="nav-link" href="controller?command?listOrders">List of orders</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="controller">Destination</a>
+                    <a class="nav-link" href="controller?command=destination">Destination</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  href="login">Pricing</a>
+                    <a class="nav-link"  href="controller?command=price">Pricing</a>
                 </li>
             </ul>
         </div>

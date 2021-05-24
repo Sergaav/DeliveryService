@@ -10,4 +10,6 @@
 <%@include file="WEB-INF/jspf/header.jspf"%>
 
 </body>
+
+<%@include file="WEB-INF/jspf/footer.jspf"%>
 </html>
