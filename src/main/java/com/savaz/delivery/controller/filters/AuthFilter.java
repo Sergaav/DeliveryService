@@ -27,29 +27,29 @@ public class AuthFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         context = filterConfig.getServletContext();
-       loggedUsers = (Set<String>) context.getAttribute("loggedUsers");
+        loggedUsers = (Set<String>) context.getAttribute("loggedUsers");
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        final HttpServletRequest req = (HttpServletRequest) servletRequest;
+        final HttpServletResponse res = (HttpServletResponse) servletResponse;
+        final HttpSession session = req.getSession();
+        String login = req.getParameter("login");
+        String password = req.getParameter("password");
+        if (session != null && session.getAttribute("login") != null && session.getAttribute("password") != null) {
+            final Roles role = Roles.values()[(int) session.getAttribute("role")];
+            moveToMenu(req, res, role);
+        }
         DaoFactory daoFactory = DaoFactory.getInstance();
         try (UserDao dao = daoFactory.createUserDao()) {
-            final HttpServletRequest req = (HttpServletRequest) servletRequest;
-            final HttpServletResponse res = (HttpServletResponse) servletResponse;
-            final HttpSession session = req.getSession();
-            String login = req.getParameter("login");
-            String password = req.getParameter("password");
-
-            if (session != null && session.getAttribute("login") != null && session.getAttribute("password") != null) {
-                final Roles role = Roles.values()[(int) session.getAttribute("role")];
-                moveToMenu(req, res, role);
-            } else if (dao.userIsExist(login, password)) {
+            if (dao.userIsExist(login, password)) {
                 User user = dao.findUserByLoginAndPass(login, password);
                 final Roles role = Roles.values()[user.getRole()];
                 req.getSession().setAttribute("login", login);
                 req.getSession().setAttribute("password", password);
                 req.getSession().setAttribute("role", user.getRole());
-                context.setAttribute("loggedUsers",loggedUsers.add(login));
+                context.setAttribute("loggedUsers", loggedUsers.add(login));
                 System.out.println(context.getAttribute("loggedUsers"));
                 moveToMenu(req, res, role);
             } else {

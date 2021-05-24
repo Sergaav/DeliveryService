@@ -13,17 +13,18 @@ public class CommandContainer {
         commands.put("login", new LoginCommand());
         commands.put("registration", new RegistrationCommand());
         commands.put("exception", new ExceptionCommand());
-//        commands.put("logout", new LogoutCommand());
-//        commands.put("noCommand", new NoCommand());
+        commands.put("noCommand", new NoCommand());
+        commands.put("price", new PriceCommand());
+        commands.put("destination", new DestinationCommand());
 //        commands.put("viewSettings", new ViewSettingsCommand());
 //        commands.put("updateSettings", new UpdateSettingsCommand());
 
-        // client commands
-//        commands.put("listMenu", new ListMenuCommand());
-//
-//        // admin commands
-//        commands.put("listOrders", new ListOrdersCommand());
-//
+       //  client commands
+        commands.put("userMenu", new UserMenuCommand());
+
+       // admin commands
+        commands.put("adminMenu", new AdminMenuCommand());
+
 //        log.debug("Command container was successfully initialized");
 //        log.trace("Number of commands --> " + commands.size());
     }
