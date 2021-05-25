@@ -23,6 +23,9 @@
                 <li class="nav-item">
                     <a class="nav-link"  href="controller?command=price">Pricing</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="controller?command=logout">Logout</a>
+                </li>
             </ul>
         </div>
     </nav>
