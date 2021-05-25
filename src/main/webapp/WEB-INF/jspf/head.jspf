@@ -1,2 +1,29 @@
+<%@ include file="/WEB-INF/jspf/directive/page.jspf" %>
+<%@ include file="/WEB-INF/jspf/directive/taglib.jspf" %>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<head>
+    <%@include file="header.jspf"%>
+    <form id="settings_form" action="controller" method="get">
+        <input type="hidden" name="command" value="updateSettings" />
+        <div>
+        <p>
+            <fmt:message key="settings_jsp.label.localization"/>
+        </p>
+        <select name="localeToSet">
+            <c:choose>
+                <c:when test="${not empty defaultLocale}">
+                    <option value="">${defaultLocale}[Default]</option>
+                </c:when>
+                <c:otherwise>
+                    <option value=""/>
+                </c:otherwise>
+            </c:choose>
+
+            <c:forEach var="localeName" items="${locales}">
+                <option value="${localeName}">${localeName}</option>
+            </c:forEach>
+        </select>
+    </div>
+    </form>
+</head>

@@ -17,7 +17,7 @@ public class ContextListener implements ServletContextListener {
         log("Servlet context initialization starts");
 
         ServletContext servletContext = event.getServletContext();
-       // initLog4J(servletContext);
+        // initLog4J(servletContext);
         initCommandContainer();
         initI18N(servletContext);
 
@@ -30,7 +30,7 @@ public class ContextListener implements ServletContextListener {
     private void initI18N(ServletContext servletContext) {
         String localesValue = servletContext.getInitParameter("locales");
         if (localesValue == null || localesValue.isEmpty()) {
-
+              //do nothing
         } else {
             List<String> locales = new ArrayList<>();
             StringTokenizer st = new StringTokenizer(localesValue);
@@ -38,7 +38,6 @@ public class ContextListener implements ServletContextListener {
                 String localeName = st.nextToken();
                 locales.add(localeName);
             }
-
             servletContext.setAttribute("locales", locales);
         }
 
