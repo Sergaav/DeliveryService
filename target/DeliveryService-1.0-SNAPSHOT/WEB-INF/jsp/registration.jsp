@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
+
 <head>
     <title>Registration</title>
     <%@ include file="/WEB-INF/jspf/head.jspf" %>
@@ -42,7 +43,7 @@
                                placeholder="Last Name">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button style="margin-left: 30px" type="submit" class="btn btn-primary">Submit</button>
             </form>
         </td>
     </tr>

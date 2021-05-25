@@ -27,8 +27,6 @@ i
 9src/main/java/com/savaz/delivery/model/entity/Parcel.java,6\4\647e377bde6d924f1d1dedc86bc178c28fb7954d
 l
 <src/main/java/com/savaz/delivery/model/dao/EntityMapper.java,1\d\1db7723e29287bc33fe8be444da7262eb2c70e72
-\
-,src/main/webapp/WEB-INF/jsp/registration.jsp,8\6\863750b17f37d1bcb7d6ce621e6f066177b3cf66
 g
 7src/main/java/com/savaz/delivery/model/dao/UserDao.java,b\2\b26513bc27e9078c0b3bfdb7683a660895a881ea
 g
@@ -51,12 +49,8 @@ d
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 a
 1src/main/webapp/WEB-INF/jsp/common/tariffList.jsp,0\c\0c0144bd31955a2f3059e5a7cd6432af217d2c52
-V
-&src/main/webapp/WEB-INF/jspf/head.jspf,d\f\df7258b476d0dbc30286cde67ebfe2570870fdcd
 y
 Isrc/main/java/com/savaz/delivery/controller/command/CommandContainer.java,b\0\b01971dfa6c7cbd9ecb90cac8cfa2fd8286df502
-y
-Isrc/main/java/com/savaz/delivery/controller/listener/ContextListener.java,3\1\31bd0cde94bdab52c0dd7e3da29dcd37d0dbb316
 `
 0src/main/webapp/WEB-INF/jsp/common/errorPage.jsp,3\1\31803863d23d56e29ff1e17ab8e2dd620b2b78f8
 X
