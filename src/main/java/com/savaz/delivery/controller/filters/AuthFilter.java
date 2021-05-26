@@ -42,6 +42,7 @@ public class AuthFilter implements Filter {
         if (session.getAttribute("login") != null && session.getAttribute("password") != null &&
                 session.getAttribute("role") != null) {
             role = Roles.values()[(int) session.getAttribute("role")];
+
             moveToMenu(req, res, role);
         } else if (login != null && password != null) {
             try (UserDao dao = daoFactory.createUserDao()) {
@@ -63,7 +64,7 @@ public class AuthFilter implements Filter {
                 res.sendRedirect(Path.PAGE_LOGIN);
                 return;
             }
-            filterChain.doFilter(req,res);
+            filterChain.doFilter(req, res);
         }
     }
 

@@ -29,8 +29,6 @@ l
 <src/main/java/com/savaz/delivery/model/dao/EntityMapper.java,1\d\1db7723e29287bc33fe8be444da7262eb2c70e72
 g
 7src/main/java/com/savaz/delivery/model/dao/UserDao.java,b\2\b26513bc27e9078c0b3bfdb7683a660895a881ea
-g
-7src/main/java/com/savaz/delivery/model/entity/User.java,1\f\1f62f6e93d2dbc10cbac7a162470758854964987
 p
 @src/main/java/com/savaz/delivery/controller/command/Command.java,4\7\479b2a58426fcfcedfdf53fc0c35f9dc34255c0e
 b

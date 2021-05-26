@@ -61,7 +61,7 @@ public class LoginCommand implements Command {
                 String userLocaleName = user.getLocale();
                 if (userLocaleName != null && !userLocaleName.isEmpty()) {
                     Config.set(session, "javax.servlet.jsp.jstl.fmt.locale", userLocaleName);
-                    session.setAttribute("defaultLocale", userLocaleName);
+                    session.setAttribute("locale", userLocaleName);
                 }
             }
 

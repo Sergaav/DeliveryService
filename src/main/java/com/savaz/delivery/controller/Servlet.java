@@ -41,12 +41,12 @@ public class Servlet extends HttpServlet {
         String commandName = request.getParameter("command");
         Command command = CommandContainer.get(commandName);
         String forward = command.execute(request, response);
-        if (forward != null && forward.contains("redirect:")) {
-            String temp = forward.replace("redirect:","");
-            response.sendRedirect(temp);
-        }else if (forward != null){
+        if (forward != null && !forward.contains("redirect:")){
             RequestDispatcher disp = request.getRequestDispatcher(forward);
             disp.forward(request, response);
+        }else if (forward != null && forward.contains("redirect:")) {
+            String temp = forward.replace("redirect:","");
+            response.sendRedirect(temp);
         }
     }
 }
