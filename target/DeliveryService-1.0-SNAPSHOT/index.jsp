@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<fmt:bundle basename="resources"/>
+
 <html>
+<head>
+    <title>Delivery service</title>
 <%@include file="WEB-INF/jspf/head.jspf" %>
+</head>
 <body>
 <%@include file="WEB-INF/jspf/header.jspf" %>
 
 
 <div class="container">
-    <h2>Carousel Example</h2>
+    <h2>Delivery Service - fastest delivery!!</h2>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">

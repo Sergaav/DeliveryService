@@ -25,7 +25,7 @@ public class ConnectionPoolHolder {
                     ds.setDriver(driver);
                     ds.setUrl("jdbc:mysql://localhost:3306/delivery");
                     ds.setUsername("root");
-                    ds.setPassword("12345");
+                    ds.setPassword("123456789");
                     ds.setMinIdle(5);
                     ds.setMaxIdle(10);
                     ds.setMaxOpenPreparedStatements(100);

@@ -21,6 +21,7 @@ public class Servlet extends HttpServlet {
         servletConfig.getServletContext()
                 .setAttribute("loggedUsers", new HashSet<String>());
 
+
     }
 
     public void doGet(HttpServletRequest request,
