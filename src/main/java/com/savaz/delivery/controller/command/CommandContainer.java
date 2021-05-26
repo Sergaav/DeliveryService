@@ -16,7 +16,7 @@ public class CommandContainer {
         commands.put("noCommand", new NoCommand());
         commands.put("price", new PriceCommand());
         commands.put("destination", new DestinationCommand());
-//        commands.put("viewSettings", new ViewSettingsCommand());
+        commands.put("changeLocale", new LocaleChangeCommand());
 //        commands.put("updateSettings", new UpdateSettingsCommand());
 
        //  client commands

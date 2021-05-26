@@ -63,7 +63,7 @@ public class AuthFilter implements Filter {
                 res.sendRedirect(Path.PAGE_LOGIN);
                 return;
             }
-            moveToMenu(req, res, Roles.UNKNOWN);
+            filterChain.doFilter(req,res);
         }
     }
 

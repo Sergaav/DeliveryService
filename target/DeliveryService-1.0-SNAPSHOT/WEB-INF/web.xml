@@ -61,7 +61,7 @@
     <!-- the (preferable) browser's locale will be used if we don't set the default locale -->
     <context-param>
         <param-name>javax.servlet.jsp.jstl.fmt.locale</param-name>
-        <param-value>uk</param-value>
+        <param-value>en</param-value>
     </context-param>
 
     <!-- supported locales -->
@@ -93,23 +93,33 @@
     </filter-mapping>
 
     <filter>
+        <filter-name>LocalizationFilter</filter-name>
+        <filter-class>com.savaz.delivery.controller.filters.LocalizationFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>LocalizationFilter</filter-name>
+        <servlet-name>Servlet</servlet-name>
+    </filter-mapping>
+
+    <filter>
         <filter-name>CommandAccessFilter</filter-name>
         <filter-class>com.savaz.delivery.controller.filters.CommandAccessFilter</filter-class>
         <init-param>
             <param-name>admin</param-name>
-            <param-value>adminMenu</param-value>
+            <param-value>adminMenu changeLocale</param-value>
         </init-param>
         <init-param>
             <param-name>user</param-name>
-            <param-value>userMenu</param-value>
+            <param-value>userMenu changeLocale</param-value>
         </init-param>
         <init-param>
             <param-name>common</param-name>
-            <param-value>logout noCommand price destination</param-value>
+            <param-value>logout noCommand price destination changeLocale</param-value>
         </init-param>
         <init-param>
             <param-name>out-of-control</param-name>
-            <param-value>login registration</param-value>
+            <param-value>login registration changeLocale</param-value>
         </init-param>
     </filter>
 
