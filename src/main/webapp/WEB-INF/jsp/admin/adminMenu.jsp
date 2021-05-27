@@ -9,9 +9,9 @@
 </head>
 <body>
 <header>
-    <a style="margin-left: 30px" href="controller?command=changeLocale&locale=uk" class="language" rel="uk"><img
+    <a style="margin-left: 30px" href="${pageContext.request.contextPath}/controller?command=changeLocale&locale=uk" class="language" rel="uk"><img
             src="img/uk.png" alt="uk"/>
-        <a href="controller?command=changeLocale&locale=en" class="language" rel="en"><img src="img/en.png"
+        <a href="${pageContext.request.contextPath}/controller?command=changeLocale&locale=en" class="language" rel="en"><img src="img/en.png"
                                                                                            alt="en"/>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">Delivery Service</a>

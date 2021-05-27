@@ -119,7 +119,7 @@
         </init-param>
         <init-param>
             <param-name>out-of-control</param-name>
-            <param-value>login registration loginView</param-value>
+            <param-value>login registration loginView changeLocale</param-value>
         </init-param>
     </filter>
 

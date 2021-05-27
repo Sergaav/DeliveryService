@@ -38,6 +38,7 @@ public class CommandAccessFilter implements Filter {
             String errorMessage = "You do not have permission to access the requested resource";
 
             request.setAttribute("errorMessage", errorMessage);
+
             request.getRequestDispatcher(Path.PAGE_ERROR_PAGE)
                     .forward(request, response);
         }
