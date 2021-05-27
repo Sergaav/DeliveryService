@@ -16,12 +16,12 @@ public class LocalizationFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest request = (HttpServletRequest) servletRequest;
-        Locale sessionLocale = (Locale) request.getSession().getAttribute("locale");
-        if (sessionLocale != null){
-            servletResponse.setLocale(sessionLocale);
-
-        }
+//        HttpServletRequest request = (HttpServletRequest) servletRequest;
+//        Locale sessionLocale = (Locale) request.getSession().getAttribute("locale");
+//        if (sessionLocale != null){
+//            servletResponse.setLocale(sessionLocale);
+//
+//        }
         filterChain.doFilter(servletRequest,servletResponse);
     }
 

@@ -1,5 +1,7 @@
 package com.savaz.delivery.controller.command;
 
+import com.savaz.delivery.controller.command.pages.LoginView;
+
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -17,7 +19,7 @@ public class CommandContainer {
         commands.put("price", new PriceCommand());
         commands.put("destination", new DestinationCommand());
         commands.put("changeLocale", new LocaleChangeCommand());
-//        commands.put("updateSettings", new UpdateSettingsCommand());
+        commands.put("loginView", new LoginView());
 
        //  client commands
         commands.put("userMenu", new UserMenuCommand());

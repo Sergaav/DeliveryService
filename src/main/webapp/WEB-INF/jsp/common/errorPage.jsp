@@ -7,6 +7,6 @@
 <body>
 <%@include file="/WEB-INF/jspf/header.jspf"%>
 
-${pageContext.getAttribute("error")}
+<fmt:message key="error_page.message"/>
 </body>
 </html>

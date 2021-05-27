@@ -70,6 +70,7 @@ public class AuthFilter implements Filter {
 
     private void moveToMenu(HttpServletRequest servletRequest, HttpServletResponse servletResponse, Roles role) throws ServletException, IOException {
         if (role.equals(Roles.ADMIN)) {
+           ;
             servletResponse.sendRedirect(Path.PAGE_LIST_ORDERS);
         } else if (role.equals(Roles.USER)) {
             servletResponse.sendRedirect(Path.PAGE_LIST_MENU);
@@ -77,6 +78,7 @@ public class AuthFilter implements Filter {
             servletResponse.sendRedirect(Path.PAGE_LOGIN);
         }
     }
+
 
 
     @Override
