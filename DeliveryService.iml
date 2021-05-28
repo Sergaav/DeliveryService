@@ -36,6 +36,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/1/f" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/3/1" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/4/7" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/4/9" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/0" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/5" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/8" />
     </content>
     <orderEntry type="jdk" jdkName="11" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />

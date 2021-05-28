@@ -23,8 +23,6 @@ p
 @src/main/java/com/savaz/delivery/controller/command/Command.java,4\7\479b2a58426fcfcedfdf53fc0c35f9dc34255c0e
 |
 Lsrc/main/java/com/savaz/delivery/controller/command/RegistrationCommand.java,5\c\5c99d6558a25557be0a68965fc993be4d89db8f9
-C
-DeliveryService.iml,4\9\499d5ee2aeb5bd19a4855ec3fd92964a7e0b1930
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 a
