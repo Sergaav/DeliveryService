@@ -11,7 +11,7 @@ import javax.servlet.jsp.jstl.core.Config;
 public class LocaleChangeCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String path = request.getRequestURI();
+        String path = request.getContextPath();
         String locale = request.getParameter("locale");
         HttpSession session = request.getSession();
         String forward = "redirect:"+path;
