@@ -17,7 +17,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Servlet</servlet-name>
-        <url-pattern>/controller</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
 <!--    jsp-pages-->
@@ -82,25 +82,6 @@
         <servlet-name>Servlet</servlet-name>
     </filter-mapping>
 
-<!--    <filter>-->
-<!--        <filter-name>AuthFilter</filter-name>-->
-<!--        <filter-class>com.savaz.delivery.controller.filters.AuthFilter</filter-class>-->
-<!--    </filter>-->
-
-<!--    <filter-mapping>-->
-<!--        <filter-name>AuthFilter</filter-name>-->
-<!--        <servlet-name>Servlet</servlet-name>-->
-<!--    </filter-mapping>-->
-
-    <filter>
-        <filter-name>LocalizationFilter</filter-name>
-        <filter-class>com.savaz.delivery.controller.filters.LocalizationFilter</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>LocalizationFilter</filter-name>
-        <servlet-name>Servlet</servlet-name>
-    </filter-mapping>
 
     <filter>
         <filter-name>CommandAccessFilter</filter-name>
