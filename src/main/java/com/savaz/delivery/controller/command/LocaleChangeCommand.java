@@ -22,6 +22,7 @@ public class LocaleChangeCommand implements Command {
 //            forward = forward+"/admin";
 //            }
 //        }
+
         return forward;
 
     }
