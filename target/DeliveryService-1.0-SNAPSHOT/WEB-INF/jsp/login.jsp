@@ -1,7 +1,9 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/WEB-INF/jspf/head.jspf" %>
 <html>
 <head>
     <title>Login page</title>
-    <%@ include file="/WEB-INF/jspf/head.jspf" %>
+
 </head>
 <body>
 <%@include file="/WEB-INF/jspf/header.jspf" %>

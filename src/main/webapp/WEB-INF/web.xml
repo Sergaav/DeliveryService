@@ -20,15 +20,6 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>AdminController</servlet-name>
-        <servlet-class>com.savaz.delivery.controller.AdminController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AdminController</servlet-name>
-        <url-pattern>/admin/admin_menu</url-pattern>
-    </servlet-mapping>
-
 <!--    jsp-pages-->
     <servlet>
         <servlet-name>Login</servlet-name>
