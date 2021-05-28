@@ -55,8 +55,6 @@ public class LoginCommand implements Command {
                 session.setAttribute("login", user.getLogin());
                 session.setAttribute("password",user.getPassword());
                 session.setAttribute("role", user.getRole());
-                Config.set(session, "javax.servlet.jsp.jstl.fmt.locale", user.getLocale());
-                session.getServletContext().setAttribute("login",login);
 
                 // work with i18n
                 String userLocaleName = user.getLocale();
