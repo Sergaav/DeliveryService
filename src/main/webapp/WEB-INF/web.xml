@@ -40,6 +40,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>Destination</servlet-name>
+        <jsp-file>/WEB-INF/jsp/common/departureList.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Destination</servlet-name>
+        <url-pattern>/destination</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>AdminMenu</servlet-name>
         <jsp-file>/WEB-INF/jsp/admin/adminMenu.jsp</jsp-file>
     </servlet>
@@ -100,7 +109,7 @@
         </init-param>
         <init-param>
             <param-name>out-of-control</param-name>
-            <param-value>login registration loginView changeLocale</param-value>
+            <param-value>login registration loginView changeLocale destination</param-value>
         </init-param>
     </filter>
 

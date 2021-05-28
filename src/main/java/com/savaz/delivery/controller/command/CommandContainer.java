@@ -27,8 +27,6 @@ public class CommandContainer {
        // admin commands
         commands.put("adminMenu", new AdminMenuCommand());
 
-//        log.debug("Command container was successfully initialized");
-//        log.trace("Number of commands --> " + commands.size());
     }
 
     /**

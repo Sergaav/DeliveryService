@@ -13,6 +13,8 @@ public final class Fields {
     public static final String USER__LAST_NAME = "last_name";
     public static final String USER__LOCALE = "locale";
     public static final String USER__ROLE = "role";
+    public static final String CITY_ARRIVE = "city_arrive";
+    public static final String CITY_DEPARTURE = "city_departure";
 
     public static final String ORDER__BILL = "bill";
     public static final String ORDER__USER_ID = "user_id";
