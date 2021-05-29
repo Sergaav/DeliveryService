@@ -17,7 +17,7 @@ public class JDBCDestinationDao implements DestinationDao {
     Connection connection;
 
     private static final String SQL_FIND_ALL_DESTINATIONS = "SELECT city_arrive,city_departure FROM arrive LEFT JOIN" +
-            " departure_has_arrive ON arrive.id=arrive_id JOIN departure ON departure.id=departure_id ORDER BY city_arrive";
+            " departure_has_arrive ON arrive.id=arrive_id JOIN departure ON departure.id=departure_id";
 
     private static final String SQL_FIND_ALL_DESTINATIONS_BY_PAGE = "SELECT city_arrive,city_departure FROM arrive LEFT JOIN" +
             " departure_has_arrive ON arrive.id=arrive_id JOIN departure ON departure.id=departure_id ORDER BY city_arrive " +
