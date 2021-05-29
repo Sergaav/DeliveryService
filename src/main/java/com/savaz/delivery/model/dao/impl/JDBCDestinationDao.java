@@ -16,8 +16,12 @@ import java.util.List;
 public class JDBCDestinationDao implements DestinationDao {
     Connection connection;
 
-    private static final String SQL_FIND_ALL_DESTINATIONS = "SELECT city_arrive,city_departure FROM arrive left join" +
-            " departure_has_arrive on arrive.id=arrive_id join departure on departure.id=departure_id order by city_arrive";
+    private static final String SQL_FIND_ALL_DESTINATIONS = "SELECT city_arrive,city_departure FROM arrive LEFT JOIN" +
+            " departure_has_arrive ON arrive.id=arrive_id JOIN departure ON departure.id=departure_id ORDER BY city_arrive";
+
+    private static final String SQL_FIND_ALL_DESTINATIONS_BY_PAGE = "SELECT city_arrive,city_departure FROM arrive LEFT JOIN" +
+            " departure_has_arrive ON arrive.id=arrive_id JOIN departure ON departure.id=departure_id ORDER BY city_arrive " +
+            "";
 
     public JDBCDestinationDao(Connection connection) {
         this.connection = connection;
@@ -87,6 +91,11 @@ public class JDBCDestinationDao implements DestinationDao {
                 throwables.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public List<DestinationsBean> findAllByPage(int page, int limit) {
+        return null;
     }
 
     private static class DestinationsMapper implements EntityMapper<DestinationsBean> {

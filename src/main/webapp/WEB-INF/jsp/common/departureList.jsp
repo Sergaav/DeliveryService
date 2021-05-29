@@ -9,6 +9,8 @@
 <body>
 <%@include file="/WEB-INF/jspf/header.jspf" %>
 
+<%@include file="/WEB-INF/jspf/fragment/destinationsForm.jspf"%>
+
 <table class="table table-striped" style="align-content: center" title="Destinations">
     <thead>
     <tr>
