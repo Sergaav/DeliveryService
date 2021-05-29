@@ -44,6 +44,7 @@ public class Servlet extends HttpServlet {
         if (forward != null && !forward.contains("redirect:")){
             RequestDispatcher disp = request.getRequestDispatcher(forward);
             disp.forward(request, response);
+
         }else if (forward != null && forward.contains("redirect:")) {
             String temp = forward.replace("redirect:","");
             response.sendRedirect(temp);

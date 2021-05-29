@@ -1,8 +1,8 @@
 package com.savaz.delivery.controller.command;
 
 import com.savaz.delivery.Path;
-import com.savaz.delivery.model.dao.DaoFactory;
-import com.savaz.delivery.model.dao.UserDao;
+import com.savaz.delivery.model.service.DaoFactory;
+import com.savaz.delivery.model.service.UserDao;
 import com.savaz.delivery.model.entity.User;
 import com.savaz.delivery.model.entity.enums.Roles;
 
@@ -47,14 +47,16 @@ public class LoginCommand implements Command {
                 Roles userRole = Roles.values()[user.getRole()];
 
                 if (userRole == Roles.ADMIN)
-                    forward = "redirect:"+Path.PAGE_LIST_ORDERS;
+                    forward = "redirect:"+Path.PAGE_ADMIN_MENU;
 
                 if (userRole == Roles.USER)
-                    forward = "redirect:"+Path.COMMAND_LIST_MENU;
+                    forward = "redirect:"+Path.PAGE_USER_MENU;
 
                 session.setAttribute("login", user.getLogin());
                 session.setAttribute("password",user.getPassword());
                 session.setAttribute("role", user.getRole());
+                session.setAttribute("firstName",user.getFirstName());
+                session.setAttribute("balance",user.getBalance());
                 Config.set(session, "javax.servlet.jsp.jstl.fmt.locale", user.getLocale());
                 session.getServletContext().setAttribute("login",login);
 

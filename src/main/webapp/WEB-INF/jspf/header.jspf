@@ -18,7 +18,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="controller?command=destination">
+                            <a class="nav-link" href="controller?command=destination&pageNumber=1">
                                 <fmt:message key="header_jspf.menu.destination"/>
                             </a>
                         </li>

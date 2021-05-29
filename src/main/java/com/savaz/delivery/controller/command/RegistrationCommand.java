@@ -1,46 +1,63 @@
 package com.savaz.delivery.controller.command;
 
 import com.savaz.delivery.Path;
-import com.savaz.delivery.model.dao.DaoFactory;
-import com.savaz.delivery.model.dao.UserDao;
+import com.savaz.delivery.exception.ValidationException;
+import com.savaz.delivery.model.service.DaoFactory;
+import com.savaz.delivery.model.service.UserDao;
 import com.savaz.delivery.model.entity.User;
+import org.apache.catalina.Session;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.jstl.core.Config;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Locale;
 
 public class RegistrationCommand implements Command {
+    private static final String REGEX_PASS = ".{5,10}";
+    private static final String REGEX_LOGIN = "^(?=[a-zA-Z0-9._]{5,10}$)(?!.*[_.]{2})[^_.].*[^_.]$";
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         User user = new User();
+        HttpSession session = request.getSession();
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         String firstName = request.getParameter("first_name");
         String lastName = request.getParameter("last_name");
         int role = Integer.parseInt(request.getParameter("role"));
-        HttpSession session = request.getSession();
+        String locale = request.getLocale().getCountry();
+        user.setLogin(login);
+        user.setPassword(password);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setLocale(locale);
+        user.setRole(role);
         String errorMessage = null;
         String forward = Path.PAGE_ERROR_PAGE;
         DaoFactory daoFactory = DaoFactory.getInstance();
-        String regexLogin = "^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$";
-        if (login == null || password == null || login.isEmpty() || password.isEmpty() ||
-                !login.matches(regexLogin) ) {
 
-            errorMessage = "Login/password cannot be empty";
+        if (login == null || login.isEmpty() ||  !login.matches(REGEX_LOGIN) ) {
+            errorMessage = "Login/password must be correct";
             request.setAttribute("errorMessage", errorMessage);
             return forward;
         }
-
-        if (login.matches(regexLogin)) {
-            errorMessage = "Login/password must be valid";
+        if (password == null || password.isEmpty() ||  !password.matches(REGEX_PASS) ) {
+            errorMessage = "Login/password must be correct";
             request.setAttribute("errorMessage", errorMessage);
             return forward;
         }
-
-
         try (UserDao dao = daoFactory.createUserDao()) {
-
+            dao.create(user);
+            forward = Path.COMMAND_LIST_MENU+"&login="+login+"&password="+password;
+        } catch (ValidationException exception) {
+            errorMessage = "User is already exist!!";
+            request.setAttribute("errorMessage", errorMessage);
+            forward = Path.PAGE_REGISTRATION;
         }
-        return null;
+        return forward;
     }
 }

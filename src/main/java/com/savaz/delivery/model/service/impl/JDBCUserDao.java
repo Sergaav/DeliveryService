@@ -1,14 +1,12 @@
-package com.savaz.delivery.model.dao.impl;
+package com.savaz.delivery.model.service.impl;
 
+import com.savaz.delivery.exception.ValidationException;
 import com.savaz.delivery.model.Fields;
-import com.savaz.delivery.model.dao.EntityMapper;
-import com.savaz.delivery.model.dao.UserDao;
+import com.savaz.delivery.model.service.EntityMapper;
+import com.savaz.delivery.model.service.UserDao;
 import com.savaz.delivery.model.entity.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 public class JDBCUserDao implements UserDao {
@@ -27,11 +25,10 @@ public class JDBCUserDao implements UserDao {
             "SELECT * FROM users WHERE id=?";
 
     private static final String SQL_UPDATE_USER =
-            "UPDATE users SET password=?, first_name=?, last_name=?, locale_name=?" +
-                    "	WHERE id=?";
+            "UPDATE users SET password=?, first_name=?, last_name=?, locale_name=? WHERE id=?";
 
     private static final String SQL_CREATE_USER =
-            "INSERT INTO users VALUES (default,?,?,?,?,?,?)";
+            "INSERT INTO users VALUES (default,?,?,?,?,default,?,?)";
 
     public User findUserByLoginAndPass(String login, String password) {
         User user = null;
@@ -110,7 +107,7 @@ public class JDBCUserDao implements UserDao {
         ResultSet resultSet = null;
 
         try {
-            preparedStatement = connection.prepareStatement(SQL_CREATE_USER);
+            preparedStatement = connection.prepareStatement(SQL_CREATE_USER, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, entity.getLogin());
             preparedStatement.setString(2, entity.getPassword());
             preparedStatement.setString(3, entity.getFirstName());
@@ -120,10 +117,10 @@ public class JDBCUserDao implements UserDao {
             preparedStatement.executeUpdate();
             resultSet = preparedStatement.getGeneratedKeys();
             while (resultSet.next()){
-                entity.setId(resultSet.getInt("id"));
+                entity.setId(resultSet.getInt(1));
             }
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            throw new ValidationException(throwables.getMessage());
         }finally {
             closeResultSet(resultSet);
             closeStatement(preparedStatement);
@@ -189,6 +186,7 @@ public class JDBCUserDao implements UserDao {
                 user.setPassword(rs.getString(Fields.USER__PASSWORD));
                 user.setFirstName(rs.getString(Fields.USER__FIRST_NAME));
                 user.setLastName(rs.getString(Fields.USER__LAST_NAME));
+                user.setBalance(rs.getDouble(Fields.USER_BALANCE));
                 user.setLocale(rs.getString(Fields.USER__LOCALE));
                 user.setRole(rs.getInt(Fields.USER__ROLE));
                 return user;

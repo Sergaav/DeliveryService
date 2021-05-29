@@ -16,7 +16,7 @@ public class LoginView implements Command {
         if (session != null && session.getAttribute("role")!=null) {
             Roles role = Roles.values()[(int) session.getAttribute("role")];
             if (Roles.ADMIN.equals(role)) {
-                forward = "redirect:" + Path.PAGE_LIST_ORDERS;
+                forward = "redirect:" + Path.PAGE_ADMIN_MENU;
             }
         }
         return forward;

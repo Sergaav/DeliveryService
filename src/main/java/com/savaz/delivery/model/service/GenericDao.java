@@ -1,4 +1,4 @@
-package com.savaz.delivery.model.dao;
+package com.savaz.delivery.model.service;
 
 import java.util.List;
 

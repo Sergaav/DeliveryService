@@ -1,4 +1,4 @@
-package com.savaz.delivery.model.dao.impl;
+package com.savaz.delivery.model.service.impl;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import javax.sql.DataSource;
@@ -25,7 +25,7 @@ public class ConnectionPoolHolder {
                     ds.setDriver(driver);
                     ds.setUrl("jdbc:mysql://localhost:3306/delivery");
                     ds.setUsername("root");
-                    ds.setPassword("123456789");
+                    ds.setPassword("12345");
                     ds.setMinIdle(5);
                     ds.setMaxIdle(10);
                     ds.setMaxOpenPreparedStatements(100);

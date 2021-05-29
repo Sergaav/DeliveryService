@@ -1,9 +1,8 @@
-package com.savaz.delivery.model.dao.impl;
+package com.savaz.delivery.model.service.impl;
 
 import com.savaz.delivery.model.Fields;
-import com.savaz.delivery.model.dao.DestinationDao;
-import com.savaz.delivery.model.dao.EntityMapper;
-import com.savaz.delivery.model.entity.User;
+import com.savaz.delivery.model.service.DestinationDao;
+import com.savaz.delivery.model.service.EntityMapper;
 import com.savaz.delivery.model.entity.bean.DestinationsBean;
 
 import java.sql.Connection;
@@ -20,8 +19,8 @@ public class JDBCDestinationDao implements DestinationDao {
             " departure_has_arrive ON arrive.id=arrive_id JOIN departure ON departure.id=departure_id";
 
     private static final String SQL_FIND_ALL_DESTINATIONS_BY_PAGE = "SELECT city_arrive,city_departure FROM arrive LEFT JOIN" +
-            " departure_has_arrive ON arrive.id=arrive_id JOIN departure ON departure.id=departure_id ORDER BY city_arrive " +
-            "";
+            " departure_has_arrive ON arrive.id=arrive_id JOIN departure ON departure.id=departure_id ORDER BY city_arrive LIMIT ? " +
+            "offset ?";
 
     public JDBCDestinationDao(Connection connection) {
         this.connection = connection;
@@ -53,6 +52,11 @@ public class JDBCDestinationDao implements DestinationDao {
         } finally {
             closeResultSet(resultSet);
             closeStatement(statement);
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
 
         return destinationsBeans;
@@ -95,7 +99,30 @@ public class JDBCDestinationDao implements DestinationDao {
 
     @Override
     public List<DestinationsBean> findAllByPage(int page, int limit) {
-        return null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<DestinationsBean> destinationsBeans = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(SQL_FIND_ALL_DESTINATIONS_BY_PAGE);
+            statement.setInt(1, limit);
+            statement.setInt(2, limit*(page-1));
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                destinationsBeans.add(new DestinationsMapper().mapRow(resultSet));
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            closeResultSet(resultSet);
+            closeStatement(statement);
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+
+        return destinationsBeans;
     }
 
     private static class DestinationsMapper implements EntityMapper<DestinationsBean> {

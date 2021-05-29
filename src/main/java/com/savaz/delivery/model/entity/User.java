@@ -8,6 +8,16 @@ public class User implements Serializable {
     private String password;
     private String firstName;
     private String lastName;
+    private double balance;
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     private String locale;
     private int role;
 

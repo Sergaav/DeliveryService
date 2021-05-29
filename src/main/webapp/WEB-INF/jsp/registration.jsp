@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 
 <head>
@@ -46,5 +48,8 @@
             </form>
         </td>
     </tr>
+<div style="margin-left: 30px;color: #942a25">
+<c:out value="${requestScope.errorMessage}"/>
+</div>
 </body>
 </html>

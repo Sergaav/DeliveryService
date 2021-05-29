@@ -1,6 +1,6 @@
-package com.savaz.delivery.model.dao.impl;
+package com.savaz.delivery.model.service.impl;
 
-import com.savaz.delivery.model.dao.OrderDao;
+import com.savaz.delivery.model.service.OrderDao;
 import com.savaz.delivery.model.entity.Order;
 
 import java.sql.Connection;
