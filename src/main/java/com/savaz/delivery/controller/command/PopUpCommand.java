@@ -6,8 +6,6 @@ import com.savaz.delivery.model.dao.DaoFactory;
 import com.savaz.delivery.model.dao.UserDao;
 import com.savaz.delivery.model.dao.service.Service;
 import com.savaz.delivery.model.entity.User;
-
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,7 +15,7 @@ public class PopUpCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-        String errorMessage = "";
+        String errorMessage ;
         try {
             if (request.getParameter("amount") != null || !request.getParameter("amount").isEmpty()) {
                 double amount = Double.parseDouble(request.getParameter("amount"));
