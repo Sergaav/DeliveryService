@@ -7,10 +7,6 @@ b
 2src/main/webapp/WEB-INF/jspf/directive/taglib.jspf,3\d\3dcf4cd0ab159add317596243470915039f4f85f
 n
 >src/main/java/com/savaz/delivery/model/entity/enums/Roles.java,1\4\14f2324d8aea747345564ed232686638b3a16a4b
-y
-Isrc/main/java/com/savaz/delivery/controller/command/ExceptionCommand.java,c\c\ccbb9d1912d43ac6957ed5577dfcc4025059dd9e
-h
-8src/main/java/com/savaz/delivery/model/entity/Order.java,7\e\7ecc3ace59e5f732facc6bf9d25bce7c0b73c194
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 X
@@ -23,8 +19,6 @@ y
 Isrc/main/java/com/savaz/delivery/controller/listener/ContextListener.java,3\1\31bd0cde94bdab52c0dd7e3da29dcd37d0dbb316
 `
 0src/main/webapp/WEB-INF/jsp/common/errorPage.jsp,3\1\31803863d23d56e29ff1e17ab8e2dd620b2b78f8
-w
-Gsrc/main/java/com/savaz/delivery/controller/filters/EncodingFilter.java,6\5\65244948da4defc6dc442aad04d994db4a6b98a7
 U
 %src/main/webapp/WEB-INF/jsp/login.jsp,5\8\582bc84275d5b626d3b0f12b82e66269f2fac2a7
 |
@@ -53,5 +47,3 @@ g
 7src/main/java/com/savaz/delivery/model/entity/User.java,1\f\1f62f6e93d2dbc10cbac7a162470758854964987
 k
 ;src/main/java/com/savaz/delivery/model/service/UserDao.java,7\9\79b50d96cc1b605f9ed448bced37cb6cba338dff
-]
--src/main/webapp/WEB-INF/jsp/user/userMenu.jsp,0\0\006cbc6b17aefd4883eccf5b533db4d230e459a4

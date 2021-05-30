@@ -47,6 +47,7 @@ public class JDBCUserDao implements UserDao {
         } finally {
            closeResultSet(resultSet);
            closeStatement(statement);
+           close();
         }
         return user;
     }
@@ -67,6 +68,7 @@ public class JDBCUserDao implements UserDao {
         } finally {
             closeResultSet(resultSet);
             closeStatement(statement);
+            close();
         }
         return user;
     }
@@ -124,6 +126,7 @@ public class JDBCUserDao implements UserDao {
         }finally {
             closeResultSet(resultSet);
             closeStatement(preparedStatement);
+            close();
         }
 
 
@@ -146,6 +149,7 @@ public class JDBCUserDao implements UserDao {
         } finally {
             closeResultSet(resultSet);
             closeStatement(statement);
+            close();
         }
         return user;
     }
@@ -157,6 +161,7 @@ public class JDBCUserDao implements UserDao {
 
 
     public void update(User entity) {
+
 
     }
 

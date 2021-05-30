@@ -57,6 +57,7 @@ public class LoginCommand implements Command {
                 session.setAttribute("role", user.getRole());
                 session.setAttribute("firstName",user.getFirstName());
                 session.setAttribute("balance",user.getBalance());
+                session.setAttribute("userId",user.getId());
                 String locale = user.getLocale();
                 if (locale.equals("RU")){
                     locale="uk";

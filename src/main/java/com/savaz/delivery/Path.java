@@ -5,6 +5,7 @@ public class Path {
     // pages
     public static final String PAGE_LOGIN = "login";
     public static final String PAGE_REGISTRATION = "registration";
+    public static final String PAGE_POPUP = "popup";
     public static final String PAGE_ERROR_PAGE = "error";
     public static final String PAGE_USER_MENU = "user";
     public static final String PAGE_ADMIN_MENU = "admin";

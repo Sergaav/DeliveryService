@@ -23,7 +23,7 @@
                     <a class="nav-link" href="controller?command=checkout"><fmt:message key="user.menu.checkout"/></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="controller?command=popUp"><fmt:message key="user.menu.popup"/></a>
+                    <a class="nav-link" href="popup"><fmt:message key="user.menu.popup"/></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="controller?command=logout"><fmt:message key="user.menu.logout"/></a>

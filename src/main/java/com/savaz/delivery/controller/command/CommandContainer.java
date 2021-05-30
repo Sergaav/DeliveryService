@@ -21,7 +21,7 @@ public class CommandContainer {
         commands.put("changeLocale", new LocaleChangeCommand());
         commands.put("loginView", new LoginView());
         commands.put("calculate", new CalculateCommand());
-
+        commands.put("popup", new PopUpCommand());
        //  client commands
         commands.put("userMenu", new UserMenuCommand());
 

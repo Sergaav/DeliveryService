@@ -58,6 +58,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>Popup</servlet-name>
+        <jsp-file>/WEB-INF/jsp/user/popup.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Popup</servlet-name>
+        <url-pattern>/popup</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>Calculate</servlet-name>
         <jsp-file>/WEB-INF/jsp/common/calculate.jsp</jsp-file>
     </servlet>
@@ -137,7 +146,7 @@
         </init-param>
         <init-param>
             <param-name>user</param-name>
-            <param-value>userMenu</param-value>
+            <param-value>userMenu popup</param-value>
         </init-param>
         <init-param>
             <param-name>common</param-name>
