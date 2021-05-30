@@ -1,5 +1,6 @@
 package com.savaz.delivery.model.dao.impl;
 
+import com.savaz.delivery.exception.ValidationException;
 import com.savaz.delivery.model.Fields;
 import com.savaz.delivery.model.dao.DestinationDao;
 import com.savaz.delivery.model.dao.EntityMapper;
@@ -14,6 +15,9 @@ import java.util.List;
 
 public class JDBCDestinationDao implements DestinationDao {
     Connection connection;
+
+    private static final String SQL_FIND_RATE_BY_ID = "SELECT rate FROM departure_has_arrive WHERE arrive_id=? AND departure_id=?";
+
 
     private static final String SQL_FIND_ALL_DESTINATIONS = "SELECT city_arrive,city_departure FROM arrive LEFT JOIN" +
             " departure_has_arrive ON arrive.id=arrive_id JOIN departure ON departure.id=departure_id";
@@ -34,6 +38,26 @@ public class JDBCDestinationDao implements DestinationDao {
     @Override
     public DestinationsBean findById(int id) {
         return null;
+    }
+
+    @Override
+    public double findRateById(int cityArrive, int cityDeparture) {
+        ResultSet resultSet = null;
+        double rate=1;
+        try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_RATE_BY_ID)) {
+            statement.setInt(1, cityArrive);
+            statement.setInt(2, cityDeparture);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                rate = resultSet.getDouble("rate");
+            }
+        } catch (SQLException throwables) {
+            throw new ValidationException("Error SQL query");
+        }finally {
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+        return rate;
     }
 
     @Override
@@ -111,7 +135,7 @@ public class JDBCDestinationDao implements DestinationDao {
         try {
             statement = connection.prepareStatement(SQL_FIND_ALL_DESTINATIONS_BY_PAGE);
             statement.setInt(1, limit);
-            statement.setInt(2, limit*(page-1));
+            statement.setInt(2, limit * (page - 1));
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 destinationsBeans.add(new DestinationsMapper().mapRow(resultSet));
@@ -121,7 +145,7 @@ public class JDBCDestinationDao implements DestinationDao {
         } finally {
             closeResultSet(resultSet);
             closeStatement(statement);
-           closeConnection(connection);
+            closeConnection(connection);
         }
 
         return destinationsBeans;

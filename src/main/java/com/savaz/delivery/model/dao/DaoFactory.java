@@ -10,7 +10,7 @@ public abstract class DaoFactory {
     public abstract ParcelDao createParcelDao();
     public abstract DestinationDao createDestinationDao();
     public abstract PriceDao createPriceDao();
-
+    public abstract CalculateDao createCalculateDao();
 
     public static DaoFactory getInstance(){
         if( daoFactory == null ){

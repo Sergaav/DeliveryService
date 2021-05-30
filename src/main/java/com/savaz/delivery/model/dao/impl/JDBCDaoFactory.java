@@ -35,6 +35,11 @@ public class JDBCDaoFactory extends DaoFactory {
         return new JDBCPriceDao(getConnection());
     }
 
+    @Override
+    public CalculateDao createCalculateDao() {
+        return new JDBCCalculateDao(getConnection());
+    }
+
     private Connection getConnection() {
         try {
             return dataSource.getConnection();

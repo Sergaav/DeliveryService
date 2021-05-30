@@ -9,4 +9,7 @@
 
 <%@include file="WEB-INF/jspf/header.jspf" %>
 
+<img src="img/delivery-service-banner.jpg">
+
+</body>
 </html>
