@@ -5,8 +5,6 @@ G
 sql/SQLScriptInsert.sql,f\3\f3fdf743ba304c9303d2382663064c6ac034bd9e
 b
 2src/main/webapp/WEB-INF/jspf/directive/taglib.jspf,3\d\3dcf4cd0ab159add317596243470915039f4f85f
-D
-sql/SQLUserAdmin.sql,c\3\c36504761818b06c7c31bb2de91f09cea1c80152
 n
 >src/main/java/com/savaz/delivery/model/entity/enums/Roles.java,1\4\14f2324d8aea747345564ed232686638b3a16a4b
 y
@@ -15,32 +13,22 @@ h
 8src/main/java/com/savaz/delivery/model/entity/Order.java,7\e\7ecc3ace59e5f732facc6bf9d25bce7c0b73c194
 i
 9src/main/java/com/savaz/delivery/model/entity/Parcel.java,6\4\647e377bde6d924f1d1dedc86bc178c28fb7954d
-p
-@src/main/java/com/savaz/delivery/controller/command/Command.java,4\7\479b2a58426fcfcedfdf53fc0c35f9dc34255c0e
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-a
-1src/main/webapp/WEB-INF/jsp/common/tariffList.jsp,0\c\0c0144bd31955a2f3059e5a7cd6432af217d2c52
 X
 (src/main/webapp/WEB-INF/jspf/footer.jspf,5\1\51d41bf9f1fd7b8c54f6a1a932da96d25f0a4b05
 V
 &src/main/webapp/WEB-INF/jspf/head.jspf,d\f\df7258b476d0dbc30286cde67ebfe2570870fdcd
-m
-=src/main/java/com/savaz/delivery/model/entity/enums/City.java,3\d\3d4508d545d671fa9667d439f8efc7bc2946cef4
 y
 Isrc/main/java/com/savaz/delivery/controller/listener/SessionListener.java,3\7\378bcb217a315ef71becfbb79e6325dee0de393e
 y
 Isrc/main/java/com/savaz/delivery/controller/listener/ContextListener.java,3\1\31bd0cde94bdab52c0dd7e3da29dcd37d0dbb316
-x
-Hsrc/main/java/com/savaz/delivery/model/entity/bean/DestinationsBean.java,d\b\dbfc9c1e93c5db814f8992d1ac42d5689b9d8e4b
 v
 Fsrc/main/java/com/savaz/delivery/controller/command/LogoutCommand.java,4\a\4ae795a3d65900054078a18ed23be6ee8acb6a5c
 `
 0src/main/webapp/WEB-INF/jsp/common/errorPage.jsp,3\1\31803863d23d56e29ff1e17ab8e2dd620b2b78f8
 w
 Gsrc/main/java/com/savaz/delivery/controller/filters/EncodingFilter.java,6\5\65244948da4defc6dc442aad04d994db4a6b98a7
-y
-Isrc/main/java/com/savaz/delivery/controller/command/CommandContainer.java,b\0\b01971dfa6c7cbd9ecb90cac8cfa2fd8286df502
 U
 %src/main/webapp/WEB-INF/jsp/login.jsp,5\8\582bc84275d5b626d3b0f12b82e66269f2fac2a7
 |
@@ -65,8 +53,6 @@ n
 >src/main/java/com/savaz/delivery/model/service/GenericDao.java,7\f\7f17dec18b60d9873f895dfdfcb558af03fb8db8
 \
 ,src/main/webapp/WEB-INF/jspf/headerUser.jspf,1\7\1774cf9cbbed5810ce9a092c64cd7e60f85cce4f
-w
-Gsrc/main/java/com/savaz/delivery/model/service/impl/JDBCDaoFactory.java,6\e\6ee835850b55411721197d0b3e425730556263ef
 u
 Esrc/main/java/com/savaz/delivery/model/service/impl/JDBCOrderDao.java,6\7\67fd518993040fdbdd335f934c1cbaaf1a86b419
 t
@@ -79,10 +65,6 @@ m
 =src/main/java/com/savaz/delivery/model/service/ParcelDao.java,9\b\9bda1943c993bfd9c2e0369d29cbd28e6ee6c481
 \
 ,src/main/webapp/WEB-INF/jsp/registration.jsp,8\6\863750b17f37d1bcb7d6ce621e6f066177b3cf66
-|
-Lsrc/main/java/com/savaz/delivery/controller/command/RegistrationCommand.java,5\c\5c99d6558a25557be0a68965fc993be4d89db8f9
-A
-sql/SQLScript.sql,1\2\12111db33e3c7dbde843590bef92497bec2e05c0
 g
 7src/main/java/com/savaz/delivery/model/entity/User.java,1\f\1f62f6e93d2dbc10cbac7a162470758854964987
 k
@@ -91,5 +73,3 @@ k
 -src/main/webapp/WEB-INF/jsp/user/userMenu.jsp,0\0\006cbc6b17aefd4883eccf5b533db4d230e459a4
 s
 Csrc/main/java/com/savaz/delivery/exception/ValidationException.java,d\3\d3d3bd9a40120681d7d35d4d67f08fb1745f4293
-O
-src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392

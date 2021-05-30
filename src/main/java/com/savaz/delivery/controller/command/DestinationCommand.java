@@ -1,8 +1,8 @@
 package com.savaz.delivery.controller.command;
 
 import com.savaz.delivery.Path;
-import com.savaz.delivery.model.service.DaoFactory;
-import com.savaz.delivery.model.service.DestinationDao;
+import com.savaz.delivery.model.dao.DaoFactory;
+import com.savaz.delivery.model.dao.DestinationDao;
 import com.savaz.delivery.model.entity.bean.DestinationsBean;
 
 import javax.servlet.http.HttpServletRequest;

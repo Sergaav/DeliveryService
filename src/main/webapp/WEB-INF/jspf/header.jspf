@@ -23,7 +23,7 @@
                             </a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="controller?calculate">
+                            <a class="nav-link" href="controller?command=calculate">
                                 <fmt:message key="header_jspf.menu.calculate"/>
                             </a>
                         </li>

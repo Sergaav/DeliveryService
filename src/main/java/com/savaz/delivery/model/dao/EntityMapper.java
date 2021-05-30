@@ -1,4 +1,4 @@
-package com.savaz.delivery.model.service;
+package com.savaz.delivery.model.dao;
 
 import java.sql.ResultSet;
 

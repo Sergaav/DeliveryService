@@ -1,4 +1,4 @@
-package com.savaz.delivery.model.service;
+package com.savaz.delivery.model.dao;
 
 import com.savaz.delivery.model.entity.Parcel;
 

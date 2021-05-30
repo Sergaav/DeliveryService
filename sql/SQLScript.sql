@@ -72,10 +72,8 @@ CREATE TABLE IF NOT EXISTS `delivery`.`weight_rate` (
   `id` INT NOT NULL,
   `rate_name` VARCHAR(15) NOT NULL,
   `weight` INT NOT NULL,
-  `rate` DOUBLE NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `weight_UNIQUE` (`weight` ASC) VISIBLE,
-  UNIQUE INDEX `rate_name_UNIQUE` (`rate_name` ASC) VISIBLE)
+  `rate` INT NOT NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 

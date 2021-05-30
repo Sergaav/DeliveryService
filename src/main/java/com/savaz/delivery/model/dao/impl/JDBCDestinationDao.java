@@ -1,8 +1,8 @@
-package com.savaz.delivery.model.service.impl;
+package com.savaz.delivery.model.dao.impl;
 
 import com.savaz.delivery.model.Fields;
-import com.savaz.delivery.model.service.DestinationDao;
-import com.savaz.delivery.model.service.EntityMapper;
+import com.savaz.delivery.model.dao.DestinationDao;
+import com.savaz.delivery.model.dao.EntityMapper;
 import com.savaz.delivery.model.entity.bean.DestinationsBean;
 
 import java.sql.Connection;
@@ -52,11 +52,7 @@ public class JDBCDestinationDao implements DestinationDao {
         } finally {
             closeResultSet(resultSet);
             closeStatement(statement);
-            try {
-                connection.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            closeConnection(connection);
         }
 
         return destinationsBeans;
@@ -97,6 +93,16 @@ public class JDBCDestinationDao implements DestinationDao {
         }
     }
 
+    public static void closeConnection(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+    }
+
     @Override
     public List<DestinationsBean> findAllByPage(int page, int limit) {
         PreparedStatement statement = null;
@@ -115,11 +121,7 @@ public class JDBCDestinationDao implements DestinationDao {
         } finally {
             closeResultSet(resultSet);
             closeStatement(statement);
-            try {
-                connection.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+           closeConnection(connection);
         }
 
         return destinationsBeans;

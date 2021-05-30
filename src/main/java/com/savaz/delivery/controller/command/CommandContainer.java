@@ -20,6 +20,7 @@ public class CommandContainer {
         commands.put("destination", new DestinationCommand());
         commands.put("changeLocale", new LocaleChangeCommand());
         commands.put("loginView", new LoginView());
+        commands.put("calculate", new CalculateCommand());
 
        //  client commands
         commands.put("userMenu", new UserMenuCommand());

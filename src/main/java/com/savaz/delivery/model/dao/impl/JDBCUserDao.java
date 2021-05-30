@@ -1,9 +1,9 @@
-package com.savaz.delivery.model.service.impl;
+package com.savaz.delivery.model.dao.impl;
 
 import com.savaz.delivery.exception.ValidationException;
 import com.savaz.delivery.model.Fields;
-import com.savaz.delivery.model.service.EntityMapper;
-import com.savaz.delivery.model.service.UserDao;
+import com.savaz.delivery.model.dao.EntityMapper;
+import com.savaz.delivery.model.dao.UserDao;
 import com.savaz.delivery.model.entity.User;
 
 import java.sql.*;

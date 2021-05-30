@@ -1,6 +1,6 @@
-package com.savaz.delivery.model.service.impl;
+package com.savaz.delivery.model.dao.impl;
 
-import com.savaz.delivery.model.service.*;
+import com.savaz.delivery.model.dao.*;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -28,6 +28,11 @@ public class JDBCDaoFactory extends DaoFactory {
     @Override
     public DestinationDao createDestinationDao() {
         return new JDBCDestinationDao(getConnection());
+    }
+
+    @Override
+    public PriceDao createPriceDao() {
+        return new JDBCPriceDao(getConnection());
     }
 
     private Connection getConnection() {

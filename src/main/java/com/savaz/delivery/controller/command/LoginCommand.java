@@ -1,8 +1,8 @@
 package com.savaz.delivery.controller.command;
 
 import com.savaz.delivery.Path;
-import com.savaz.delivery.model.service.DaoFactory;
-import com.savaz.delivery.model.service.UserDao;
+import com.savaz.delivery.model.dao.DaoFactory;
+import com.savaz.delivery.model.dao.UserDao;
 import com.savaz.delivery.model.entity.User;
 import com.savaz.delivery.model.entity.enums.Roles;
 

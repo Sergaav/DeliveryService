@@ -1,4 +1,4 @@
-package com.savaz.delivery.model.service.impl;
+package com.savaz.delivery.model.dao.impl;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import javax.sql.DataSource;

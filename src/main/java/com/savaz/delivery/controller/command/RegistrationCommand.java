@@ -2,19 +2,13 @@ package com.savaz.delivery.controller.command;
 
 import com.savaz.delivery.Path;
 import com.savaz.delivery.exception.ValidationException;
-import com.savaz.delivery.model.service.DaoFactory;
-import com.savaz.delivery.model.service.UserDao;
+import com.savaz.delivery.model.dao.DaoFactory;
+import com.savaz.delivery.model.dao.UserDao;
 import com.savaz.delivery.model.entity.User;
-import org.apache.catalina.Session;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.jstl.core.Config;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Locale;
 
 public class RegistrationCommand implements Command {
     private static final String REGEX_PASS = ".{5,10}";
@@ -23,7 +17,6 @@ public class RegistrationCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         User user = new User();
-        HttpSession session = request.getSession();
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         String firstName = request.getParameter("first_name");
