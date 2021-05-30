@@ -29,10 +29,6 @@ U
 %src/main/webapp/WEB-INF/jsp/login.jsp,5\8\582bc84275d5b626d3b0f12b82e66269f2fac2a7
 |
 Lsrc/main/java/com/savaz/delivery/controller/command/LocaleChangeCommand.java,b\9\b91ccf076d9380ac7eaeb854be33b360764c6207
-_
-/src/main/webapp/WEB-INF/jsp/admin/adminMenu.jsp,4\b\4b6e49920728fd74f58799ba494aa957c76e0e5b
-]
--src/main/webapp/WEB-INF/jspf/headerAdmin.jspf,5\e\5e590c1f37961b8bafd6ec9b04ef3868668c9454
 k
 ;src/main/webapp/WEB-INF/jspf/fragment/destinationsForm.jspf,9\e\9ee7d7b6390dbd5ec35cfbadc99e2cc6717adb43
 }
@@ -43,8 +39,6 @@ p
 @src/main/java/com/savaz/delivery/model/service/EntityMapper.java,3\d\3d5ab77bf62727a4865e0e3cd1fd58bdb42ec85b
 n
 >src/main/java/com/savaz/delivery/model/service/GenericDao.java,7\f\7f17dec18b60d9873f895dfdfcb558af03fb8db8
-\
-,src/main/webapp/WEB-INF/jspf/headerUser.jspf,1\7\1774cf9cbbed5810ce9a092c64cd7e60f85cce4f
 u
 Esrc/main/java/com/savaz/delivery/model/service/impl/JDBCOrderDao.java,6\7\67fd518993040fdbdd335f934c1cbaaf1a86b419
 t

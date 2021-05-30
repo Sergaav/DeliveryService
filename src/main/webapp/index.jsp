@@ -9,7 +9,7 @@
 
 <%@include file="WEB-INF/jspf/header.jspf" %>
 
-<img src="img/delivery-service-banner.jpg">
+<img style="margin-left: 50px;margin-bottom: 20px" src="img/delivery-service-banner.jpg" alt="bunner">
 
 </body>
 </html>

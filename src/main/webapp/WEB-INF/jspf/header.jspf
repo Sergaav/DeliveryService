@@ -34,7 +34,7 @@
                         </li>
                         <li class="nav-item active" value="" >
                             <input type="hidden" name="command" value="loginView">
-                            <a class="nav-link" href="controller?command=loginView">Login/Register</a>
+                            <a class="nav-link" href="controller?command=loginView"><fmt:message key="index.login_register"/></a>
                         </li>
                     </ul>
                 </div>

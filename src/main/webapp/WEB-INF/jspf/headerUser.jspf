@@ -20,13 +20,13 @@
                             key="user.page.header.list_orders"/></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="controller?command=checkout">Checkout</a>
+                    <a class="nav-link" href="controller?command=checkout"><fmt:message key="user.menu.checkout"/></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="controller?command=popUp">Pop up an account</a>
+                    <a class="nav-link" href="controller?command=popUp"><fmt:message key="user.menu.popup"/></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="controller?command=logout">Logout</a>
+                    <a class="nav-link" href="controller?command=logout"><fmt:message key="user.menu.logout"/></a>
                 </li>
             </ul>
         </div>

@@ -20,10 +20,10 @@
                                     key="admin.page.header.list_orders"/></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="controller?command=checkout">Reports</a>
+                            <a class="nav-link" href="controller?command=checkout"><fmt:message key="user.menu.reports"/></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="controller?command=logout">Logout</a>
+                            <a class="nav-link" href="controller?command=logout"><fmt:message key="user.menu.logout"/></a>
                         </li>
                     </ul>
                 </div>

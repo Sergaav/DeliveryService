@@ -65,7 +65,7 @@
                    aria-describedby="inputGroup-sizing-sm"/>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Calculate</button>
+    <button type="submit" class="btn btn-primary"><fmt:message key="calculate.buton.calculate"/></button>
 </form>
 <div style="margin-left: 30px;color: #942a25">
     <c:out value="${requestScope.errorMessage}"/>
