@@ -1,11 +1,7 @@
 package com.savaz.delivery.model.dao.service;
 
 import com.savaz.delivery.exception.ValidationException;
-import com.savaz.delivery.model.dao.DaoFactory;
-import com.savaz.delivery.model.dao.UserDao;
-import com.savaz.delivery.model.dao.impl.JDBCUserDao;
 import com.savaz.delivery.model.entity.Order;
-import com.savaz.delivery.model.entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

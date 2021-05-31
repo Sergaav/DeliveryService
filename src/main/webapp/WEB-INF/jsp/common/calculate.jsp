@@ -42,26 +42,24 @@
     </select>
     <br><br><br>
     <div class="row">
-        <div class="input-group input-group-sm mb-3">
+        <fmt:message key="calculate.volume_param_text"/>
+        <div class="input-group input-group-sm mb-sm-3">
             <span class="input-group-text" id="length"><fmt:message key="calculate.length"/> </span>
-            <input type="text" name="length" class="form-control"
-                   value="<fmt:message key="calculate.volume_param_text"/>"
+            <input type="text" name="length" class="form-control-sm-3"
                    aria-label="Sizing example input"
                    aria-describedby="inputGroup-sizing-sm">
         </div>
         <br>
-        <div class="input-group input-group-sm mb-3">
+        <div class="input-group input-group-sm mb-sm-3">
             <span class="input-group-text" id="width"><fmt:message key="calculate.width"/></span>
-            <input type="text" class="form-control" name="width"
-                   value="<fmt:message key="calculate.volume_param_text"/>"
+            <input type="text" class="form-control-sm-3" name="width"
                    aria-label="Sizing example input"
                    aria-describedby="inputGroup-sizing-sm">
         </div>
         <br>
-        <div class="input-group input-group-sm mb-3">
+        <div class="input-group input-group-sm mb-sm-3">
             <span class="input-group-text" id="height"><fmt:message key="calculate.height"/></span>
-            <input type="text" class="form-control" name="height" value="<fmt:message
-            key="calculate.volume_param_text"/>" aria-label="Sizing example input"
+            <input type="text" class="form-control-sm-3" name="height"  aria-label="Sizing example input"
                    aria-describedby="inputGroup-sizing-sm"/>
         </div>
     </div>
