@@ -1,11 +1,7 @@
-package com.savaz.delivery.model.dao.service;
+package com.savaz.delivery.service;
 
 import com.savaz.delivery.exception.ValidationException;
-import com.savaz.delivery.model.dao.DaoFactory;
-import com.savaz.delivery.model.dao.UserDao;
-import com.savaz.delivery.model.dao.impl.JDBCUserDao;
-import com.savaz.delivery.model.entity.Order;
-import com.savaz.delivery.model.entity.User;
+import com.savaz.delivery.model.entity.bean.OrderBean;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -43,7 +39,7 @@ public class AccountService implements Service {
     }
 
     @Override
-    public void payCheck(int userId, Order order) {
+    public void payCheck(int userId, OrderBean orderBean) {
 
     }
 

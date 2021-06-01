@@ -1,7 +1,7 @@
 package com.savaz.delivery.model.dao.impl;
 
 import com.savaz.delivery.model.dao.OrderDao;
-import com.savaz.delivery.model.entity.Order;
+import com.savaz.delivery.model.entity.bean.OrderBean;
 
 import java.sql.Connection;
 import java.util.List;
@@ -14,22 +14,22 @@ public class JDBCOrderDao implements OrderDao {
     }
 
     @Override
-    public void create(Order entity) {
+    public void create(OrderBean entity) {
 
     }
 
     @Override
-    public Order findById(int id) {
+    public OrderBean findById(int id) {
         return null;
     }
 
     @Override
-    public List<Order> findAll() {
+    public List<OrderBean> findAll() {
         return null;
     }
 
     @Override
-    public void update(Order entity) {
+    public void update(OrderBean entity) {
 
     }
 

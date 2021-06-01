@@ -24,6 +24,7 @@ public class CommandContainer {
         commands.put("popup", new TopUpCommand());
        //  client commands
         commands.put("userMenu", new UserMenuCommand());
+        commands.put("createOrder", new CreateOrderCommand());
 
        // admin commands
         commands.put("adminMenu", new AdminMenuCommand());

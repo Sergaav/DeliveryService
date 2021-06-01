@@ -78,7 +78,6 @@ public class CommandAccessFilter implements Filter {
 
         // out of control
         outOfControl = asList(fConfig.getInitParameter("out-of-control"));
-        fConfig.getServletContext().setAttribute("logoImg","img/delivery-service-banner.jpg");
     }
 
     private List<String> asList(String str) {

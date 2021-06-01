@@ -94,6 +94,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>CreateOrder</servlet-name>
+        <jsp-file>/WEB-INF/jsp/user/create_order.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateOrder</servlet-name>
+        <url-pattern>/create_order</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>Error</servlet-name>
         <jsp-file>/WEB-INF/jsp/common/errorPage.jsp</jsp-file>
     </servlet>
@@ -146,7 +155,7 @@
         </init-param>
         <init-param>
             <param-name>user</param-name>
-            <param-value>userMenu popup</param-value>
+            <param-value>userMenu popup createOrder</param-value>
         </init-param>
         <init-param>
             <param-name>common</param-name>

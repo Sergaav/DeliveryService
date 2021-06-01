@@ -4,7 +4,7 @@ import com.savaz.delivery.Path;
 import com.savaz.delivery.exception.ValidationException;
 import com.savaz.delivery.model.dao.DaoFactory;
 import com.savaz.delivery.model.dao.UserDao;
-import com.savaz.delivery.model.dao.service.Service;
+import com.savaz.delivery.service.Service;
 import com.savaz.delivery.model.entity.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
