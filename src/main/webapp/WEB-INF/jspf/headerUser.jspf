@@ -20,10 +20,10 @@
                             key="user.page.header.list_orders"/></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="controller?command=checkout"><fmt:message key="user.menu.checkout"/></a>
+                    <a class="nav-link" href="create_order"><fmt:message key="user.menu.checkout"/></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="popup"><fmt:message key="user.menu.popup"/></a>
+                    <a class="nav-link" href="topup"><fmt:message key="user.menu.topup"/></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="controller?command=logout"><fmt:message key="user.menu.logout"/></a>

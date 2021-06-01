@@ -1,6 +1,6 @@
 package com.savaz.delivery.model.dao;
 
-import com.savaz.delivery.model.entity.Order;
+import com.savaz.delivery.model.entity.bean.OrderBean;
 
-public interface OrderDao extends GenericDao<Order> {
+public interface OrderDao extends GenericDao<OrderBean> {
 }

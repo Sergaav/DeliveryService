@@ -1,7 +1,7 @@
 package com.savaz.delivery.model.dao.impl;
 
 import com.savaz.delivery.model.dao.*;
-import com.savaz.delivery.model.dao.service.AccountService;
+import com.savaz.delivery.service.AccountService;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

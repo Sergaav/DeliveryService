@@ -1,7 +1,7 @@
 package com.savaz.delivery.model.dao;
 
 import com.savaz.delivery.model.dao.impl.JDBCDaoFactory;
-import com.savaz.delivery.model.dao.service.AccountService;
+import com.savaz.delivery.service.AccountService;
 
 public abstract class DaoFactory {
     private static DaoFactory daoFactory;

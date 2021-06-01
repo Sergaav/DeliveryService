@@ -1,7 +1,7 @@
-package com.savaz.delivery.model.dao.service;
+package com.savaz.delivery.service;
 
 import com.savaz.delivery.exception.ValidationException;
-import com.savaz.delivery.model.entity.Order;
+import com.savaz.delivery.model.entity.bean.OrderBean;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +17,7 @@ public class AccountService implements Service {
     }
 
     @Override
-    public void popUpAccount(int userId, double amount) {
+    public void topUpAccount(int userId, double amount) {
         PreparedStatement statement=null;
         try {
             connection.setAutoCommit(false);
@@ -39,7 +39,7 @@ public class AccountService implements Service {
     }
 
     @Override
-    public void payCheck(int userId, Order order) {
+    public void payCheck(int userId, OrderBean orderBean) {
 
     }
 

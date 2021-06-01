@@ -1,13 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<html>
-<head>
-    <title><fmt:message key="calculate.page_name"/></title>
-    <%@ include file="/WEB-INF/jspf/head.jspf" %>
-</head>
-<body>
-<%@include file="/WEB-INF/jspf/header.jspf" %>
 
 
 <form style="margin-left: 50px" id="settings_form" action="controller" method="get">
@@ -79,6 +71,3 @@
     <fmt:message key="user_menu.shipping_cost"/> <c:out value="${sessionScope.cost}"/> <fmt:message
         key="user_menu.UAH"/>
 </div>
-
-</body>
-</html>

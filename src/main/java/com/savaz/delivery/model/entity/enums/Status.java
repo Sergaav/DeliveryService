@@ -1,5 +1,5 @@
 package com.savaz.delivery.model.entity.enums;
 
-public enum Statuses {
+public enum Status {
     OPENED,CONFIRMED,PAID,CLOSED
 }

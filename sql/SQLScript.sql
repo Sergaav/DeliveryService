@@ -83,7 +83,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `delivery`.`orders` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `address` VARCHAR(45) NOT NULL,
-  `status` VARCHAR(45) NOT NULL,
+  `status` ENUM('OPENED', 'CONFIRMED', 'PAID', 'CLOSED') NOT NULL,
   `date_creation` DATE NOT NULL,
   `parsels_id` INT NOT NULL,
   `users_id` INT NOT NULL,

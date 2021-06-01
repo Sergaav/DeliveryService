@@ -15,7 +15,7 @@
 </div>
 
 <form style="margin-left: 50px" id="settings_form" action="controller" method="get">
-    <input type="hidden" name="command" value="popup">
+    <input type="hidden" name="command" value="topup">
     <input type="number" pattern="^\\d*" name="amount" class="col-sm-2">
     <button type="submit" class="btn btn-primary">Pay</button>
 </form>
