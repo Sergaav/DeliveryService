@@ -8,5 +8,7 @@
 <%@include file="/WEB-INF/jspf/header.jspf"%>
 
 <fmt:message key="error_page.message"/>
+
+<c:out value="${requestScope.errorMessage}"/>
 </body>
 </html>

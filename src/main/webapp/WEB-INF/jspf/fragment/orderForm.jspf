@@ -3,71 +3,94 @@
 
 
 <form style="margin-left: 50px" id="settings_form" action="controller" method="get">
-    <fieldset style="background: #7ab5d3;outline: 2px solid #000;border: 3px solid #fff;
-    border-radius: 10px;width: 500px;height: 500px;">
-        <input type="hidden" name="command" value="calculate">
-        <h3>
-            <fmt:message key="calculate.header_info"/>
-        </h3>
-        <br><br>
-        <select class="form-select" name="city_arr" style="margin-left: 20px" aria-label="City Arrive">
-            <option selected><fmt:message key="city.choose.arrive"/></option>
-            <c:set var="k" value="0"/>
-            <c:forEach var="cityArr" items="${sessionScope.cities}">
-                <c:set var="k" value="${k+1}"/>
-                <option value="${cityArr.ordinal()}"><fmt:message key="city.${cityArr.name}"/></option>
-            </c:forEach>
-        </select>
-        <select class="form-select" name="city_dep" style="margin-left: 20px" aria-label="City Departure">
-            <option selected><fmt:message key="city.choose.arrive"/></option>
-            <c:set var="k" value="0"/>
-            <c:forEach var="cityDep" items="${sessionScope.cities}">
-                <c:set var="k" value="${k+1}"/>
-                <option value="${cityDep.ordinal()}"><fmt:message key="city.${cityDep.name}"/></option>
-            </c:forEach>
-        </select>
-        <br><br><br>
-        <select class="form-select" style="margin-left: 20px" name="weight" aria-label="Weight choose">
-            <option selected><fmt:message key="price.choose.name"/></option>
-            <c:set var="k" value="0"/>
-            <c:forEach var="priceBean" items="${sessionScope.priceBeans}">
-                <c:set var="k" value="${k+1}"/>
-                <option value="${priceBean.maxWeight}"><fmt:message key="price.name.id${priceBean.id}"/></option>
-            </c:forEach>
-        </select>
-        <br><br><br>
-        <div class="row" style="margin-left: 20px">
-            <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="length"><fmt:message key="calculate.length"/> </span>
-                <input type="text" name="length" class="form-control-sm-4"
-                       value="<fmt:message key="calculate.volume_param_text"/>"
-                       aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-sm">
-            </div>
-            <br>
-            <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="width"><fmt:message key="calculate.width"/></span>
-                <input type="text" class="form-control-sm-4" name="width"
-                       value="<fmt:message key="calculate.volume_param_text"/>"
-                       aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-sm">
-            </div>
-            <br>
-            <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="height"><fmt:message key="calculate.height"/></span>
-                <input type="text" class="form-control-sm-4" name="height" value="<fmt:message
-            key="calculate.volume_param_text"/>" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-sm"/>
-            </div>
+
+    <fieldset style="background: whitesmoke;outline: 2px solid #000;border: 3px solid #fff;
+    border-radius: 10px;width: 1000px;height: 500px;">
+        <input type="hidden" name="command" value="createOrder">
+        <h5>
+            <fmt:message key="order.form.name"/>
+        </h5>
+        <div class="row">
+            <fieldset style="margin-left:20px ;background: whitesmoke;outline: 2px solid #000;border: 3px solid #fff;
+    border-radius: 10px;width: 400px;height:150px;">
+                <legend>Choose cities</legend>
+                <select class="form-select" name="city_arr" style="margin-left: 20px" aria-label="City Arrive">
+                    <option selected><fmt:message key="city.choose.arrive"/></option>
+                    <c:set var="k" value="0"/>
+                    <c:forEach var="cityArr" items="${sessionScope.cities}">
+                        <c:set var="k" value="${k+1}"/>
+                        <option value="${cityArr.ordinal()}"><fmt:message key="city.${cityArr.name}"/></option>
+                    </c:forEach>
+                </select>
+                <select class="form-select" name="city_dep" style="margin-left: 20px" aria-label="City Departure">
+                    <option selected><fmt:message key="city.choose.departure"/></option>
+                    <c:set var="k" value="0"/>
+                    <c:forEach var="cityDep" items="${sessionScope.cities}">
+                        <c:set var="k" value="${k+1}"/>
+                        <option value="${cityDep.ordinal()}"><fmt:message key="city.${cityDep.name}"/></option>
+                    </c:forEach>
+                </select>
+            </fieldset>
+            <fieldset style="margin-left: 10px;background: whitesmoke;outline: 2px solid #000;border: 3px solid #fff;
+    border-radius: 10px;width: 580px;height: 150px;">
+                <legend>Recipient's data</legend>
+                <div class="row" style="margin-left: 2px">
+                    <div class="input-group">
+                        <span class="input-group-text" id="recipientNames">First and last names </span>
+                        <input type="text" name="recipientData" class="form-control" aria-label="Sizing example input">
+                    </div>
+                    <br>
+                    <div class="input-group input-group">
+                        <span class="input-group-text" id="recipientAddress">Address</span>
+                        <input type="text" class="form-control" name="recipientAddress"
+                               aria-label="Sizing example input">
+                    </div>
+                </div>
+            </fieldset>
         </div>
-        <button type="submit" style="margin-left: 50px" class="btn btn-primary"><fmt:message key="calculate.buton.calculate"/></button>
+        <br>
+        <fieldset style="margin-left: 10px;background: whitesmoke;outline: 2px solid #000;border: 3px solid #fff;
+    border-radius: 10px;width: 980px;height: 150px;">
+            <legend>Parcel data</legend>
+            <div class="row">
+                <select class="custom-select-" style="margin-left: 20px" name="weight" aria-label="Weight choose">
+                    <option selected><fmt:message key="price.choose.name"/></option>
+                    <c:set var="k" value="0"/>
+                    <c:forEach var="priceBean" items="${sessionScope.priceBeans}">
+                        <c:set var="k" value="${k+1}"/>
+                        <option value="${priceBean.maxWeight}"><fmt:message
+                                key="price.name.id${priceBean.id}"/></option>
+                    </c:forEach>
+                </select>
+                <div class="col-3">
+                    <input type="number" class="form-control" name="length" placeholder="length MAX 50 cm"
+                           aria-label="length">
+                </div>
+                <div class="col-3">
+                    <input type="number" class="form-control" name="height" placeholder="height MAX 50 cm"
+                           aria-label="Last name">
+                </div>
+                <div class="col-3">
+                    <input type="number" class="form-control" name="width" placeholder="width MAX 50 cm"
+                           aria-label="Last name">
+                </div>
+            </div>
+
+            <div style="margin-top: 10px" class="col-12">
+                <input type="text" class="form-control" name="description" placeholder="Description of parcel"
+                       aria-label="Last name">
+            </div>
+        </fieldset>
+
+        <div style="margin-top: 20px" class="col-3">
+            <input type="date" class="form-control" name="dateArrive" aria-label="date">
+        </div>
+
+        <button type="submit" style="margin-left: 400px;margin-top: 20px" class="btn btn-primary"><fmt:message
+                key="calculate.buton.calculate"/></button>
     </fieldset>
 </form>
 <div style="margin-left: 30px;color: #942a25">
-    <c:out value="${requestScope.errorMessage}"/>
+    <c:out value="${sessionScope.errorMessage}"/>
 </div>
 
-<div style="font-size:large ; margin-left: 30px;color: #942a25">
-    <fmt:message key="user_menu.shipping_cost"/> <c:out value="${sessionScope.cost}"/> <fmt:message
-        key="user_menu.UAH"/>
-</div>

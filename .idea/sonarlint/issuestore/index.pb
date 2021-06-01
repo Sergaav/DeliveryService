@@ -11,18 +11,12 @@ n
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 X
 (src/main/webapp/WEB-INF/jspf/footer.jspf,5\1\51d41bf9f1fd7b8c54f6a1a932da96d25f0a4b05
-V
-&src/main/webapp/WEB-INF/jspf/head.jspf,d\f\df7258b476d0dbc30286cde67ebfe2570870fdcd
 y
 Isrc/main/java/com/savaz/delivery/controller/listener/SessionListener.java,3\7\378bcb217a315ef71becfbb79e6325dee0de393e
 y
 Isrc/main/java/com/savaz/delivery/controller/listener/ContextListener.java,3\1\31bd0cde94bdab52c0dd7e3da29dcd37d0dbb316
-`
-0src/main/webapp/WEB-INF/jsp/common/errorPage.jsp,3\1\31803863d23d56e29ff1e17ab8e2dd620b2b78f8
 U
 %src/main/webapp/WEB-INF/jsp/login.jsp,5\8\582bc84275d5b626d3b0f12b82e66269f2fac2a7
-|
-Lsrc/main/java/com/savaz/delivery/controller/command/LocaleChangeCommand.java,b\9\b91ccf076d9380ac7eaeb854be33b360764c6207
 k
 ;src/main/webapp/WEB-INF/jspf/fragment/destinationsForm.jspf,9\e\9ee7d7b6390dbd5ec35cfbadc99e2cc6717adb43
 x
@@ -33,8 +27,6 @@ C
 DeliveryService.iml,4\9\499d5ee2aeb5bd19a4855ec3fd92964a7e0b1930
 p
 @src/main/java/com/savaz/delivery/controller/command/Command.java,4\7\479b2a58426fcfcedfdf53fc0c35f9dc34255c0e
-y
-Isrc/main/java/com/savaz/delivery/model/dao/impl/ConnectionPoolHolder.java,5\4\54b774bbe65a0f112d14159c61a6bace48097ac3
 l
 <src/main/java/com/savaz/delivery/model/dao/EntityMapper.java,1\d\1db7723e29287bc33fe8be444da7262eb2c70e72
 q
@@ -43,8 +35,6 @@ h
 8src/main/java/com/savaz/delivery/model/dao/OrderDao.java,a\2\a2752aec50b17403979d5b16be7862c55c019ccc
 i
 9src/main/java/com/savaz/delivery/model/dao/ParcelDao.java,2\7\2745952f3c2d6215693564e8fa1b727bbd619bd5
-q
-Asrc/main/java/com/savaz/delivery/model/entity/bean/PriceBean.java,8\4\8495bbab404532b2b419f48528ec1a8883f95b7e
 u
 Esrc/main/java/com/savaz/delivery/controller/command/PriceCommand.java,b\c\bc0ec223ea02032c0e90fc57dd6461693f244261
 h
@@ -61,8 +51,6 @@ d
 4src/main/webapp/WEB-INF/jsp/common/departureList.jsp,a\5\a5a09672141db23e12f69e055e5e0001c4ee522c
 b
 2src/main/java/com/savaz/delivery/model/Fields.java,3\0\30a42557dd7ff856722720a11410d5034829cdd8
-i
-9src/main/java/com/savaz/delivery/model/entity/Parcel.java,6\4\647e377bde6d924f1d1dedc86bc178c28fb7954d
 {
 Ksrc/main/java/com/savaz/delivery/controller/command/DestinationCommand.java,4\c\4ceefeca2dafe06b3bf121b95ebb4c5af4639ca7
 a
@@ -73,24 +61,10 @@ Csrc/main/java/com/savaz/delivery/exception/ValidationException.java,d\3\d3d3bd
 Lsrc/main/java/com/savaz/delivery/exception/AbstractApplicationException.java,a\5\a5b5be083641f231ae69687f419e22d1f4e5dbdf
 x
 Hsrc/main/java/com/savaz/delivery/model/entity/bean/DestinationsBean.java,d\b\dbfc9c1e93c5db814f8992d1ac42d5689b9d8e4b
-h
-8src/main/java/com/savaz/delivery/controller/Servlet.java,d\f\df92cd1ef2927bc5ff64abf53cb6572ea7b84f47
-q
-Asrc/main/java/com/savaz/delivery/model/dao/impl/JDBCPriceDao.java,7\e\7eb0db2db45d02173337c89acb395bae01e1affb
 v
 Fsrc/main/java/com/savaz/delivery/controller/command/LogoutCommand.java,4\a\4ae795a3d65900054078a18ed23be6ee8acb6a5c
-u
-Esrc/main/java/com/savaz/delivery/model/entity/bean/CalculateBean.java,1\6\16b14c3af72f9a3d8091427582a77d04db550e13
-l
-<src/main/java/com/savaz/delivery/model/dao/CalculateDao.java,7\1\71bf053969962b8658bb764d92bad87ed76fa66b
-m
-=src/main/java/com/savaz/delivery/model/entity/enums/City.java,3\d\3d4508d545d671fa9667d439f8efc7bc2946cef4
 n
 >src/main/java/com/savaz/delivery/model/dao/DestinationDao.java,1\2\12063a378011ae57bd35be7c2ba921988665bd2f
-u
-Esrc/main/java/com/savaz/delivery/model/dao/impl/JDBCCalculateDao.java,b\c\bc46c400ad3af94ea295ce266a1a31d79c33ff20
-w
-Gsrc/main/java/com/savaz/delivery/model/dao/impl/JDBCDestinationDao.java,0\6\06dc0a7ac2ffe8ba9a94437887eb8af861b540cf
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
@@ -114,15 +88,5 @@ j
 :src/main/java/com/savaz/delivery/model/dao/GenericDao.java,8\2\82f7d35f07ecaac83c23695b5ec949aaa017aa17
 h
 8src/main/java/com/savaz/delivery/model/entity/Order.java,7\e\7ecc3ace59e5f732facc6bf9d25bce7c0b73c194
-j
-:src/main/java/com/savaz/delivery/model/dao/DaoFactory.java,6\c\6c3e63e46aefa90f61f82f9adc0ebd29ccf60322
-\
-,src/main/webapp/WEB-INF/jspf/headerUser.jspf,1\7\1774cf9cbbed5810ce9a092c64cd7e60f85cce4f
-s
-Csrc/main/java/com/savaz/delivery/model/dao/impl/JDBCDaoFactory.java,9\6\963d62e87623c39e1d61bd2cc37d5ce1f26947ce
-Z
-*src/main/java/com/savaz/delivery/Path.java,0\3\0384ed5dcf402d4a3a2e157f3425f21a7f3a85de
 o
 ?src/main/java/com/savaz/delivery/model/dao/service/Service.java,4\3\4392fffbcebd847d3bc872d48d9d4faec17a04b1
-O
-src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392

@@ -13,6 +13,8 @@ public class Path {
     public static final String PAGE_CALCULATE = "calculate";
     public static final String PAGE_PRICE = "price";
     public static final String PAGE_INDEX = "/index.jsp";
+    public static final String PAGE_CREATE_ORDER_FORM = "create_order";
+    public static final String PAGE_CONFIRM_ORDER_FORM = "confirm_order";
     // commands
     public static final String COMMAND_LIST_ORDERS = "/controller?command=listOrders";
     public static final String COMMAND_LIST_MENU = "/controller?command=login";

@@ -16,12 +16,6 @@ public class LocaleChangeCommand implements Command {
         HttpSession session = request.getSession();
         String forward = "redirect:"+path;
         Config.set(session, "javax.servlet.jsp.jstl.fmt.locale", locale);
-//        if (session.getAttribute("role")!=null){
-//            Roles role = Roles.values()[(int) session.getAttribute("role")];
-//            if (Roles.ADMIN.equals(role)) {
-//            forward = forward+"/admin";
-//            }
-//        }
 
         return forward;
 

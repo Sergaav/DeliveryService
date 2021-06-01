@@ -15,9 +15,27 @@ public class OrderBean implements Serializable {
     private Status status;
     private int cityArriveId;
     private int cityDepartureId;
-    private int weightRate;
+    private double DestinationRate;
     private LocalDate dateCreation;
     private LocalDate dateDeparture;
+    private String recipientName;
+    private long bill;
+
+    public long getBill() {
+        return bill;
+    }
+
+    public void setBill(long bill) {
+        this.bill = bill;
+    }
+
+    public String getRecipientName() {
+        return recipientName;
+    }
+
+    public void setRecipientName(String recipientName) {
+        this.recipientName = recipientName;
+    }
 
     public int getId() {
         return id;
@@ -75,12 +93,12 @@ public class OrderBean implements Serializable {
         this.cityDepartureId = cityDepartureId;
     }
 
-    public int getWeightRate() {
-        return weightRate;
+    public double getDestinationRate() {
+        return DestinationRate;
     }
 
-    public void setWeightRate(int weightRate) {
-        this.weightRate = weightRate;
+    public void setDestinationRate(double destinationRate) {
+        this.DestinationRate = destinationRate;
     }
 
     public LocalDate getDateCreation() {
@@ -109,9 +127,11 @@ public class OrderBean implements Serializable {
                 ", status=" + status +
                 ", cityArriveId=" + cityArriveId +
                 ", cityDepartureId=" + cityDepartureId +
-                ", weightRate=" + weightRate +
+                ", weightRate=" + DestinationRate +
                 ", dateCreation=" + dateCreation +
                 ", dateDeparture=" + dateDeparture +
+                ", recipientName='" + recipientName + '\'' +
+                ", bill=" + bill +
                 '}';
     }
 }

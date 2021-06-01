@@ -11,8 +11,9 @@
 
 
 <form style="margin-left: 50px" id="settings_form" action="controller" method="get">
-    <fieldset style="background: #7ab5d3;outline: 2px solid #000;border: 3px solid #fff;
+    <fieldset style="background: whitesmoke; margin-top:10px;outline: 2px solid #000;border: 3px solid #fff;
     border-radius: 10px;width: 500px;height: 500px;">
+        <legend></legend>
         <input type="hidden" name="command" value="calculate">
         <h3>
             <fmt:message key="calculate.header_info"/>
