@@ -81,6 +81,6 @@ public class CalculateCommand implements Command {
     private int calculateShippingCost(CalculateBean bean) {
         int volumeWeight = bean.getHeight() * bean.getLength() * bean.getWidth() / 4200;
         int basicWeight = Math.max(volumeWeight, bean.getWeight());
-        return (int) bean.getRateDepArr() * bean.getBasicRate();
+        return (int) (bean.getRateDepArr() * bean.getBasicRate());
     }
 }
