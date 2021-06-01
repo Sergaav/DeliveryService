@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class PopUpCommand implements Command {
+public class TopUpCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

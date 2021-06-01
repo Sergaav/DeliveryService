@@ -8,8 +8,8 @@
 <body>
 
 <%@include file="WEB-INF/jspf/header.jspf" %>
-
-<img style="margin-left: 50px;margin-bottom: 20px" src="img/delivery-service-banner.jpg" alt="bunner">
-
+<div>
+<img style="margin-left: 50px;margin-bottom: 20px" src="WEB-INF/img/delivery-service-banner.png" alt="banner">
+</div>
 </body>
 </html>

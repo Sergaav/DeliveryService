@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import javax.imageio.ImageIO;
+import javax.imageio.ImageWriter;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -76,6 +78,7 @@ public class CommandAccessFilter implements Filter {
 
         // out of control
         outOfControl = asList(fConfig.getInitParameter("out-of-control"));
+        fConfig.getServletContext().setAttribute("logoImg","img/delivery-service-banner.jpg");
     }
 
     private List<String> asList(String str) {
