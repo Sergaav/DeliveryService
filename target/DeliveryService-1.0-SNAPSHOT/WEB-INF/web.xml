@@ -58,12 +58,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>Popup</servlet-name>
-        <jsp-file>/WEB-INF/jsp/user/popup.jsp</jsp-file>
+        <servlet-name>Topup</servlet-name>
+        <jsp-file>/WEB-INF/jsp/user/topup.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Popup</servlet-name>
-        <url-pattern>/popup</url-pattern>
+        <servlet-name>Topup</servlet-name>
+        <url-pattern>/topup</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -91,6 +91,15 @@
     <servlet-mapping>
         <servlet-name>UserMenu</servlet-name>
         <url-pattern>/user</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreateOrder</servlet-name>
+        <jsp-file>/WEB-INF/jsp/user/create_order.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateOrder</servlet-name>
+        <url-pattern>/create_order</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -146,7 +155,7 @@
         </init-param>
         <init-param>
             <param-name>user</param-name>
-            <param-value>userMenu popup</param-value>
+            <param-value>userMenu topup createOrder</param-value>
         </init-param>
         <init-param>
             <param-name>common</param-name>

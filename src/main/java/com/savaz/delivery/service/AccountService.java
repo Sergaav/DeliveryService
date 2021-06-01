@@ -17,7 +17,7 @@ public class AccountService implements Service {
     }
 
     @Override
-    public void popUpAccount(int userId, double amount) {
+    public void topUpAccount(int userId, double amount) {
         PreparedStatement statement=null;
         try {
             connection.setAutoCommit(false);

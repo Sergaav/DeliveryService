@@ -27,7 +27,7 @@ public class TopUpCommand implements Command {
                 Service service = daoFactory.createAccountService();
 
                 try (UserDao dao = daoFactory.createUserDao()) {
-                    service.popUpAccount(userId, amount);
+                    service.topUpAccount(userId, amount);
                     User user = dao.findById(userId);
                     session.setAttribute("balance",user.getBalance());
 

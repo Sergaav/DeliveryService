@@ -11,6 +11,6 @@
 <body>
 
 <%@include file="WEB-INF/jspf/header.jspf" %>
-<img src='WEB-INF/img/delivery-service-banner.png' alt="..."/>
+
 </body>
 </html>
