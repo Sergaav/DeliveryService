@@ -15,7 +15,6 @@ public class OrderBean implements Serializable {
     private Status status;
     private int cityArriveId;
     private int cityDepartureId;
-    private double DestinationRate;
     private LocalDate dateCreation;
     private LocalDate dateDeparture;
     private String recipientName;
@@ -93,13 +92,6 @@ public class OrderBean implements Serializable {
         this.cityDepartureId = cityDepartureId;
     }
 
-    public double getDestinationRate() {
-        return DestinationRate;
-    }
-
-    public void setDestinationRate(double destinationRate) {
-        this.DestinationRate = destinationRate;
-    }
 
     public LocalDate getDateCreation() {
         return dateCreation;
@@ -127,7 +119,6 @@ public class OrderBean implements Serializable {
                 ", status=" + status +
                 ", cityArriveId=" + cityArriveId +
                 ", cityDepartureId=" + cityDepartureId +
-                ", weightRate=" + DestinationRate +
                 ", dateCreation=" + dateCreation +
                 ", dateDeparture=" + dateDeparture +
                 ", recipientName='" + recipientName + '\'' +

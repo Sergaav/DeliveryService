@@ -9,7 +9,7 @@ import java.util.List;
 
 public class PriceService {
 
-    public static List<PriceBean> getPriceBeanList (){
+    public  List<PriceBean> getPriceBeanList (){
         DaoFactory daoFactory = DaoFactory.getInstance();
         List<PriceBean> priceBeans = new ArrayList<>();
         try (PriceDao dao = daoFactory.createPriceDao()){

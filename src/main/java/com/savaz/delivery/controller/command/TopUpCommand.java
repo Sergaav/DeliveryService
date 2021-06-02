@@ -33,16 +33,16 @@ public class TopUpCommand implements Command {
 
                 } catch (ValidationException e) {
                     session.setAttribute("errorMessage", e);
-                    return Path.PAGE_POPUP;
+                    return Path.PAGE_TOPUP;
                 }
             }
         } catch (
                 NumberFormatException e) {
             errorMessage = "Enter valid number!!";
             request.setAttribute("errorMessage", errorMessage);
-            return Path.PAGE_POPUP;
+            return Path.PAGE_TOPUP;
         }
 
-        return Path.PAGE_USER_MENU;
+        return "redirect:"+Path.PAGE_USER_MENU;
     }
 }

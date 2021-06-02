@@ -32,6 +32,18 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `delivery`.`weight_rate`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `delivery`.`weight_rate` (
+  `id` INT NOT NULL,
+  `rate_name` VARCHAR(15) NOT NULL,
+  `weight` INT NOT NULL,
+  `rate` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `delivery`.`parsels`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `delivery`.`parsels` (
@@ -41,7 +53,14 @@ CREATE TABLE IF NOT EXISTS `delivery`.`parsels` (
   `width` INT NOT NULL,
   `height` INT NOT NULL,
   `weight` INT NOT NULL,
-  PRIMARY KEY (`id`))
+  `weight_rate_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_parsels_weight_rate1_idx` (`weight_rate_id` ASC) VISIBLE,
+  CONSTRAINT `fk_parsels_weight_rate1`
+    FOREIGN KEY (`weight_rate_id`)
+    REFERENCES `delivery`.`weight_rate` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -66,37 +85,25 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `delivery`.`weight_rate`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `delivery`.`weight_rate` (
-  `id` INT NOT NULL,
-  `rate_name` VARCHAR(15) NOT NULL,
-  `weight` INT NOT NULL,
-  `rate` INT NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `delivery`.`orders`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `delivery`.`orders` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `address` VARCHAR(45) NOT NULL,
-  `status` ENUM('OPENED', 'CONFIRMED', 'PAID', 'CLOSED') NOT NULL,
+  `status` ENUM("OPENED", "CONFIRMED", "PAID", "CLOSED") NOT NULL,
   `date_creation` DATE NOT NULL,
   `parsels_id` INT NOT NULL,
   `users_id` INT NOT NULL,
   `departure_id` INT NOT NULL,
   `arrive_id` INT NOT NULL,
-  `weight_rate_id` INT NOT NULL,
   `date_departure` DATE NOT NULL,
+  `recipient_name` VARCHAR(45) NOT NULL,
+  `bill` DECIMAL NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_orders_parsels1_idx` (`parsels_id` ASC) VISIBLE,
   INDEX `fk_orders_users1_idx` (`users_id` ASC) VISIBLE,
   INDEX `fk_orders_departure1_idx` (`departure_id` ASC) VISIBLE,
   INDEX `fk_orders_arrive1_idx` (`arrive_id` ASC) VISIBLE,
-  INDEX `fk_orders_weight_rate1_idx` (`weight_rate_id` ASC) VISIBLE,
   CONSTRAINT `fk_orders_parsels1`
     FOREIGN KEY (`parsels_id`)
     REFERENCES `delivery`.`parsels` (`id`)
@@ -115,11 +122,6 @@ CREATE TABLE IF NOT EXISTS `delivery`.`orders` (
   CONSTRAINT `fk_orders_arrive1`
     FOREIGN KEY (`arrive_id`)
     REFERENCES `delivery`.`arrive` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_orders_weight_rate1`
-    FOREIGN KEY (`weight_rate_id`)
-    REFERENCES `delivery`.`weight_rate` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

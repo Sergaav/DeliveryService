@@ -18,7 +18,7 @@ public class JDBCDaoFactory extends DaoFactory {
 
     @Override
     public OrderDao createOrderDao() {
-        return null;
+        return new JDBCOrderDao(getConnection());
     }
 
     @Override

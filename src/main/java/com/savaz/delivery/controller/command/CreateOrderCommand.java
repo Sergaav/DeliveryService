@@ -9,7 +9,7 @@ import com.savaz.delivery.model.entity.enums.City;
 import com.savaz.delivery.model.entity.enums.Status;
 import com.savaz.delivery.service.PriceService;
 import com.savaz.delivery.service.UserService;
-import com.savaz.delivery.service.WeightRateService;
+import com.savaz.delivery.service.EntityService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +23,8 @@ public class CreateOrderCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         session.setAttribute("cities", City.values());
-        List<PriceBean> priceBeans = PriceService.getPriceBeanList();
+        PriceService priceService = new PriceService();
+        List<PriceBean> priceBeans = priceService.getPriceBeanList();
         session.setAttribute("priceBeans", priceBeans);
         Map<String, String[]> parameters = request.getParameterMap();
         if (parameters.size() == 1 && parameters.get("command")[0].equals("createOrder")) {
@@ -74,7 +75,6 @@ public class CreateOrderCommand implements Command {
         orderBean.setRecipientName(request.getParameter("recipientData"));
         orderBean.setAddress(request.getParameter("recipientAddress"));
         orderBean.setStatus(Status.OPENED);
-        orderBean.setDestinationRate(WeightRateService.getWeightRate(orderBean.getCityArriveId(), orderBean.getCityDepartureId()));
         String[] temp = request.getParameter("dateArrive").split("-");
         LocalDate date = LocalDate.of(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]), Integer.parseInt(temp[2]));
         orderBean.setDateCreation(date);
@@ -85,7 +85,8 @@ public class CreateOrderCommand implements Command {
     }
 
     public long calculateCost(OrderBean orderBean) {
-        List<PriceBean> priceBeans = PriceService.getPriceBeanList();
+        PriceService priceService = new PriceService();
+        List<PriceBean> priceBeans = priceService.getPriceBeanList();
         Parcel parcel = orderBean.getParcel();
         int volumeWeight = parcel.getHeight() * parcel.getLength() * parcel.getWidth() / 4200;
         int basicWeight = Math.max(volumeWeight, parcel.getWeight());
@@ -93,8 +94,10 @@ public class CreateOrderCommand implements Command {
         for (int i = 0; i < priceBeans.size(); i++) {
             if (basicWeight > priceBeans.get(i).getMaxWeight() && basicWeight <= priceBeans.get(i + 1).getMaxWeight()) {
                 rate = priceBeans.get(i + 1).getRate();
+                orderBean.getParcel().setWeightRateId(priceBeans.get(i + 1).getId());
             }
         }
-        return (long) (rate* orderBean.getDestinationRate());
+        double destinRate = new EntityService().getDestinationRate(orderBean.getCityArriveId(), orderBean.getCityDepartureId());
+        return (long) (rate* destinRate);
     }
 }

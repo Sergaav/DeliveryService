@@ -13,7 +13,7 @@
 </div>
 <p>Confirm order</p>
 <form style="margin-left: 50px" id="settings_form" action="controller" method="get">
-    <input type="hidden" name="command" value="confirm_order">
+    <input type="hidden" name="command" value="confirmOrder">
     <table class="table" aria-describedby="">
         <tr>
             <th>City arrive</th>

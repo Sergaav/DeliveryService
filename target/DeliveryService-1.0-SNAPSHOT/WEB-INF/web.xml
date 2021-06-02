@@ -112,6 +112,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>UserOrders</servlet-name>
+        <jsp-file>/WEB-INF/jsp/user/userOrders.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserOrders</servlet-name>
+        <url-pattern>/userOrders</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>Error</servlet-name>
         <jsp-file>/WEB-INF/jsp/common/errorPage.jsp</jsp-file>
     </servlet>
@@ -154,6 +163,16 @@
         <servlet-name>Servlet</servlet-name>
     </filter-mapping>
 
+<!--    <filter>-->
+<!--        <filter-name>AuthenticationFilter</filter-name>-->
+<!--        <filter-class>com.savaz.delivery.controller.filters.AuthenticationFilter</filter-class>-->
+<!--    </filter>-->
+
+<!--    <filter-mapping>-->
+<!--        <filter-name>AuthenticationFilter</filter-name>-->
+<!--        <url-pattern>/*</url-pattern>-->
+<!--    </filter-mapping>-->
+
 
     <filter>
         <filter-name>CommandAccessFilter</filter-name>
@@ -164,7 +183,7 @@
         </init-param>
         <init-param>
             <param-name>user</param-name>
-            <param-value>userMenu topup createOrder error confirm_order</param-value>
+            <param-value>userMenu topup createOrder error confirmOrder userOrders</param-value>
         </init-param>
         <init-param>
             <param-name>common</param-name>
@@ -180,7 +199,6 @@
         <filter-name>CommandAccessFilter</filter-name>
         <servlet-name>Servlet</servlet-name>
     </filter-mapping>
-
 
     <listener>
         <listener-class>com.savaz.delivery.controller.listener.ContextListener</listener-class>

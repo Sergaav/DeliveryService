@@ -25,6 +25,8 @@ public class CommandContainer {
        //  client commands
         commands.put("userMenu", new UserMenuCommand());
         commands.put("createOrder", new CreateOrderCommand());
+        commands.put("confirmOrder", new ConfirmOrderCommand());
+        commands.put("userOrders", new UserOrdersCommand());
 
        // admin commands
         commands.put("adminMenu", new AdminMenuCommand());
