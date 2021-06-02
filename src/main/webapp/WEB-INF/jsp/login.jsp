@@ -9,7 +9,7 @@
 <%@include file="/WEB-INF/jspf/header.jspf" %>
 <tr>
     <td class="content center">
-        <form action="controller" method="get">
+        <form action="controller" method="post">
             <input type="hidden" name="command" value="login">
             <div class="col-md-6">
                 <div class="form-group">

@@ -22,6 +22,7 @@
                         <option value="${cityArr.ordinal()}"><fmt:message key="city.${cityArr.name}"/></option>
                     </c:forEach>
                 </select>
+                <br>
                 <select class="form-select" name="city_dep" style="margin-left: 20px" aria-label="City Departure">
                     <option selected><fmt:message key="city.choose.departure"/></option>
                     <c:set var="k" value="0"/>

@@ -35,6 +35,7 @@ public class CreateOrderCommand implements Command {
         }
         OrderBean orderBean = mapOrderBean(request);
         session.setAttribute("orderBean", orderBean);
+        session.setAttribute("city",City.values());
         return "redirect:" + Path.PAGE_CONFIRM_ORDER_FORM;
     }
 

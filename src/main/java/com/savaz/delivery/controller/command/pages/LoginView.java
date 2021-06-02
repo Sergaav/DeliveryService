@@ -18,6 +18,9 @@ public class LoginView implements Command {
             if (Roles.ADMIN.equals(role)) {
                 forward = "redirect:" + Path.PAGE_ADMIN_MENU;
             }
+            if (Roles.USER.equals(role)) {
+                forward = "redirect:" + Path.PAGE_USER_MENU;
+            }
         }
         return forward;
     }
