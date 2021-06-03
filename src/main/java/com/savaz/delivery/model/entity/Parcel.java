@@ -9,6 +9,7 @@ public class Parcel implements Serializable {
     private int width;
     private int height;
     private int weight;
+    private int weightRateId;
 
     public int getWeightRateId() {
         return weightRateId;
@@ -18,7 +19,7 @@ public class Parcel implements Serializable {
         this.weightRateId = weightRateId;
     }
 
-    private int weightRateId;
+
 
     public int getWeight() {
         return weight;

@@ -61,7 +61,7 @@ public class CreateOrderCommand implements Command {
 
     private OrderBean mapOrderBean(HttpServletRequest request) {
         OrderBean orderBean = new OrderBean();
-        User user = UserService.getUserById((int) request.getSession().getAttribute("userId"));
+        User user = new UserService().getUserById((int) request.getSession().getAttribute("userId"));
         orderBean.setUser(user);
         Parcel parcel = new Parcel();
         parcel.setDescription(request.getParameter("description"));

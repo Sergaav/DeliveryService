@@ -6,7 +6,7 @@ import com.savaz.delivery.model.entity.User;
 
 public class UserService {
 
-    public static User getUserById(int id) {
+    public User getUserById(int id) {
         DaoFactory daoFactory = DaoFactory.getInstance();
         User user = new User();
         try (UserDao dao = daoFactory.createUserDao()) {

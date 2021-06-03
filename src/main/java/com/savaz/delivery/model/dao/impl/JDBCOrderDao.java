@@ -1,16 +1,30 @@
 package com.savaz.delivery.model.dao.impl;
 
+import com.savaz.delivery.model.dao.EntityMapper;
 import com.savaz.delivery.model.dao.OrderDao;
+import com.savaz.delivery.model.entity.Parcel;
+import com.savaz.delivery.model.entity.User;
+import com.savaz.delivery.model.entity.bean.DestinationsBean;
 import com.savaz.delivery.model.entity.bean.OrderBean;
+import com.savaz.delivery.model.entity.enums.Status;
+import com.savaz.delivery.service.EntityService;
+import com.savaz.delivery.service.UserService;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JDBCOrderDao implements OrderDao {
+    private static final String SQL_SELECT_USER_ORDERS = "SELECT * FROM orders WHERE users_id=?";
+    private static final String SQL_FIND_PARCEL_BY_ID = "SELECT * FROM parsels WHERE id=?";
+    private static final String SQL_FIND_ALL_ORDERS = "SELECT * FROM orders";
     private Connection connection;
 
     private static final String SQL_CREATE_NEW_PARCEL = "INSERT INTO parsels values (default,?,?,?,?,?,?)";
     private static final String SQL_CREATE_NEW_ORDER = "INSERT INTO orders values (default,?,?,?,?,?,?,?,?,?,?)";
+
+    private static final String SQL_FIND_ALL_ORDERS_BY_PAGE = "SELECT * FROM orders LIMIT 7 OFFSET ?";
 
     public JDBCOrderDao(Connection connection) {
         this.connection = connection;
@@ -53,7 +67,7 @@ public class JDBCOrderDao implements OrderDao {
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }finally {
+        } finally {
             closeResultSet(resultSet);
             closeResultSet(resultSetParcel);
             closeConnection(connection);
@@ -91,6 +105,74 @@ public class JDBCOrderDao implements OrderDao {
         }
     }
 
+    public List<OrderBean> findAllUserOrdersByUserId(int userId) {
+        List<OrderBean> list = new ArrayList<>();
+        ResultSet resultSet = null;
+        try (PreparedStatement statement = connection.prepareStatement(SQL_SELECT_USER_ORDERS)) {
+            statement.setInt(1, userId);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                OrderBean bean = new OrderBeanMapper().mapRow(resultSet);
+                list.add(bean);
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+        return list;
+    }
+
+    @Override
+    public Parcel findParcel(int id) {
+        ResultSet resultSet = null;
+        Parcel parcel = new Parcel();
+        try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_PARCEL_BY_ID)) {
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                parcel.setId(resultSet.getInt("id"));
+                parcel.setLength(resultSet.getInt("length"));
+                parcel.setWidth(resultSet.getInt("width"));
+                parcel.setHeight(resultSet.getInt("height"));
+                parcel.setDescription(resultSet.getString("description"));
+                parcel.setWeightRateId(resultSet.getInt("weight_rate_id"));
+                parcel.setWeight(resultSet.getInt("weight"));
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+        return parcel;
+    }
+
+    @Override
+    public List<OrderBean> findAllByPage(int page) {
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<OrderBean> orderBeanList = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(SQL_FIND_ALL_ORDERS_BY_PAGE);
+            statement.setInt(1, 7 * (page - 1));
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                OrderBean bean = new OrderBeanMapper().mapRow(resultSet);
+                orderBeanList.add(bean);
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            closeResultSet(resultSet);
+            closeStatement(statement);
+            closeConnection(connection);
+        }
+        return orderBeanList;
+    }
+
+
     @Override
     public OrderBean findById(int id) {
         return null;
@@ -98,7 +180,21 @@ public class JDBCOrderDao implements OrderDao {
 
     @Override
     public List<OrderBean> findAll() {
-        return null;
+        ResultSet resultSet = null;
+        List<OrderBean> orderBeanList = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ORDERS)){
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                OrderBean bean = new OrderBeanMapper().mapRow(resultSet);
+                orderBeanList.add(bean);
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+        return orderBeanList;
     }
 
     @Override
@@ -114,5 +210,29 @@ public class JDBCOrderDao implements OrderDao {
     @Override
     public void close() {
 
+    }
+
+    private static class OrderBeanMapper implements EntityMapper<OrderBean> {
+
+        @Override
+        public OrderBean mapRow(ResultSet rs) {
+            OrderBean bean = new OrderBean();
+            try {
+                bean.setId(rs.getInt("id"));
+                bean.setAddress(rs.getString("address"));
+                bean.setStatus(Status.valueOf(rs.getString("status")));
+                bean.setDateCreation(rs.getDate("date_creation").toLocalDate());
+                bean.setParcel(new EntityService().getParcelById(rs.getInt("parsels_id")));
+                bean.setCityDepartureId(rs.getInt("departure_id"));
+                bean.setCityArriveId(rs.getInt("arrive_id"));
+                bean.setDateDeparture(rs.getDate("date_departure").toLocalDate());
+                bean.setRecipientName(rs.getString("recipient_name"));
+                bean.setBill(rs.getLong("bill"));
+                bean.setUser(new UserService().getUserById(rs.getInt("users_id")));
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+            return bean;
+        }
     }
 }
