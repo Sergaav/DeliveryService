@@ -10,6 +10,8 @@
 <body>
 <%@include file="/WEB-INF/jspf/headerAdmin.jspf" %>
 
+<%@include file="/WEB-INF/jspf/fragment/orderFilterForm.jspf" %>
+
 <table class="table table-condensed" style="align-content:center"
        title="Destinations" aria-describedby="">
     <thead>

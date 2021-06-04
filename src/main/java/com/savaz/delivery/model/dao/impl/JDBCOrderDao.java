@@ -10,10 +10,14 @@ import com.savaz.delivery.model.entity.enums.Status;
 import com.savaz.delivery.service.EntityService;
 import com.savaz.delivery.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 
 public class JDBCOrderDao implements OrderDao {
     private static final String SQL_SELECT_USER_ORDERS = "SELECT * FROM orders WHERE users_id=?";
@@ -172,6 +176,17 @@ public class JDBCOrderDao implements OrderDao {
         return orderBeanList;
     }
 
+    @Override
+    public List<OrderBean> findAllByPageWithFilters(int page, HttpServletRequest request) {
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        Status status = Status.valueOf(request.getParameter("status"));
+        LocalDate dateCreation = LocalDate.parse(request.getParameter("date_creation"));
+        int cityArriveId = Integer.parseInt(request.getParameter("cityArriveId"));
+
+        return null;
+    }
+
 
     @Override
     public OrderBean findById(int id) {
@@ -182,7 +197,7 @@ public class JDBCOrderDao implements OrderDao {
     public List<OrderBean> findAll() {
         ResultSet resultSet = null;
         List<OrderBean> orderBeanList = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ORDERS)){
+        try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_ORDERS)) {
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 OrderBean bean = new OrderBeanMapper().mapRow(resultSet);

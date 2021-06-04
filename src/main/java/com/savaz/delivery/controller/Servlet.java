@@ -2,12 +2,17 @@ package com.savaz.delivery.controller;
 
 
 import com.savaz.delivery.controller.command.*;
+
+import javax.imageio.stream.FileImageInputStream;
+import javax.imageio.stream.ImageInputStreamImpl;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
 
@@ -18,7 +23,9 @@ public class Servlet extends HttpServlet {
         servletConfig.getServletContext()
                 .setAttribute("loggedUsers", new HashSet<String>());
 
+          String pathToFile =  servletConfig.getServletContext().getRealPath("/WEB-INF/img/delivery-service-banner.jpg");
 
+        servletConfig.getServletContext().setAttribute("mainImage",pathToFile);
 
     }
 

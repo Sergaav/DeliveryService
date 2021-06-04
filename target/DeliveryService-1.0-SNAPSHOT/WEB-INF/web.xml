@@ -121,6 +121,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>AdminListOrders</servlet-name>
+        <jsp-file>/WEB-INF/jsp/admin/adminListOrders.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminListOrders</servlet-name>
+        <url-pattern>/adminOrders</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>Error</servlet-name>
         <jsp-file>/WEB-INF/jsp/common/errorPage.jsp</jsp-file>
     </servlet>
@@ -179,7 +188,7 @@
         <filter-class>com.savaz.delivery.controller.filters.CommandAccessFilter</filter-class>
         <init-param>
             <param-name>admin</param-name>
-            <param-value>adminMenu error</param-value>
+            <param-value>adminMenu error reports listOrders</param-value>
         </init-param>
         <init-param>
             <param-name>user</param-name>
