@@ -44,7 +44,7 @@
             <td>${item.dateCreation}</td>
             <td>${item.dateDeparture}</td>
             <td>${item.bill}</td>
-            <td>${item.status}</td>
+            <td><fmt:message key="status.${item.status}"/></td>
             <td>
                 <c:if test="${item.status=='OPENED'}">
                     <a href="controller?command=orderToPay&id=${item.id}"><c:out value="Checkout"/></a>

@@ -3,27 +3,34 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <p>Filters : </p>
-<select class="form-select" name="city_arr" style="margin-left: 20px" aria-label="City Arrive">
-    <option selected><fmt:message key="city.choose.arrive"/></option>
-    <c:set var="k" value="0"/>
-    <c:forEach var="cityArr" items="${sessionScope.cities}">
-        <c:set var="k" value="${k+1}"/>
-        <option value="${cityArr.ordinal()}"><fmt:message key="city.${cityArr.name}"/></option>
-    </c:forEach>
-</select>
-<select class="form-select" name="city_dep" style="margin-left: 20px" aria-label="City Departure">
-    <option selected><fmt:message key="city.choose.arrive"/></option>
-    <c:set var="k" value="0"/>
-    <c:forEach var="cityDep" items="${sessionScope.cities}">
-        <c:set var="k" value="${k+1}"/>
-        <option value="${cityDep.ordinal()}"><fmt:message key="city.${cityDep.name}"/></option>
-    </c:forEach>
-</select>
-<select class="form-select" name="status" style="margin-left: 20px" aria-label="Status">
-    <option selected><fmt:message key="order.status"/></option>
-    <c:set var="k" value="0"/>
-    <c:forEach var="status" items="${sessionScope.statuses}">
-        <c:set var="k" value="${k+1}"/>
-        <option value="${status.ordinal()}"><fmt:message key="city.${cityDep.name}"/></option>
-    </c:forEach>
-</select>
+<form action="controller"?command=listOrders&page=1">
+    <input type="hidden" name="command" value="listOrders">
+    <input type="hidden" name="page" value="1">
+    <select class="form-select" name="city_arr" style="margin-left: 20px" aria-label="City Arrive">
+        <option selected><fmt:message key="city.choose.arrive"/></option>
+        <c:set var="k" value="0"/>
+        <c:forEach var="cityArr" items="${sessionScope.city}">
+            <c:set var="k" value="${k+1}"/>
+            <option value="${k}"><fmt:message key="city.${cityArr.name}"/></option>
+        </c:forEach>
+    </select>
+    <select class="form-select" name="city_dep" style="margin-left: 20px" aria-label="City Departure">
+        <option selected><fmt:message key="city.choose.arrive"/></option>
+        <c:set var="k" value="0"/>
+        <c:forEach var="cityDep" items="${sessionScope.city}">
+            <c:set var="k" value="${k+1}"/>
+            <option value="${k}"><fmt:message key="city.${cityDep.name}"/></option>
+        </c:forEach>
+    </select>
+    <select class="form-select" name="status" style="margin-left: 20px" aria-label="Status">
+        <option selected><fmt:message key="order.status"/></option>
+        <c:set var="k" value="0"/>
+        <c:forEach var="status" items="${sessionScope.statuses}">
+            <c:set var="k" value="${k+1}"/>
+            <option value="${k}"><fmt:message key="status.${status.name()}"/></option>
+        </c:forEach>
+    </select>
+    <input type="date" name="dateArrive" aria-label="date">
+    <button type="submit">Do filter</button>
+
+</form>
