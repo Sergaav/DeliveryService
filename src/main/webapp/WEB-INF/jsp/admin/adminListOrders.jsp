@@ -43,16 +43,21 @@
             <td>${item.parcel.weight}</td>
             <td>${item.dateCreation}</td>
             <td>${item.dateDeparture}</td>
-            <td>${item.bill}</td>
+            <td><fmt:formatNumber maxFractionDigits="2" value="${item.bill}" type ="currency" currencyCode="UAH"/></td>
             <td><fmt:message key="status.${item.status}"/></td>
             <td>
                 <c:if test="${item.status=='OPENED'}">
-                    <a href="controller?command=orderToPay&id=${item.id}"><c:out value="Checkout"/></a>
+                    <a href="controller?command=checkout&id=${item.id}"><fmt:message key="order.button.checkout"/></a>
+                    <a href="controller?command=deleteOrder&id=${item.id}"><fmt:message key="order.button.delete"/></a>
+                    <a href="controller?command=changeOrder&id=${item.id}"><fmt:message key="order.button.change"/></a>
+                </c:if>
+                <c:if test="${item.status=='CONFIRMED'}">
+                    <a href="controller?command=deleteOrder&id=${item.id}"><fmt:message key="order.button.delete"/></a>
                 </c:if>
                 <c:if test="${item.status=='PAID'}">
-                    <a href="controller?command=closeOrder&id=${item.id}"><c:out value="Close order"/></a>
+                    <a href="controller?command=closeOrder&id=${item.id}"><fmt:message key="order.button.close"/></a>
                 </c:if>
-                <a href="controller?command=viewOrder&id=${item.id}"><c:out value="View"/></a>
+                <a href="controller?command=viewOrder&id=${item.id}"><fmt:message key="order.button.view"/></a>
             </td>
         </tr>
     </c:forEach>
@@ -68,7 +73,8 @@
             <c:set var="disable1" value=""/>
         </c:if>
         <li class="page-item ${disable1}">
-            <a class="page-link" href="controller?command=listOrders&page=${sessionScope.pageNumber-1}">Previous</a>
+            <a class="page-link" href="controller?command=listOrders&page=${sessionScope.pageNumber-1}">
+                <fmt:message key="pagination.prev"/></a>
         </li>
         <c:forEach var="k" begin="1" step='1' end='${sessionScope.avPages}'>
             <li class="page-item"><a class="page-link" href="controller?command=listOrders&page=${k}">${k}</a></li>
@@ -81,7 +87,8 @@
             <c:set var="disable2" value=""/>
         </c:if>
         <li class="page-item ${disable2}">
-            <a class="page-link" href="controller?command=listOrders&page=${sessionScope.pageNumber+1}">Next</a>
+            <a class="page-link" href="controller?command=listOrders&page=${sessionScope.pageNumber+1}">
+                <fmt:message key="pagination.next"/></a>
         </li>
     </ul>
 </nav>

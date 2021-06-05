@@ -29,6 +29,10 @@
                     <a class="nav-link" href="controller?command=logout"><fmt:message key="user.menu.logout"/></a>
                 </li>
             </ul>
+            <div style="margin-left: 300px;font-weight: bold; color: #006dcc">
+                <fmt:message key="user_menu.hello"/>, &nbsp<c:out value="${sessionScope.firstName}"/>&nbsp;
+                <fmt:message key="user_menu.balance"/>&nbsp<c:out value="${sessionScope.balance}"/>&nbsp<fmt:message key="user_menu.UAH"/>
+            </div>
         </div>
     </nav>
 </header>

@@ -29,6 +29,13 @@ public class JDBCOrderDao implements OrderDao {
             " status=?";
     private static final String SQL_FIND_USER_ORDERS_BY_DATE = "SELECT * FROM orders WHERE users_id=? AND" +
             " date_creation=?";
+    private static final String SQL_DELETE_PARCEL = "SELECT * FROM parsels WHERE id=?";
+    private static final String SQL_UPDATE_ORDER_STATUS = "UPDATE orders SET status=? WHERE id=?";
+    private static final String SQL_UPDATE_PARCEL = "UPDATE parsels SET description=?,length=?," +
+            "width=?,height=?,weight=?,weight_rate_id=? WHERE id=?";
+    private static final String SQL_UPDATE_ORDER = "UPDATE orders SET address=?,status=?,date_creation=?," +
+            "parsels_id=?,users_id=?,departure_id=?,arrive_id=?,date_departure=?,recipient_name=?," +
+            "bill=? WHERE id=?";
 
     private Connection connection;
 
@@ -236,7 +243,7 @@ public class JDBCOrderDao implements OrderDao {
         List<OrderBean> orderBeanList = new ArrayList<>();
         try {
             statement = connection.prepareStatement(SQL_FIND_USER_ORDERS_BY_STATUS_DATE);
-            statement.setInt(1,userId);
+            statement.setInt(1, userId);
             statement.setString(2, status.name());
             statement.setDate(3, Date.valueOf(date));
             resultSet = statement.executeQuery();
@@ -261,7 +268,7 @@ public class JDBCOrderDao implements OrderDao {
         List<OrderBean> orderBeanList = new ArrayList<>();
         try {
             statement = connection.prepareStatement(SQL_FIND_USER_ORDERS_STATUS);
-            statement.setInt(1,userId);
+            statement.setInt(1, userId);
             statement.setString(2, status.name());
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -285,7 +292,7 @@ public class JDBCOrderDao implements OrderDao {
         List<OrderBean> orderBeanList = new ArrayList<>();
         try {
             statement = connection.prepareStatement(SQL_FIND_USER_ORDERS_BY_DATE);
-            statement.setInt(1,userId);
+            statement.setInt(1, userId);
             statement.setDate(2, Date.valueOf(date));
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -302,6 +309,31 @@ public class JDBCOrderDao implements OrderDao {
         return orderBeanList;
     }
 
+    @Override
+    public void deleteParcel(int parcelId) {
+        try (PreparedStatement statement = connection.prepareStatement(SQL_DELETE_PARCEL)) {
+            statement.setInt(1, parcelId);
+            statement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }finally {
+            closeConnection(connection);
+        }
+    }
+
+    @Override
+    public void updateStatus(int orderId,Status status) {
+        try (PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_ORDER_STATUS)){
+            statement.setString(1,status.name());
+            statement.setInt(2,orderId);
+            statement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }finally {
+            closeConnection(connection);
+        }
+    }
+
 
     @Override
     public OrderBean findById(int id) {
@@ -315,7 +347,7 @@ public class JDBCOrderDao implements OrderDao {
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }finally {
+        } finally {
             closeResultSet(resultSet);
             closeConnection(connection);
         }
@@ -343,6 +375,33 @@ public class JDBCOrderDao implements OrderDao {
 
     @Override
     public void update(OrderBean entity) {
+        try (PreparedStatement statementParcel = connection.prepareStatement(SQL_UPDATE_PARCEL);
+             PreparedStatement statementOrder = connection.prepareStatement(SQL_UPDATE_ORDER)) {
+            statementParcel.setString(1, entity.getParcel().getDescription());
+            statementParcel.setInt(2, entity.getParcel().getLength());
+            statementParcel.setInt(3, entity.getParcel().getWidth());
+            statementParcel.setInt(4, entity.getParcel().getHeight());
+            statementParcel.setInt(5, entity.getParcel().getWeight());
+            statementParcel.setInt(6, entity.getParcel().getWeightRateId());
+            statementParcel.setInt(7,entity.getId());
+            statementParcel.executeUpdate();
+            statementOrder.setString(1, entity.getAddress());
+            statementOrder.setString(2, entity.getStatus().toString());
+            statementOrder.setDate(3, Date.valueOf(entity.getDateCreation()));
+            statementOrder.setInt(4, entity.getParcel().getId());
+            statementOrder.setInt(5, entity.getUser().getId());
+            statementOrder.setInt(6, entity.getCityDepartureId());
+            statementOrder.setInt(7, entity.getCityArriveId());
+            statementOrder.setDate(8, Date.valueOf(entity.getDateDeparture()));
+            statementOrder.setString(9, entity.getRecipientName());
+            statementOrder.setLong(10, entity.getBill());
+            statementOrder.setInt(11,entity.getId());
+            statementOrder.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            closeConnection(connection);
+        }
 
     }
 

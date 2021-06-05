@@ -9,11 +9,7 @@
 </head>
 <body>
 <%@include file="/WEB-INF/jspf/headerUser.jspf" %>
-<div style="margin-left: 30px; color: darkgreen">
-    <fmt:message key="user_menu.hello"/>, &nbsp<c:out value="${sessionScope.firstName}"/><br>
-    <fmt:message key="user_menu.balance"/>&nbsp<c:out value="${sessionScope.balance}"/>&nbsp<fmt:message
-        key="user_menu.UAH"/>
-</div>
+
 <%@include file="/WEB-INF/jspf/fragment/userOrdersFilterForm.jspf" %>
 
 <table class="table table-condensed" style="align-content:center"
@@ -49,6 +45,7 @@
             <td>
                 <c:if test="${item.status=='OPENED'}">
                     <a href="controller?command=deleteOrder&id=${item.id}"><fmt:message key="order.button.delete"/></a>
+                    <a href="controller?command=changeOrder&id=${item.id}"><fmt:message key="order.button.change"/></a>
                 </c:if>
                 <c:if test="${item.status=='CONFIRMED'}">
                     <a href="controller?command=payForOrder&id=${item.id}"><fmt:message key="order.button.pay"/></a>

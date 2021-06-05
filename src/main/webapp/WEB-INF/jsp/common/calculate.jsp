@@ -11,7 +11,7 @@
 
 
 <form style="margin-left: 50px" id="settings_form" action="controller" method="get">
-    <fieldset style="background: whitesmoke; margin-top:10px;outline: 2px solid #000;border: 3px solid #fff;
+    <fieldset style="background: #dff0d8; margin-top:10px;outline: 2px solid #000;border: 3px solid #fff;
     border-radius: 10px;width: 500px;height: 500px;">
         <legend></legend>
         <input type="hidden" name="command" value="calculate">
@@ -69,17 +69,19 @@
                        aria-describedby="inputGroup-sizing-sm"/>
             </div>
         </div>
-        <button type="submit" style="margin-left: 50px" class="btn btn-primary"><fmt:message key="calculate.buton.calculate"/></button>
+        <button type="submit" style="margin-left: 50px" class="btn btn-primary"><fmt:message
+                key="calculate.buton.calculate"/></button>
+
+        <div style="margin-left: 30px;color: #942a25">
+            <c:out value="${requestScope.errorMessage}"/>
+        </div>
+        <div style="font-size:large ; margin-left: 30px;color: #942a25">
+            <fmt:message key="user_menu.shipping_cost"/> <c:out value="${sessionScope.cost}"/> <fmt:message
+                key="user_menu.UAH"/>
+        </div>
     </fieldset>
 </form>
-<div style="margin-left: 30px;color: #942a25">
-    <c:out value="${requestScope.errorMessage}"/>
-</div>
 
-<div style="font-size:large ; margin-left: 30px;color: #942a25">
-    <fmt:message key="user_menu.shipping_cost"/> <c:out value="${sessionScope.cost}"/> <fmt:message
-        key="user_menu.UAH"/>
-</div>
 
 </body>
 </html>

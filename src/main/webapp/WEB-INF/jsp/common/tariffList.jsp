@@ -26,7 +26,7 @@
         <tr>
             <td><fmt:message key="price.name.id${item.id}"/></td>
             <td>${item.maxWeight}</td>
-            <td>${item.rate}</td>
+            <td><fmt:formatNumber maxFractionDigits="2" value="${item.rate}" type ="currency" currencyCode="UAH"/></td>
         </tr>
     </c:forEach>
     </tbody>

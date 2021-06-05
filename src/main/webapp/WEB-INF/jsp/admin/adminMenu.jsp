@@ -10,7 +10,5 @@
 <body>
 <%@include file="/WEB-INF/jspf/headerAdmin.jspf"%>
 
-<c:out value="This is ADMIN PAGE!!"><fmt:message key="admin.hello.message"/> </c:out>
-
 </body>
 </html>

@@ -45,7 +45,7 @@ public class AdminListOrdersCommand implements Command {
                 isPresent=false;
             }
             if (isPresent) {
-                if (request.getParameter("dateArrive") != null) {
+                if (request.getParameter("dateArrive") != null && !request.getParameter("dateArrive").isEmpty() ) {
                     date = Date.valueOf(request.getParameter("dateArrive")).toLocalDate();
                     list = new OrderService().getAllOrdersByPageWithStatusAndDateFilter(status, date);
                 } else {
@@ -56,11 +56,11 @@ public class AdminListOrdersCommand implements Command {
                     date = Date.valueOf(request.getParameter("dateArrive")).toLocalDate();
                     list = new OrderService().getAllOrdersByPageWithDateFilter(date);
                 } else {
-                    list = new OrderService().getAllOrdersByPage(page);
+                    list = new OrderService().getAllOrdersByPage();
                 }
             }
         }else {
-            list = new OrderService().getAllOrdersByPage(page);
+            list = new OrderService().getAllOrdersByPage();
         }
         HttpSession session = request.getSession();
         int size = list.size();
@@ -73,7 +73,7 @@ public class AdminListOrdersCommand implements Command {
             session.setAttribute("avPages", avPages);
         }
         if (page < avPages){
-            list = list.subList(7*(page-1),(7*page)+1);
+            list = list.subList(7*(page-1),(7*page-1));
         }else{
             list = list.subList(7*(page-1),size);
         }

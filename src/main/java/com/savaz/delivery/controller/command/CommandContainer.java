@@ -22,6 +22,7 @@ public class CommandContainer {
         commands.put("loginView", new LoginView());
         commands.put("calculate", new CalculateCommand());
         commands.put("topup", new TopUpCommand());
+        commands.put("updateOrder", new UpdateOrderCommand());
        //  client commands
         commands.put("userMenu", new UserMenuCommand());
         commands.put("createOrder", new CreateOrderCommand());
@@ -33,6 +34,10 @@ public class CommandContainer {
         commands.put("listOrders", new AdminListOrdersCommand());
         commands.put("deleteOrder", new DeleteOrderCommand());
         commands.put("viewOrder", new ViewOrderCommand());
+        commands.put("checkout", new CheckoutCommand());
+        commands.put("payForOrder", new PayForOrderCommand());
+        commands.put("changeOrder", new ChangeOrderCommand());
+        commands.put("closeOrder", new CloseOrderCommand());
     }
 
     /**

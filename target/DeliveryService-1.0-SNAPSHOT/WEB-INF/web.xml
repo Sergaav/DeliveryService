@@ -40,6 +40,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>ChangeOrder</servlet-name>
+        <jsp-file>/WEB-INF/jsp/common/changeOrder.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeOrder</servlet-name>
+        <url-pattern>/changeOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>Registration</servlet-name>
         <jsp-file>/WEB-INF/jsp/registration.jsp</jsp-file>
     </servlet>
@@ -197,11 +206,11 @@
         <filter-class>com.savaz.delivery.controller.filters.CommandAccessFilter</filter-class>
         <init-param>
             <param-name>admin</param-name>
-            <param-value>adminMenu error reports listOrders deleteOrder viewOrder</param-value>
+            <param-value>adminMenu error reports listOrders deleteOrder viewOrder checkout changeOrder closeOrder updateOrder</param-value>
         </init-param>
         <init-param>
             <param-name>user</param-name>
-            <param-value>userMenu topup createOrder error confirmOrder userOrders deleteOrder viewOrder</param-value>
+            <param-value>userMenu topup createOrder error confirmOrder userOrders deleteOrder viewOrder payForOrder changeOrder updateOrder</param-value>
         </init-param>
         <init-param>
             <param-name>common</param-name>

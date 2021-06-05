@@ -26,6 +26,7 @@
                             <a class="nav-link" href="controller?command=logout"><fmt:message key="user.menu.logout"/></a>
                         </li>
                     </ul>
+                   <h6 style="margin-left: 900px;margin-top: 10px"><fmt:message key="admin.hello.message"/></h6>
                 </div>
             </nav>
 </header>

@@ -1,7 +1,6 @@
 package com.savaz.delivery.model.dao.impl;
 
 import com.savaz.delivery.model.dao.*;
-import com.savaz.delivery.service.AccountService;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -42,8 +41,8 @@ public class JDBCDaoFactory extends DaoFactory {
     }
 
     @Override
-    public AccountService createAccountService() {
-        return new AccountService(getConnection());
+    public AccountServiceDao createAccountServiceDao() {
+        return new AccountServiceDao(getConnection());
     }
 
     private Connection getConnection() {

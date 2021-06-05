@@ -4,7 +4,7 @@ import com.savaz.delivery.Path;
 import com.savaz.delivery.exception.ValidationException;
 import com.savaz.delivery.model.dao.DaoFactory;
 import com.savaz.delivery.model.dao.UserDao;
-import com.savaz.delivery.service.Service;
+import com.savaz.delivery.model.dao.Service;
 import com.savaz.delivery.model.entity.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +24,7 @@ public class TopUpCommand implements Command {
                 }
                 int userId = (int) session.getAttribute("userId");
                 DaoFactory daoFactory = DaoFactory.getInstance();
-                Service service = daoFactory.createAccountService();
+                Service service = daoFactory.createAccountServiceDao();
 
                 try (UserDao dao = daoFactory.createUserDao()) {
                     service.topUpAccount(userId, amount);

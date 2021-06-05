@@ -5,11 +5,11 @@ import com.savaz.delivery.model.entity.Parcel;
 import com.savaz.delivery.model.entity.User;
 import com.savaz.delivery.model.entity.bean.OrderBean;
 import com.savaz.delivery.model.entity.bean.PriceBean;
-import com.savaz.delivery.model.entity.enums.City;
 import com.savaz.delivery.model.entity.enums.Status;
+import com.savaz.delivery.service.EntityService;
+import com.savaz.delivery.service.OrderService;
 import com.savaz.delivery.service.PriceService;
 import com.savaz.delivery.service.UserService;
-import com.savaz.delivery.service.EntityService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,52 +18,35 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-public class CreateOrderCommand implements Command {
+public class UpdateOrderCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-        session.setAttribute("cities", City.values());
-        PriceService priceService = new PriceService();
-        List<PriceBean> priceBeans = priceService.getPriceBeanList();
-        session.setAttribute("priceBeans", priceBeans);
         Map<String, String[]> parameters = request.getParameterMap();
-        if (parameters.size() == 1 && parameters.get("command")[0].equals("createOrder")) {
-            return "redirect:" + Path.PAGE_CREATE_ORDER_FORM;
-        }
-        if (!validateInput(parameters)) {
+        if (!new CreateOrderCommand().validateInput(parameters)) {
             session.setAttribute("errorMessage", "Fill the form correctly");
-            return Path.PAGE_CREATE_ORDER_FORM;
+            return Path.UPDATE_ORDER;
         }
         OrderBean orderBean = mapOrderBean(request);
-        session.setAttribute("orderBean", orderBean);
-        session.setAttribute("city",City.values());
-        return "redirect:" + Path.PAGE_CONFIRM_ORDER_FORM;
-    }
-
-
-    public boolean validateInput(Map<String, String[]> parameters) {
-        for (Map.Entry<String, String[]> m : parameters.entrySet()) {
-            if (m.getValue()[0] == null || m.getValue()[0].isEmpty()) {
-                return false;
-            }
+        new OrderService().updateOrder(orderBean);
+        String path = "";
+        if ((int) session.getAttribute("role") == 0){
+            path = Path.COMMAND_ADMIN_ORDERS;
         }
-        int length = Integer.parseInt(parameters.get("length")[0]);
-        int height = Integer.parseInt(parameters.get("height")[0]);
-        int width = Integer.parseInt(parameters.get("width")[0]);
-        if (length > 50 || height > 50 || width > 50 || length < 1 || height < 1 || width < 1) {
-            return false;
+        if ((int) session.getAttribute("role") == 1){
+            path = Path.COMMAND_LIST_ORDERS;
         }
-        String[] temp = parameters.get("dateArrive")[0].split("-");
-        LocalDate date = LocalDate.of(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]), Integer.parseInt(temp[2]));
-        return date.compareTo(LocalDate.now()) >= 0;
+        return path;
     }
 
 
     private OrderBean mapOrderBean(HttpServletRequest request) {
         OrderBean orderBean = new OrderBean();
-        User user = new UserService().getUserById((int) request.getSession().getAttribute("userId"));
+        orderBean.setId(Integer.parseInt(request.getParameter("id")));
+        User user = new UserService().getUserById(Integer.parseInt(request.getParameter("userId")));
         orderBean.setUser(user);
         Parcel parcel = new Parcel();
+        parcel.setId(Integer.parseInt(request.getParameter("parcelId")));
         parcel.setDescription(request.getParameter("description"));
         parcel.setHeight(Integer.parseInt(request.getParameter("height")));
         parcel.setWidth(Integer.parseInt(request.getParameter("width")));
@@ -84,7 +67,7 @@ public class CreateOrderCommand implements Command {
         return orderBean;
     }
 
-    private long calculateCost(OrderBean orderBean) {
+    public long calculateCost(OrderBean orderBean) {
         PriceService priceService = new PriceService();
         List<PriceBean> priceBeans = priceService.getPriceBeanList();
         Parcel parcel = orderBean.getParcel();

@@ -25,4 +25,8 @@ public interface OrderDao extends GenericDao<OrderBean> {
     List<OrderBean> findAllByPageWithStatusByUser(int userId, Status status);
 
     List<OrderBean> findAllByPageWithDateByUser(int userId, LocalDate date);
+
+    void deleteParcel(int parcelId);
+
+    void updateStatus(int orderId,Status status);
 }
