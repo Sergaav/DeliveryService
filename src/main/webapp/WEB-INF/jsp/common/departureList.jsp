@@ -11,7 +11,7 @@
 
 <%--<%@include file="/WEB-INF/jspf/fragment/destinationsForm.jspf" %>--%>
 
-<table class="table table-condensed" style="margin-left:50px;margin-right:300px;align-content:center"
+<table class="table table-condensed " style="margin-left:50px;margin-right:300px;align-content:center"
        title="Destinations">
     <thead>
     <tr>
