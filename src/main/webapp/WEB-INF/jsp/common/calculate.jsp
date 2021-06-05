@@ -49,7 +49,7 @@
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text" id="length"><fmt:message key="calculate.length"/> </span>
                 <input type="text" name="length" class="form-control-sm-4"
-                       value="<fmt:message key="calculate.volume_param_text"/>"
+                       placeholder="<fmt:message key="calculate.volume_param_text"/>"
                        aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-sm">
             </div>
@@ -57,14 +57,14 @@
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text" id="width"><fmt:message key="calculate.width"/></span>
                 <input type="text" class="form-control-sm-4" name="width"
-                       value="<fmt:message key="calculate.volume_param_text"/>"
+                       placeholder="<fmt:message key="calculate.volume_param_text"/>"
                        aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-sm">
             </div>
             <br>
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text" id="height"><fmt:message key="calculate.height"/></span>
-                <input type="text" class="form-control-sm-4" name="height" value="<fmt:message
+                <input type="text" class="form-control-sm-4" name="height" placeholder="<fmt:message
             key="calculate.volume_param_text"/>" aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-sm"/>
             </div>

@@ -45,8 +45,11 @@
         </c:if>
 
         <li class="page-item ${disable_pr}"><a class="page-link ${disable_pr}"
-                                 href="controller?command=destination&pageNumber=${page_number-1}">Previous</a></li>
-        <li class="page-item ${disable_next}"><a class="page-link ${disable_next}" href="controller?command=destination&pageNumber=${page_number+1}">Next</a>
+                                               href="controller?command=destination&pageNumber=${page_number-1}">
+            <fmt:message key="pagination.prev"/> </a></li>
+        <li class="page-item ${disable_next}"><a class="page-link ${disable_next}"
+                                                 href="controller?command=destination&pageNumber=${page_number+1}">
+            <fmt:message key="pagination.next"/></a>
         </li>
     </ul>
 </nav>

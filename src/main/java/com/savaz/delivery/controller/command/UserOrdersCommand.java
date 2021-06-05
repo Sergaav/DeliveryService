@@ -42,7 +42,7 @@ public class UserOrdersCommand implements Command{
                 isPresent=false;
             }
             if (isPresent) {
-                if (request.getParameter("dateArrive") != null) {
+                if (request.getParameter("dateArrive") != null && !request.getParameter("dateArrive").isEmpty()) {
                     date = Date.valueOf(request.getParameter("dateArrive")).toLocalDate();
                     list = new OrderService().getAllOrdersByPageWithStatusAndDateFilterByUser(userId,status, date);
                 } else {

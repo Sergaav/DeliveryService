@@ -42,18 +42,18 @@
             <td><fmt:message key="city.${item.cityDepartureId}"/></td>
             <td>${item.recipientName}</td>
             <td>${item.parcel.weight}</td>
-            <td>${item.bill}</td>
+            <td><fmt:formatNumber maxFractionDigits="2" value="${item.bill}" type ="currency" currencyCode="UAH"/></td>
             <td>${item.dateCreation}</td>
             <td>${item.dateDeparture}</td>
-            <td>${item.status}</td>
+            <td><fmt:message key="status.${item.status}"/></td>
             <td>
                 <c:if test="${item.status=='OPENED'}">
-                    <a href="controller?command=deleteOrder&id=${item.id}"><c:out value="Delete"/></a>
+                    <a href="controller?command=deleteOrder&id=${item.id}"><fmt:message key="order.button.delete"/></a>
                 </c:if>
                 <c:if test="${item.status=='CONFIRMED'}">
-                    <a href="controller?command=payForOrder&id=${item.id}"><c:out value="Pay order"/></a>
+                    <a href="controller?command=payForOrder&id=${item.id}"><fmt:message key="order.button.pay"/></a>
                 </c:if>
-                <a href="controller?command=viewOrder&id=${item.id}"><c:out value="View"/></a>
+                <a href="controller?command=viewOrder&id=${item.id}"><fmt:message key="order.button.view"/></a>
             </td>
         </tr>
     </c:forEach>
@@ -69,7 +69,8 @@
             <c:set var="disable1" value=""/>
         </c:if>
         <li class="page-item ${disable1}">
-            <a class="page-link" href="controller?command=userOrders&page=${sessionScope.pageNumber-1}">Previous</a>
+            <a class="page-link" href="controller?command=userOrders&page=${sessionScope.pageNumber-1}">
+                <fmt:message key="pagination.prev"/> </a>
         </li>
         <c:forEach var="k" begin="1" step='1' end='${sessionScope.avPages}'>
             <li class="page-item"><a class="page-link" href="controller?command=userOrders&page=${k}">${k}</a></li>
@@ -82,7 +83,8 @@
             <c:set var="disable2" value=""/>
         </c:if>
         <li class="page-item ${disable2}">
-            <a class="page-link" href="controller?command=userOrders&page=${sessionScope.pageNumber+1}">Next</a>
+            <a class="page-link" href="controller?command=userOrders&page=${sessionScope.pageNumber+1}">
+                <fmt:message key="pagination.next"/></a>
         </li>
     </ul>
 </nav>

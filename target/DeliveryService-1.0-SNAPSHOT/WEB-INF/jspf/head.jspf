@@ -5,5 +5,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+<style type="text/css">
+    body{
+        margin: 0;
+        background-image: url(https://savaz.in.ua/images/temp/peterbilt_truck_359_custom_76893_1600x1200.jpg);
+        background-repeat: no-repeat;
+    }
+    tbody{
+        font-weight: bold;
+        background: #dff0d8;
+    }
+</style>
+
 
 

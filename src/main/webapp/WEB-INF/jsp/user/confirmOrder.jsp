@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Confirm order</title>
+    <title></title>
     <%@ include file="/WEB-INF/jspf/head.jspf" %>
 </head>
 <body>

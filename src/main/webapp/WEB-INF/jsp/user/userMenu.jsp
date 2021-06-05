@@ -9,7 +9,7 @@
 </head>
 <body>
 <%@include file="/WEB-INF/jspf/headerUser.jspf" %>
-<div style="margin-left: 30px; color: darkgreen">
+<div style="margin-left: 30px;font-weight: bold; color: #356635">
     <fmt:message key="user_menu.hello"/>, &nbsp<c:out value="${sessionScope.firstName}"/><br>
     <fmt:message key="user_menu.balance"/>&nbsp<c:out value="${sessionScope.balance}"/>&nbsp<fmt:message key="user_menu.UAH"/>
 </div>
