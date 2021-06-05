@@ -14,6 +14,7 @@
     <fmt:message key="user_menu.balance"/>&nbsp<c:out value="${sessionScope.balance}"/>&nbsp<fmt:message
         key="user_menu.UAH"/>
 </div>
+<%@include file="/WEB-INF/jspf/fragment/userOrdersFilterForm.jspf" %>
 
 <table class="table table-condensed" style="align-content:center"
        title="Destinations" aria-describedby="">
@@ -52,7 +53,7 @@
                 <c:if test="${item.status=='CONFIRMED'}">
                     <a href="controller?command=payForOrder&id=${item.id}"><c:out value="Pay order"/></a>
                 </c:if>
-                <a href="#" target="_blank"><c:out value="View"/></a>
+                <a href="controller?command=viewOrder&id=${item.id}"><c:out value="View"/></a>
             </td>
         </tr>
     </c:forEach>
@@ -60,17 +61,30 @@
 </table>
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+        <c:set var="disable1" value=""/>
+        <c:if test="${sessionScope.pageNumber eq 1}">
+            <c:set var="disable1" value="disabled"/>
+        </c:if>
+        <c:if test="${sessionScope.pageNumber gt 1}">
+            <c:set var="disable1" value=""/>
+        </c:if>
+        <li class="page-item ${disable1}">
+            <a class="page-link" href="controller?command=userOrders&page=${sessionScope.pageNumber-1}">Previous</a>
         </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
+        <c:forEach var="k" begin="1" step='1' end='${sessionScope.avPages}'>
+            <li class="page-item"><a class="page-link" href="controller?command=userOrders&page=${k}">${k}</a></li>
+        </c:forEach>
+        <c:set var="disable2" value=""/>
+        <c:if test="${sessionScope.pageNumber eq sessionScope.avPages}">
+            <c:set var="disable2" value="disabled"/>
+        </c:if>
+        <c:if test="${sessionScope.pageNumber lt sessionScope.avPages}">
+            <c:set var="disable2" value=""/>
+        </c:if>
+        <li class="page-item ${disable2}">
+            <a class="page-link" href="controller?command=userOrders&page=${sessionScope.pageNumber+1}">Next</a>
         </li>
     </ul>
 </nav>
-
 </body>
 </html>

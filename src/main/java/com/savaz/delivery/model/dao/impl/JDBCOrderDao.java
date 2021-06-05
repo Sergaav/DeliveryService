@@ -3,32 +3,38 @@ package com.savaz.delivery.model.dao.impl;
 import com.savaz.delivery.model.dao.EntityMapper;
 import com.savaz.delivery.model.dao.OrderDao;
 import com.savaz.delivery.model.entity.Parcel;
-import com.savaz.delivery.model.entity.User;
-import com.savaz.delivery.model.entity.bean.DestinationsBean;
 import com.savaz.delivery.model.entity.bean.OrderBean;
 import com.savaz.delivery.model.entity.enums.Status;
 import com.savaz.delivery.service.EntityService;
 import com.savaz.delivery.service.UserService;
 
-import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
 
 public class JDBCOrderDao implements OrderDao {
     private static final String SQL_SELECT_USER_ORDERS = "SELECT * FROM orders WHERE users_id=?";
     private static final String SQL_FIND_PARCEL_BY_ID = "SELECT * FROM parsels WHERE id=?";
     private static final String SQL_FIND_ALL_ORDERS = "SELECT * FROM orders";
+    private static final String SQL_DELETE_ORDER_BY_ID = "DELETE FROM orders WHERE id=?";
+    private static final String SQL_FIND_ALL_ORDERS_STATUS = "SELECT * FROM orders WHERE status=?";
+    private static final String SQL_FIND_ALL_ORDERS_BY_DATE = "SELECT * FROM orders WHERE date_creation=?";
+    private static final String SQL_FIND_ALL_ORDERS_BY_STATUS_DATE = "SELECT * FROM orders " +
+            "WHERE status=? AND date_creation=?";
+    private static final String SQL_FIND_ORDER_BY_ID = "SELECT * FROM orders WHERE id=?";
+    private static final String SQL_FIND_USER_ORDERS_BY_STATUS_DATE = "SELECT * FROM orders WHERE users_id=? AND" +
+            " status=? AND date_creation=?";
+    private static final String SQL_FIND_USER_ORDERS_STATUS = "SELECT * FROM orders WHERE users_id=? AND" +
+            " status=?";
+    private static final String SQL_FIND_USER_ORDERS_BY_DATE = "SELECT * FROM orders WHERE users_id=? AND" +
+            " date_creation=?";
+
     private Connection connection;
 
     private static final String SQL_CREATE_NEW_PARCEL = "INSERT INTO parsels values (default,?,?,?,?,?,?)";
     private static final String SQL_CREATE_NEW_ORDER = "INSERT INTO orders values (default,?,?,?,?,?,?,?,?,?,?)";
 
-    private static final String SQL_FIND_ALL_ORDERS_BY_PAGE = "SELECT * FROM orders LIMIT 7 OFFSET ?";
 
     public JDBCOrderDao(Connection connection) {
         this.connection = connection;
@@ -154,13 +160,13 @@ public class JDBCOrderDao implements OrderDao {
     }
 
     @Override
-    public List<OrderBean> findAllByPage(int page) {
+    public List<OrderBean> findAllByWithStatus(Status status) {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         List<OrderBean> orderBeanList = new ArrayList<>();
         try {
-            statement = connection.prepareStatement(SQL_FIND_ALL_ORDERS_BY_PAGE);
-            statement.setInt(1, 7 * (page - 1));
+            statement = connection.prepareStatement(SQL_FIND_ALL_ORDERS_STATUS);
+            statement.setString(1, status.name());
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 OrderBean bean = new OrderBeanMapper().mapRow(resultSet);
@@ -177,20 +183,143 @@ public class JDBCOrderDao implements OrderDao {
     }
 
     @Override
-    public List<OrderBean> findAllByPageWithFilters(int page, HttpServletRequest request) {
+    public List<OrderBean> findAllByPageWithDate(LocalDate date) {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        Status status = Status.valueOf(request.getParameter("status"));
-        LocalDate dateCreation = LocalDate.parse(request.getParameter("date_creation"));
-        int cityArriveId = Integer.parseInt(request.getParameter("cityArriveId"));
+        List<OrderBean> orderBeanList = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(SQL_FIND_ALL_ORDERS_BY_DATE);
+            statement.setDate(1, Date.valueOf(date));
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                OrderBean bean = new OrderBeanMapper().mapRow(resultSet);
+                orderBeanList.add(bean);
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            closeResultSet(resultSet);
+            closeStatement(statement);
+            closeConnection(connection);
+        }
+        return orderBeanList;
+    }
 
-        return null;
+    @Override
+    public List<OrderBean> findAllByPageWithStatusAndDate(Status status, LocalDate date) {
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<OrderBean> orderBeanList = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(SQL_FIND_ALL_ORDERS_BY_STATUS_DATE);
+            statement.setString(1, status.name());
+            statement.setDate(2, Date.valueOf(date));
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                OrderBean bean = new OrderBeanMapper().mapRow(resultSet);
+                orderBeanList.add(bean);
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            closeResultSet(resultSet);
+            closeStatement(statement);
+            closeConnection(connection);
+        }
+        return orderBeanList;
+    }
+
+    @Override
+    public List<OrderBean> findAllByPageWithStatusAndDateByUser(int userId, Status status, LocalDate date) {
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<OrderBean> orderBeanList = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(SQL_FIND_USER_ORDERS_BY_STATUS_DATE);
+            statement.setInt(1,userId);
+            statement.setString(2, status.name());
+            statement.setDate(3, Date.valueOf(date));
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                OrderBean bean = new OrderBeanMapper().mapRow(resultSet);
+                orderBeanList.add(bean);
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            closeResultSet(resultSet);
+            closeStatement(statement);
+            closeConnection(connection);
+        }
+        return orderBeanList;
+    }
+
+    @Override
+    public List<OrderBean> findAllByPageWithStatusByUser(int userId, Status status) {
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<OrderBean> orderBeanList = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(SQL_FIND_USER_ORDERS_STATUS);
+            statement.setInt(1,userId);
+            statement.setString(2, status.name());
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                OrderBean bean = new OrderBeanMapper().mapRow(resultSet);
+                orderBeanList.add(bean);
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            closeResultSet(resultSet);
+            closeStatement(statement);
+            closeConnection(connection);
+        }
+        return orderBeanList;
+    }
+
+    @Override
+    public List<OrderBean> findAllByPageWithDateByUser(int userId, LocalDate date) {
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<OrderBean> orderBeanList = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(SQL_FIND_USER_ORDERS_BY_DATE);
+            statement.setInt(1,userId);
+            statement.setDate(2, Date.valueOf(date));
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                OrderBean bean = new OrderBeanMapper().mapRow(resultSet);
+                orderBeanList.add(bean);
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            closeResultSet(resultSet);
+            closeStatement(statement);
+            closeConnection(connection);
+        }
+        return orderBeanList;
     }
 
 
     @Override
     public OrderBean findById(int id) {
-        return null;
+        ResultSet resultSet = null;
+        OrderBean bean = null;
+        try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDER_BY_ID)) {
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                bean = new OrderBeanMapper().mapRow(resultSet);
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }finally {
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+        return bean;
     }
 
     @Override
@@ -219,7 +348,14 @@ public class JDBCOrderDao implements OrderDao {
 
     @Override
     public void delete(int id) {
-
+        try (PreparedStatement statement = connection.prepareStatement(SQL_DELETE_ORDER_BY_ID)) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            closeConnection(connection);
+        }
     }
 
     @Override

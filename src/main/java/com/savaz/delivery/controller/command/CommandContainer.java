@@ -31,6 +31,8 @@ public class CommandContainer {
        // admin commands
         commands.put("adminMenu", new AdminMenuCommand());
         commands.put("listOrders", new AdminListOrdersCommand());
+        commands.put("deleteOrder", new DeleteOrderCommand());
+        commands.put("viewOrder", new ViewOrderCommand());
     }
 
     /**

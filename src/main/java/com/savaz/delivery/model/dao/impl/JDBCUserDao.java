@@ -191,7 +191,7 @@ public class JDBCUserDao implements UserDao {
                 user.setPassword(rs.getString(Fields.USER__PASSWORD));
                 user.setFirstName(rs.getString(Fields.USER__FIRST_NAME));
                 user.setLastName(rs.getString(Fields.USER__LAST_NAME));
-                user.setBalance(rs.getDouble(Fields.USER_BALANCE));
+                user.setBalance(rs.getLong(Fields.USER_BALANCE));
                 user.setLocale(rs.getString(Fields.USER__LOCALE));
                 user.setRole(rs.getInt(Fields.USER__ROLE));
                 return user;

@@ -8,13 +8,13 @@ public class User implements Serializable {
     private String password;
     private String firstName;
     private String lastName;
-    private double balance;
+    private long balance;
 
     public double getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(long balance) {
         this.balance = balance;
     }
 

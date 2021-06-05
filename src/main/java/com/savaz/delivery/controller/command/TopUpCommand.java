@@ -18,7 +18,7 @@ public class TopUpCommand implements Command {
         String errorMessage ;
         try {
             if (request.getParameter("amount") != null || !request.getParameter("amount").isEmpty()) {
-                double amount = Double.parseDouble(request.getParameter("amount"));
+                long amount = Long.parseLong(request.getParameter("amount"));
                 if (amount < 0) {
                     throw new NumberFormatException();
                 }

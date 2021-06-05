@@ -17,12 +17,12 @@ public class AccountService implements Service {
     }
 
     @Override
-    public void topUpAccount(int userId, double amount) {
+    public void topUpAccount(int userId, long amount) {
         PreparedStatement statement=null;
         try {
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(SQL_TRANSACTION_POPUP);
-            statement.setDouble(1, amount);
+            statement.setLong(1, amount);
             statement.setInt(2,userId);
            statement.executeUpdate();
            connection.commit();

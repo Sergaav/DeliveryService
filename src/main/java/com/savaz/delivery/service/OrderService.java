@@ -3,48 +3,126 @@ package com.savaz.delivery.service;
 import com.savaz.delivery.model.dao.DaoFactory;
 import com.savaz.delivery.model.dao.OrderDao;
 import com.savaz.delivery.model.entity.bean.OrderBean;
+import com.savaz.delivery.model.entity.enums.Status;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 
 public class OrderService {
 
 
     public void insertNewOrder(OrderBean orderBean) {
-       DaoFactory daoFactory = DaoFactory.getInstance();
+        DaoFactory daoFactory = DaoFactory.getInstance();
         try (OrderDao dao = daoFactory.createOrderDao()) {
             dao.create(orderBean);
         }
     }
 
-    public List<OrderBean> getUserOrdersList(int userId){
-        List<OrderBean> list;
+    public void deleteOrder(int orderID) {
         DaoFactory daoFactory = DaoFactory.getInstance();
-        try (OrderDao dao = daoFactory.createOrderDao()){
+        try (OrderDao dao = daoFactory.createOrderDao()) {
+            dao.delete(orderID);
+        }
+    }
+
+    public List<OrderBean> getUserOrdersList(int userId) {
+        List<OrderBean> list;
+        DaoFactory daoFactory;
+        daoFactory = DaoFactory.getInstance();
+        try (OrderDao dao = daoFactory.createOrderDao()) {
             list = dao.findAllUserOrdersByUserId(userId);
         }
         return list;
     }
 
-    public List<OrderBean>  getAllOrdersByPage(int page){
-        List<OrderBean> list;
-        DaoFactory daoFactory = DaoFactory.getInstance();
-        try (OrderDao dao = daoFactory.createOrderDao()){
-            list = dao.findAllByPage(page);
+    public OrderBean getOrderBeanById(int id) {
+        OrderBean bean = null;
+        DaoFactory daoFactory;
+        daoFactory = DaoFactory.getInstance();
+        try (OrderDao dao = daoFactory.createOrderDao()) {
+            bean = dao.findById(id);
         }
-        return list;
+        return bean;
     }
 
-    public List<OrderBean>  getAllOrders(){
+    public List<OrderBean> getAllOrdersByPage(int page) {
         List<OrderBean> list;
         DaoFactory daoFactory = DaoFactory.getInstance();
-        try (OrderDao dao = daoFactory.createOrderDao()){
+        try (OrderDao dao = daoFactory.createOrderDao()) {
             list = dao.findAll();
         }
         return list;
     }
 
+    public List<OrderBean> getAllOrdersByPageWithStatusFilter(Status status) {
+        List<OrderBean> list;
+        DaoFactory daoFactory;
+        daoFactory = DaoFactory.getInstance();
+        try (OrderDao dao = daoFactory.createOrderDao()) {
+            list = dao.findAllByWithStatus(status);
+        }
+        return list;
+    }
 
+    public List<OrderBean> getAllOrdersByPageWithDateFilter(LocalDate date) {
+        List<OrderBean> list;
+        DaoFactory daoFactory;
+        daoFactory = DaoFactory.getInstance();
+        try (OrderDao dao = daoFactory.createOrderDao()) {
+            list = dao.findAllByPageWithDate(date);
+        }
+        return list;
+    }
+
+    public List<OrderBean> getAllOrdersByPageWithStatusAndDateFilter(Status status, LocalDate date) {
+        List<OrderBean> list;
+        DaoFactory daoFactory;
+        daoFactory = DaoFactory.getInstance();
+        try (OrderDao dao = daoFactory.createOrderDao()) {
+            list = dao.findAllByPageWithStatusAndDate(status, date);
+        }
+        return list;
+    }
+
+    public List<OrderBean> getAllOrdersByPageWithStatusAndDateFilterByUser(int userId, Status status, LocalDate date) {
+        List<OrderBean> list;
+        DaoFactory daoFactory;
+        daoFactory = DaoFactory.getInstance();
+        try (OrderDao dao = daoFactory.createOrderDao()) {
+            list = dao.findAllByPageWithStatusAndDateByUser(userId, status, date);
+        }
+        return list;
+    }
+
+    public List<OrderBean> getAllOrdersByPageWithStatusFilterByUser(int userId, Status status) {
+        List<OrderBean> list;
+        DaoFactory daoFactory;
+        daoFactory = DaoFactory.getInstance();
+        try (OrderDao dao = daoFactory.createOrderDao()) {
+            list = dao.findAllByPageWithStatusByUser(userId, status);
+        }
+        return list;
+    }
+
+    public List<OrderBean> getAllOrdersByPageWithDateFilterByUser(int userId, LocalDate date) {
+        List<OrderBean> list;
+        DaoFactory daoFactory;
+        daoFactory = DaoFactory.getInstance();
+        try (OrderDao dao = daoFactory.createOrderDao()) {
+            list = dao.findAllByPageWithDateByUser(userId, date);
+        }
+        return list;
+    }
+
+    public List<OrderBean> getAllOrders() {
+        List<OrderBean> list;
+        DaoFactory daoFactory;
+        daoFactory = DaoFactory.getInstance();
+        try (OrderDao dao = daoFactory.createOrderDao()) {
+            list = dao.findAll();
+        }
+        return list;
+    }
 
 
 }

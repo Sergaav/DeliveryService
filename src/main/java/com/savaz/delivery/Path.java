@@ -8,6 +8,7 @@ public class Path {
     public static final String PAGE_TOPUP = "topup";
     public static final String PAGE_ERROR_PAGE = "error";
     public static final String PAGE_USER_MENU = "user";
+    public static final String PAGE_VIEW_ORDER = "viewOrder";
     public static final String PAGE_ADMIN_MENU = "admin";
     public static final String PAGE_DESTINATIONS = "destination";
     public static final String PAGE_CALCULATE = "calculate";
@@ -18,7 +19,7 @@ public class Path {
     public static final String PAGE_USER_ORDERS = "userOrders";
     public static final String PAGE_ADMIN_ORDERS = "adminOrders";
     // commands
-    public static final String COMMAND_LIST_ORDERS = "/controller?command=userOrders";
+    public static final String COMMAND_LIST_ORDERS = "/controller?command=userOrders&page=1";
     public static final String COMMAND_LIST_MENU = "/controller?command=login";
     public static final String COMMAND_ADMIN_ORDERS = "/controller?command=listOrders";
 }

@@ -107,8 +107,8 @@ CREATE TABLE IF NOT EXISTS `delivery`.`orders` (
   CONSTRAINT `fk_orders_parsels1`
     FOREIGN KEY (`parsels_id`)
     REFERENCES `delivery`.`parsels` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_orders_users1`
     FOREIGN KEY (`users_id`)
     REFERENCES `delivery`.`users` (`id`)

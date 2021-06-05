@@ -52,7 +52,7 @@
                 <c:if test="${item.status=='PAID'}">
                     <a href="controller?command=closeOrder&id=${item.id}"><c:out value="Close order"/></a>
                 </c:if>
-                <a href="#" target="_blank"><c:out value="View"/></a>
+                <a href="controller?command=viewOrder&id=${item.id}"><c:out value="View"/></a>
             </td>
         </tr>
     </c:forEach>
@@ -60,16 +60,27 @@
 </table>
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
-        <c:if test="${sessionScope.pageNumber eq 1 or sessionScope.pageNumber eq sessionScope.avPages}">
-            <c:set var="disable" value="disabled"/>
+        <c:set var="disable1" value=""/>
+        <c:if test="${sessionScope.pageNumber eq 1}">
+            <c:set var="disable1" value="disabled"/>
         </c:if>
-        <li class="page-item ${disable}">
+        <c:if test="${sessionScope.pageNumber gt 1}">
+            <c:set var="disable1" value=""/>
+        </c:if>
+        <li class="page-item ${disable1}">
             <a class="page-link" href="controller?command=listOrders&page=${sessionScope.pageNumber-1}">Previous</a>
         </li>
         <c:forEach var="k" begin="1" step='1' end='${sessionScope.avPages}'>
             <li class="page-item"><a class="page-link" href="controller?command=listOrders&page=${k}">${k}</a></li>
         </c:forEach>
-        <li class="page-item ${disable}">
+        <c:set var="disable2" value=""/>
+        <c:if test="${sessionScope.pageNumber eq sessionScope.avPages}">
+            <c:set var="disable2" value="disabled"/>
+        </c:if>
+        <c:if test="${sessionScope.pageNumber lt sessionScope.avPages}">
+            <c:set var="disable2" value=""/>
+        </c:if>
+        <li class="page-item ${disable2}">
             <a class="page-link" href="controller?command=listOrders&page=${sessionScope.pageNumber+1}">Next</a>
         </li>
     </ul>
