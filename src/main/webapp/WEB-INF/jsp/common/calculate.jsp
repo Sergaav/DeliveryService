@@ -10,8 +10,8 @@
 <%@include file="/WEB-INF/jspf/header.jspf" %>
 
 
-<form style="margin-left: 50px" id="settings_form" action="controller" method="get">
-    <fieldset style="background: #dff0d8; margin-top:10px;outline: 2px solid #000;border: 3px solid #fff;
+<form style="margin-left: 400px" id="settings_form" action="controller" method="get">
+    <fieldset style="background: #dff0d8; margin-top:10px;border: 3px solid #fff;
     border-radius: 10px;width: 500px;height: 500px;">
         <legend></legend>
         <input type="hidden" name="command" value="calculate">

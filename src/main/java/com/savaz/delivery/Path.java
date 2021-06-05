@@ -24,4 +24,5 @@ public class Path {
     public static final String COMMAND_ADMIN_ORDERS = "/controller?command=listOrders&page=1";
     public static final String PAGE_CHANGE_ORDER = "changeOrder";
     public static final String UPDATE_ORDER = "updateOrder";
+    public static final String PAGE_REPORTS = "reports";
 }

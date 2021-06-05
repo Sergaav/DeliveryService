@@ -121,6 +121,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>Reports</servlet-name>
+        <jsp-file>/WEB-INF/jsp/admin/reports.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Reports</servlet-name>
+        <url-pattern>/reports</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>ConfirmOrder</servlet-name>
         <jsp-file>/WEB-INF/jsp/user/confirmOrder.jsp</jsp-file>
     </servlet>
@@ -206,7 +215,7 @@
         <filter-class>com.savaz.delivery.controller.filters.CommandAccessFilter</filter-class>
         <init-param>
             <param-name>admin</param-name>
-            <param-value>adminMenu error reports listOrders deleteOrder viewOrder checkout changeOrder closeOrder updateOrder</param-value>
+            <param-value>adminMenu error reports listOrders deleteOrder viewOrder checkout changeOrder closeOrder updateOrder reports</param-value>
         </init-param>
         <init-param>
             <param-name>user</param-name>

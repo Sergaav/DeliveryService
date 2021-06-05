@@ -38,6 +38,7 @@ public class CommandContainer {
         commands.put("payForOrder", new PayForOrderCommand());
         commands.put("changeOrder", new ChangeOrderCommand());
         commands.put("closeOrder", new CloseOrderCommand());
+        commands.put("reports", new ReportsCommand());
     }
 
     /**
