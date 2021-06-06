@@ -1,8 +1,10 @@
 package com.savaz.delivery.controller.command;
 
 import com.savaz.delivery.Path;
+import com.savaz.delivery.model.dao.OrderDao;
 import com.savaz.delivery.model.entity.bean.OrderBean;
 import com.savaz.delivery.model.entity.enums.City;
+import com.savaz.delivery.model.entity.enums.Status;
 import com.savaz.delivery.service.OrderService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,35 +21,45 @@ public class ReportsCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         session.setAttribute("cities", City.values());
-        List<OrderBean> beanList = new ArrayList<>();
+        List<OrderBean> beanList;
         if (request.getParameterMap().size() > 1) {
             beanList = getListOrdersDependsParam(request);
         } else {
             beanList = new OrderService().getAllOrders();
         }
-        Map<String, String> reportParam = createReportParam(beanList);
+        Map<String, Number> reportParam = createReportParam(beanList);
         session.setAttribute("reportParam", reportParam);
 
         return Path.PAGE_REPORTS;
     }
 
-    private Map<String, String> createReportParam(List<OrderBean> beanList) {
-        return null;
+    private Map<String,Number> createReportParam(List<OrderBean> bean) {
+        Map<String, Number> map = new HashMap<>();
+        map.put("total_orders", bean.size());
+        map.put("paid_orders", (int) bean.stream().filter(x -> x.getStatus() == Status.PAID).count());
+        map.put("new_orders", (int) bean.stream().filter(x -> x.getStatus() == Status.OPENED).count());
+        map.put("closed_orders", (int) bean.stream().filter(x -> x.getStatus() == Status.CLOSED).count());
+        map.put("confirmed_orders", (int) bean.stream().filter(x -> x.getStatus() == Status.CONFIRMED).count());
+        long billPaid = bean.stream().filter(x -> x.getStatus() == Status.PAID).mapToLong(OrderBean::getBill).sum();
+        long billClosed = bean.stream().filter(x -> x.getStatus() == Status.CLOSED).mapToLong(OrderBean::getBill).sum();
+        map.put("totalSum", billPaid + billClosed);
+        return map;
     }
 
     private List<OrderBean> getListOrdersDependsParam(HttpServletRequest request) {
-        Map<String, String[]> parameters = request.getParameterMap();
         boolean isCityArrive = false;
         boolean isCityDeparture = false;
         boolean isDate = false;
+        int cityArriveId = 0;
+        int cityDepartureId = 0;
         try {
-            Integer.parseInt(request.getParameter("city_arr"));
+            cityArriveId = Integer.parseInt(request.getParameter("city_arr"));
             isCityArrive = true;
         } catch (NumberFormatException numberFormatException) {
             numberFormatException.printStackTrace();
         }
         try {
-            Integer.parseInt(request.getParameter("city_dep"));
+            cityDepartureId = Integer.parseInt(request.getParameter("city_dep"));
             isCityDeparture = true;
         } catch (NumberFormatException numberFormatException) {
             numberFormatException.printStackTrace();
@@ -60,7 +72,30 @@ public class ReportsCommand implements Command {
             isDate = true;
         }
 
-
-        return null;
+        if (!isDate && !isCityArrive && !isCityDeparture) {
+            return new OrderService().getAllOrders();
+        }
+        if (isDate && isCityArrive && isCityDeparture) {
+            return new OrderService().getOrdersByDateArriveDeparture(date, cityArriveId, cityDepartureId);
+        }
+        if (isDate && isCityArrive && !isCityDeparture) {
+            return new OrderService().getOrdersByDateArrive(date, cityArriveId);
+        }
+        if (isDate && !isCityArrive && isCityDeparture) {
+            return new OrderService().getOrdersByDateDeparture(date, cityDepartureId);
+        }
+        if (isDate && !isCityArrive && !isCityDeparture) {
+            return new OrderService().getOrdersByDate(date);
+        }
+        if (!isDate && isCityArrive && isCityDeparture) {
+            return new OrderService().getOrdersByArriveDeparture(cityArriveId, cityDepartureId);
+        }
+        if (!isDate && isCityArrive && !isCityDeparture) {
+            return new OrderService().getOrdersByArrive(cityArriveId);
+        }
+        if (!isDate && !isCityArrive && isCityDeparture) {
+            return new OrderService().getOrdersByDeparture(cityDepartureId);
+        }
+        return new OrderService().getAllOrders();
     }
 }

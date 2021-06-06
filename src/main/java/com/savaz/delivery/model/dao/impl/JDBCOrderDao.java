@@ -36,6 +36,21 @@ public class JDBCOrderDao implements OrderDao {
     private static final String SQL_UPDATE_ORDER = "UPDATE orders SET address=?,status=?,date_creation=?," +
             "parsels_id=?,users_id=?,departure_id=?,arrive_id=?,date_departure=?,recipient_name=?," +
             "bill=? WHERE id=?";
+    private static final String SQL_FIND_ORDERS_BY_DATE_ARRIVE_DEPARTURE = "select * from orders where " +
+            "date_creation=? and arrive_id=? and departure_id=?";
+    private static final String SQL_FIND_ORDERS_BY_DATE_ARRIVE = "select * from orders where " +
+            "date_creation=? and arrive_id=? ";
+    private static final String SQL_FIND_ORDERS_BY_DATE_DEPARTURE ="select * from orders where " +
+            "date_creation=? and departure_id=?";
+    private static final String SQL_FIND_ORDERS_BY_DATE = "select * from orders where " +
+            "date_creation=?";
+    private static final String SQL_FIND_ORDERS_BY_ARRIVE_DEPARTURE = "select * from orders where " +
+            "arrive_id=? and departure_id=?";
+    private static final String SQL_FIND_ORDERS_BY_ARRIVE = "select * from orders where " +
+            "arrive_id=?";
+    private static final String SQL_FIND_ORDERS_BY_DEPARTURE = "select * from orders where " +
+            "departure_id=?";
+
 
     private Connection connection;
 
@@ -316,22 +331,160 @@ public class JDBCOrderDao implements OrderDao {
             statement.executeUpdate();
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }finally {
+        } finally {
             closeConnection(connection);
         }
     }
 
     @Override
-    public void updateStatus(int orderId,Status status) {
-        try (PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_ORDER_STATUS)){
-            statement.setString(1,status.name());
-            statement.setInt(2,orderId);
+    public void updateStatus(int orderId, Status status) {
+        try (PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_ORDER_STATUS)) {
+            statement.setString(1, status.name());
+            statement.setInt(2, orderId);
             statement.executeUpdate();
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }finally {
+        } finally {
             closeConnection(connection);
         }
+    }
+
+    @Override
+    public List<OrderBean> findAllOrdersByDateArriveDeparture(LocalDate date, int cityArriveId, int cityDepartureId) {
+        List<OrderBean> list = new ArrayList<>();
+        ResultSet resultSet = null;
+        try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDERS_BY_DATE_ARRIVE_DEPARTURE)) {
+            statement.setDate(1, Date.valueOf(date));
+            statement.setInt(2,cityArriveId);
+            statement.setInt(3,cityDepartureId);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                list.add(new OrderBeanMapper().mapRow(resultSet));
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }finally {
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+        return list;
+    }
+
+    @Override
+    public List<OrderBean> findAllOrdersByDateArrive(LocalDate date, int cityArriveId) {
+        List<OrderBean> list = new ArrayList<>();
+        ResultSet resultSet = null;
+        try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDERS_BY_DATE_ARRIVE)) {
+            statement.setDate(1, Date.valueOf(date));
+            statement.setInt(2,cityArriveId);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                list.add(new OrderBeanMapper().mapRow(resultSet));
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }finally {
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+        return list;
+    }
+
+    @Override
+    public List<OrderBean> findAllOrdersByDateDeparture(LocalDate date, int cityDepartureId) {
+        List<OrderBean> list = new ArrayList<>();
+        ResultSet resultSet = null;
+        try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDERS_BY_DATE_DEPARTURE)) {
+            statement.setDate(1, Date.valueOf(date));
+            statement.setInt(2,cityDepartureId);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                list.add(new OrderBeanMapper().mapRow(resultSet));
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }finally {
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+        return list;
+    }
+
+    @Override
+    public List<OrderBean> findAllOrdersByDate(LocalDate date) {
+        List<OrderBean> list = new ArrayList<>();
+        ResultSet resultSet = null;
+        try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDERS_BY_DATE)) {
+            statement.setDate(1, Date.valueOf(date));
+            resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                list.add(new OrderBeanMapper().mapRow(resultSet));
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }finally {
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+        return list;
+    }
+
+    @Override
+    public List<OrderBean> findAllOrdersByArriveDeparture(int cityArriveId, int cityDepartureId) {
+        List<OrderBean> list = new ArrayList<>();
+        ResultSet resultSet = null;
+        try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDERS_BY_ARRIVE_DEPARTURE)) {
+            statement.setInt(1,cityArriveId);
+            statement.setInt(2,cityDepartureId);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                list.add(new OrderBeanMapper().mapRow(resultSet));
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }finally {
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+        return list;
+    }
+
+    @Override
+    public List<OrderBean> findAllOrdersByArrive(int cityArriveId) {
+        List<OrderBean> list = new ArrayList<>();
+        ResultSet resultSet = null;
+        try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDERS_BY_ARRIVE)) {
+            statement.setInt(1,cityArriveId);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                list.add(new OrderBeanMapper().mapRow(resultSet));
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }finally {
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+        return list;
+    }
+
+    @Override
+    public List<OrderBean> findAllOrdersByDeparture(int cityDepartureId) {
+        List<OrderBean> list = new ArrayList<>();
+        ResultSet resultSet = null;
+        try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDERS_BY_DEPARTURE)) {
+            statement.setInt(1,cityDepartureId);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                list.add(new OrderBeanMapper().mapRow(resultSet));
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }finally {
+            closeResultSet(resultSet);
+            closeConnection(connection);
+        }
+        return list;
     }
 
 
@@ -383,7 +536,7 @@ public class JDBCOrderDao implements OrderDao {
             statementParcel.setInt(4, entity.getParcel().getHeight());
             statementParcel.setInt(5, entity.getParcel().getWeight());
             statementParcel.setInt(6, entity.getParcel().getWeightRateId());
-            statementParcel.setInt(7,entity.getId());
+            statementParcel.setInt(7, entity.getId());
             statementParcel.executeUpdate();
             statementOrder.setString(1, entity.getAddress());
             statementOrder.setString(2, entity.getStatus().toString());
@@ -395,7 +548,7 @@ public class JDBCOrderDao implements OrderDao {
             statementOrder.setDate(8, Date.valueOf(entity.getDateDeparture()));
             statementOrder.setString(9, entity.getRecipientName());
             statementOrder.setLong(10, entity.getBill());
-            statementOrder.setInt(11,entity.getId());
+            statementOrder.setInt(11, entity.getId());
             statementOrder.executeUpdate();
         } catch (SQLException exception) {
             exception.printStackTrace();

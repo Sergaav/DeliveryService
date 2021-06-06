@@ -69,7 +69,7 @@ public class UserOrdersCommand implements Command{
             session.setAttribute("avPages", avPages);
         }
         if (page < avPages){
-            list = list.subList(7*(page-1),(7*page)+1);
+            list = list.subList(7*(page-1),(7*page)-1);
         }else{
             list = list.subList(7*(page-1),size);
         }

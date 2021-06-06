@@ -29,4 +29,18 @@ public interface OrderDao extends GenericDao<OrderBean> {
     void deleteParcel(int parcelId);
 
     void updateStatus(int orderId,Status status);
+
+    List<OrderBean> findAllOrdersByDateArriveDeparture(LocalDate date, int cityArriveId, int cityDepartureId);
+
+    List<OrderBean> findAllOrdersByDateArrive(LocalDate date, int cityArriveId);
+
+    List<OrderBean> findAllOrdersByDateDeparture(LocalDate date, int cityDepartureId);
+
+    List<OrderBean> findAllOrdersByDate(LocalDate date);
+
+    List<OrderBean> findAllOrdersByArriveDeparture(int cityArriveId, int cityDepartureId);
+
+    List<OrderBean> findAllOrdersByArrive(int cityArriveId);
+
+    List<OrderBean> findAllOrdersByDeparture(int cityDepartureId);
 }

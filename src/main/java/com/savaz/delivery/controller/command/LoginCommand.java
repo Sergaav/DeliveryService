@@ -19,7 +19,7 @@ public class LoginCommand implements Command {
         String password = request.getParameter("password");
         HttpSession session = request.getSession();
         String errorMessage = null;
-        String forward = Path.PAGE_ERROR_PAGE;
+        String forward = Path.PAGE_LOGIN;
         DaoFactory daoFactory = DaoFactory.getInstance();
 
         try (UserDao dao = daoFactory.createUserDao()) {

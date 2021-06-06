@@ -147,4 +147,67 @@ public class OrderService {
             dao.update(orderBean);
         }
     }
+
+    public List<OrderBean> getOrdersByDateArriveDeparture(LocalDate date, int cityArriveId, int cityDepartureId) {
+        List<OrderBean> beanList;
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        try (OrderDao dao = daoFactory.createOrderDao()){
+            beanList = dao.findAllOrdersByDateArriveDeparture (date,cityArriveId,cityDepartureId);
+        }
+        return beanList;
+    }
+
+    public List<OrderBean> getOrdersByDateArrive(LocalDate date, int cityArriveId) {
+        List<OrderBean> beanList;
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        try (OrderDao dao = daoFactory.createOrderDao()){
+            beanList = dao.findAllOrdersByDateArrive (date,cityArriveId);
+        }
+        return beanList;
+    }
+
+    public List<OrderBean> getOrdersByDateDeparture(LocalDate date, int cityDepartureId) {
+        List<OrderBean> beanList;
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        try (OrderDao dao = daoFactory.createOrderDao()){
+            beanList = dao.findAllOrdersByDateDeparture (date,cityDepartureId);
+        }
+        return beanList;
+    }
+
+    public List<OrderBean> getOrdersByDate(LocalDate date) {
+        List<OrderBean> beanList;
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        try (OrderDao dao = daoFactory.createOrderDao()){
+            beanList = dao.findAllOrdersByDate(date);
+        }
+        return beanList;
+    }
+
+    public List<OrderBean> getOrdersByArriveDeparture(int cityArriveId, int cityDepartureId) {
+        List<OrderBean> beanList;
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        try (OrderDao dao = daoFactory.createOrderDao()){
+            beanList = dao.findAllOrdersByArriveDeparture (cityArriveId,cityDepartureId);
+        }
+        return beanList;
+    }
+
+    public List<OrderBean> getOrdersByArrive(int cityArriveId) {
+        List<OrderBean> beanList;
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        try (OrderDao dao = daoFactory.createOrderDao()){
+            beanList = dao.findAllOrdersByArrive (cityArriveId);
+        }
+        return beanList;
+    }
+
+    public List<OrderBean> getOrdersByDeparture(int cityDepartureId) {
+        List<OrderBean> beanList;
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        try (OrderDao dao = daoFactory.createOrderDao()){
+            beanList = dao.findAllOrdersByDeparture (cityDepartureId);
+        }
+        return beanList;
+    }
 }
