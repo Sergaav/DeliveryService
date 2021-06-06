@@ -41,26 +41,26 @@
                     key="admin.make.report"/></button>
         </div>
         <br><br>
-        <h6>Statistic for 2021-06-05 for city arrive Kiev city Departure =all</h6>
+        <h6><fmt:message key="reports.for_orders"/></h6>
         <table class="table table-condensed" style="align-content:center">
             <tr>
-                <th>Total orders: </th>
+                <th><fmt:message key="reports.total_orders"/></th>
                 <td>10</td>
             </tr>
             <tr>
-                <th>paid orders: </th>
+                <th><fmt:message key="reports.paid_orders"/></th>
                 <td>5</td>
             </tr>
             <tr>
-                <th>new orders: </th>
+                <th><fmt:message key="reports.new_orders"/></th>
                 <td>5</td>
             </tr>
             <tr>
-                <th>closed orders: </th>
+                <th><fmt:message key="reports.closed_orders"/></th>
                 <td>5</td>
             </tr>
             <tr>
-                <th>Sum UAH orders: </th>
+                <th><fmt:message key="reports.sum_paid_orders"/></th>
                 <td>600</td>
             </tr>
         </table>

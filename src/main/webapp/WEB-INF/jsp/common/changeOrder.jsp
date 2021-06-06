@@ -16,7 +16,7 @@
 </c:if>
 <h3><fmt:message key="order.change.view"/></h3>
 
-<form style="margin-left: 50px" id="settings_form" action="controller" method="get">
+<form style="margin-left: 50px" id="settings_form" action="controller" method="post">
     <input type="hidden" name="command" value="updateOrder">
     <input type="hidden" name="id" value="${sessionScope.orderBean.id}">
     <input type="hidden" name="userId" value="${sessionScope.orderBean.user.id}">

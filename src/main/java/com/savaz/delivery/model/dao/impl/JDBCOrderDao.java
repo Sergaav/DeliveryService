@@ -29,7 +29,7 @@ public class JDBCOrderDao implements OrderDao {
             " status=?";
     private static final String SQL_FIND_USER_ORDERS_BY_DATE = "SELECT * FROM orders WHERE users_id=? AND" +
             " date_creation=?";
-    private static final String SQL_DELETE_PARCEL = "SELECT * FROM parsels WHERE id=?";
+    private static final String SQL_DELETE_PARCEL = "DELETE FROM parsels WHERE id=?";
     private static final String SQL_UPDATE_ORDER_STATUS = "UPDATE orders SET status=? WHERE id=?";
     private static final String SQL_UPDATE_PARCEL = "UPDATE parsels SET description=?,length=?," +
             "width=?,height=?,weight=?,weight_rate_id=? WHERE id=?";

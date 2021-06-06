@@ -20,9 +20,14 @@ public class OrderService {
 
     public void deleteOrder(int orderID) {
         DaoFactory daoFactory = DaoFactory.getInstance();
+        int parcelId;
         try (OrderDao dao = daoFactory.createOrderDao()) {
-            int parcelId = dao.findById(orderID).getParcel().getId();
+            parcelId = dao.findById(orderID).getParcel().getId();
+        }
+        try (OrderDao dao = daoFactory.createOrderDao()) {
             dao.delete(orderID);
+        }
+        try (OrderDao dao = daoFactory.createOrderDao()) {
             dao.deleteParcel(parcelId);
         }
     }
@@ -38,7 +43,7 @@ public class OrderService {
     }
 
     public OrderBean getOrderBeanById(int id) {
-        OrderBean bean ;
+        OrderBean bean;
         DaoFactory daoFactory;
         daoFactory = DaoFactory.getInstance();
         try (OrderDao dao = daoFactory.createOrderDao()) {
@@ -130,15 +135,15 @@ public class OrderService {
     public void changeStatus(int orderId, Status status) {
         DaoFactory daoFactory;
         daoFactory = DaoFactory.getInstance();
-        try (OrderDao dao = daoFactory.createOrderDao()){
-            dao.updateStatus(orderId,status);
+        try (OrderDao dao = daoFactory.createOrderDao()) {
+            dao.updateStatus(orderId, status);
         }
     }
 
     public void updateOrder(OrderBean orderBean) {
         DaoFactory daoFactory;
-        daoFactory =DaoFactory.getInstance();
-        try (OrderDao dao = daoFactory.createOrderDao()){
+        daoFactory = DaoFactory.getInstance();
+        try (OrderDao dao = daoFactory.createOrderDao()) {
             dao.update(orderBean);
         }
     }

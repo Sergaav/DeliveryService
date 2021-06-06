@@ -16,6 +16,6 @@ public class ConfirmOrderCommand implements Command{
         OrderService service = new OrderService();
         service.insertNewOrder(orderBean);
 
-        return Path.COMMAND_LIST_ORDERS;
+        return "redirect:"+request.getContextPath()+Path.COMMAND_LIST_ORDERS;
     }
 }
