@@ -34,7 +34,17 @@
                         </li>
                         <li class="nav-item active" value="" >
                             <input type="hidden" name="command" value="loginView">
-                            <a class="nav-link" href="controller?command=loginView"><fmt:message key="index.login_register"/></a>
+                            <a class="nav-link" href="controller?command=loginView">
+                                <c:if test="${sessionScope.role == null}">
+                                <fmt:message key="index.login_register"/>
+                                </c:if>
+                                <c:if test="${sessionScope.role == 0}">
+                                    <fmt:message key="admin.area.text"/>
+                                </c:if>
+                                <c:if test="${sessionScope.role == 1}">
+                                    <fmt:message key="user.area.text"/>
+                                </c:if>
+                            </a>
                         </li>
                     </ul>
                 </div>
