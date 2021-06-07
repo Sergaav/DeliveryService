@@ -31,5 +31,8 @@
         </form>
     </td>
 </tr>
+<div style="margin-left: 30px;color: #942a25;font-weight: bold">
+    <c:out value="${requestScope.errorMessage}"/>
+</div>
 </body>
 </html>

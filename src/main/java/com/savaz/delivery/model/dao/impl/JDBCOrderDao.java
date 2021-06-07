@@ -50,13 +50,11 @@ public class JDBCOrderDao implements OrderDao {
             "arrive_id=?";
     private static final String SQL_FIND_ORDERS_BY_DEPARTURE = "select * from orders where " +
             "departure_id=?";
-
-
-    private Connection connection;
-
     private static final String SQL_CREATE_NEW_PARCEL = "INSERT INTO parsels values (default,?,?,?,?,?,?)";
     private static final String SQL_CREATE_NEW_ORDER = "INSERT INTO orders values (default,?,?,?,?,?,?,?,?,?,?)";
 
+
+    private Connection connection;
 
     public JDBCOrderDao(Connection connection) {
         this.connection = connection;

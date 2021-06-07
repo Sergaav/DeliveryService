@@ -20,7 +20,9 @@ public class TopUpCommand implements Command {
             if (request.getParameter("amount") != null || !request.getParameter("amount").isEmpty()) {
                 long amount = Long.parseLong(request.getParameter("amount"));
                 if (amount < 0) {
-                    throw new NumberFormatException();
+                    errorMessage = "Enter valid number!!";
+                    request.setAttribute("errorMessage", errorMessage);
+                    return Path.PAGE_TOPUP;
                 }
                 int userId = (int) session.getAttribute("userId");
                 DaoFactory daoFactory = DaoFactory.getInstance();

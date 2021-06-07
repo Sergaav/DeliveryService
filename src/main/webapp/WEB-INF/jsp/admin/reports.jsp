@@ -28,7 +28,7 @@
             </c:forEach>
         </select>
         <select class="form-select" name="city_dep" style="margin-left: 20px" aria-label="City Departure">
-            <option selected><fmt:message key="city.choose.arrive"/></option>
+            <option selected><fmt:message key="city.choose.departure"/></option>
             <c:set var="k" value="0"/>
             <c:forEach var="cityDep" items="${sessionScope.cities}">
                 <c:set var="k" value="${k+1}"/>

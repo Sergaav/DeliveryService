@@ -15,36 +15,36 @@
                 <input type="hidden" name="role" value="1">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Login</label>
+                        <label for="exampleInputEmail1"><fmt:message key="login.login.name"/></label>
                         <input pattern="[A-Za-z0-9]{5,10}" type="text" name="login" class="form-control" id="exampleInputEmail1"
-                               aria-describedby="emailHelp" placeholder="Enter login">
-                        <small id="emailHelp" class="form-text text-muted">Only latin letters and digits!</small>
+                               aria-describedby="emailHelp" placeholder=<fmt:message key="login.login.name"/> >
+                        <small id="emailHelp" class="form-text text-muted"><fmt:message key="login.login.text"/></small>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
+                        <label for="exampleInputPassword1"><fmt:message key="login.password.name"/> </label>
                         <input type="password" name="password" class="form-control" id="exampleInputPassword1"
-                               placeholder="Password">
+                               placeholder="<fmt:message key="login.password.name"/>">
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="exampleInputName">First Name</label>
+                        <label for="exampleInputName"><fmt:message key="registration.first_name"/></label>
                         <input type="text" name="first_name" class="form-control" id="exampleInputName"
-                               placeholder="First Name">
+                               placeholder="<fmt:message key="registration.first_name"/>">
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="exampleInputLastName">Last Name</label>
+                        <label for="exampleInputLastName"><fmt:message key="registration.last_name"/></label>
                         <input type="text" name="last_name" class="form-control" id="exampleInputLastName"
-                               placeholder="Last Name">
+                               placeholder="<fmt:message key="registration.last_name"/>">
                     </div>
                 </div>
-                <button style="margin-left: 30px" type="submit" class="btn btn-primary">Submit</button>
+                <button style="margin-left: 30px" type="submit" class="btn btn-primary"><fmt:message key="registration.registr" /></button>
             </form>
         </td>
     </tr>
