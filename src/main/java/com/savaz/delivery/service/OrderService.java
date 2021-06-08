@@ -8,7 +8,9 @@ import com.savaz.delivery.model.entity.enums.Status;
 import java.time.LocalDate;
 import java.util.List;
 
+
 public class OrderService {
+
 
 
     public void insertNewOrder(OrderBean orderBean) {
@@ -22,6 +24,7 @@ public class OrderService {
         DaoFactory daoFactory = DaoFactory.getInstance();
         try (OrderDao dao = daoFactory.createOrderDao()) {
            dao.deleteOrder(orderID);
+
         }
     }
 

@@ -88,12 +88,8 @@ n
 >src/main/java/com/savaz/delivery/model/entity/enums/Roles.java,1\4\14f2324d8aea747345564ed232686638b3a16a4b
 a
 1src/main/webapp/WEB-INF/jsp/user/confirmOrder.jsp,0\7\078a4fec8eabf2254cc2c430262cc1b39cffc506
-C
-DeliveryService.iml,4\9\499d5ee2aeb5bd19a4855ec3fd92964a7e0b1930
 p
 @src/main/java/com/savaz/delivery/model/dao/impl/JDBCUserDao.java,c\2\c28db8d00d710a9f51d0da0e9ed872511c00d0e0
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 A
 sql/SQLScript.sql,1\2\12111db33e3c7dbde843590bef92497bec2e05c0
 o

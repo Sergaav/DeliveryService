@@ -2,6 +2,9 @@ package com.savaz.delivery.controller;
 
 
 import com.savaz.delivery.controller.command.*;
+import org.apache.logging.log4j.LogManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -14,35 +17,32 @@ import java.util.HashSet;
 
 
 public class Servlet extends HttpServlet {
+
+
     @Override
     public void init(ServletConfig servletConfig) {
         servletConfig.getServletContext()
                 .setAttribute("loggedUsers", new HashSet<String>());
 
-        String pathToFile = servletConfig.getServletContext().getRealPath("/WEB-INF/img/delivery-service-banner.jpg");
-
-        servletConfig.getServletContext().setAttribute("mainImage", pathToFile);
-
     }
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-             {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) {
         try {
             processRequest(request, response);
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
-@Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-             {
-    try {
-        processRequest(request, response);
-    } catch (ServletException | IOException e) {
-        e.printStackTrace();
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            processRequest(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
-}
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -56,6 +56,7 @@ public class Servlet extends HttpServlet {
 
         } else if (forward != null && forward.contains("redirect:")) {
             String temp = forward.replace("redirect:", "");
+
             response.sendRedirect(temp);
         }
     }
