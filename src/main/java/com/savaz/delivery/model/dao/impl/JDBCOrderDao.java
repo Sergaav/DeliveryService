@@ -485,6 +485,50 @@ public class JDBCOrderDao implements OrderDao {
         return list;
     }
 
+    @Override
+    public void deleteOrder(int orderId) {
+        PreparedStatement statementQuery = null;
+        PreparedStatement statementDeleteOrder = null;
+        PreparedStatement statementDeleteParcel = null;
+        ResultSet resultSet = null;
+        int parcelId = 0;
+        try {
+            connection.setAutoCommit(false);
+            statementQuery = connection.prepareStatement(SQL_FIND_ORDER_BY_ID);
+            statementQuery.setInt(1,orderId);
+            resultSet = statementQuery.executeQuery();
+            statementDeleteOrder = connection.prepareStatement(SQL_DELETE_ORDER_BY_ID);
+            statementDeleteOrder.setInt(1,orderId);
+            statementDeleteOrder.executeUpdate();
+            statementDeleteParcel = connection.prepareStatement(SQL_DELETE_PARCEL);
+            while (resultSet.next()){
+             parcelId= resultSet.getInt("parsels_id");
+            }
+            statementDeleteParcel.setInt(1,parcelId);
+            statementDeleteParcel.executeUpdate();
+            connection.commit();
+        } catch (SQLException exception) {
+            try {
+                connection.rollback();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }finally {
+            try {
+                connection.setAutoCommit(true);
+                closeResultSet(resultSet);
+                closeStatement(statementQuery);
+                closeStatement(statementDeleteOrder);
+                closeStatement(statementDeleteParcel);
+                closeConnection(connection);
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+        }
+
+
+    }
+
 
     @Override
     public OrderBean findById(int id) {

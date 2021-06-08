@@ -22,13 +22,7 @@ public class OrderService {
         DaoFactory daoFactory = DaoFactory.getInstance();
         int parcelId;
         try (OrderDao dao = daoFactory.createOrderDao()) {
-            parcelId = dao.findById(orderID).getParcel().getId();
-        }
-        try (OrderDao dao = daoFactory.createOrderDao()) {
-            dao.delete(orderID);
-        }
-        try (OrderDao dao = daoFactory.createOrderDao()) {
-            dao.deleteParcel(parcelId);
+           dao.deleteOrder(orderID);
         }
     }
 

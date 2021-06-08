@@ -43,4 +43,7 @@ public interface OrderDao extends GenericDao<OrderBean> {
     List<OrderBean> findAllOrdersByArrive(int cityArriveId);
 
     List<OrderBean> findAllOrdersByDeparture(int cityDepartureId);
+
+    void deleteOrder (int orderId);
+
 }
