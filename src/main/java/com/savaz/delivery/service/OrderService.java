@@ -20,7 +20,6 @@ public class OrderService {
 
     public void deleteOrder(int orderID) {
         DaoFactory daoFactory = DaoFactory.getInstance();
-        int parcelId;
         try (OrderDao dao = daoFactory.createOrderDao()) {
            dao.deleteOrder(orderID);
         }

@@ -40,7 +40,7 @@ public class JDBCOrderDao implements OrderDao {
             "date_creation=? and arrive_id=? and departure_id=?";
     private static final String SQL_FIND_ORDERS_BY_DATE_ARRIVE = "select * from orders where " +
             "date_creation=? and arrive_id=? ";
-    private static final String SQL_FIND_ORDERS_BY_DATE_DEPARTURE ="select * from orders where " +
+    private static final String SQL_FIND_ORDERS_BY_DATE_DEPARTURE = "select * from orders where " +
             "date_creation=? and departure_id=?";
     private static final String SQL_FIND_ORDERS_BY_DATE = "select * from orders where " +
             "date_creation=?";
@@ -353,15 +353,15 @@ public class JDBCOrderDao implements OrderDao {
         ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDERS_BY_DATE_ARRIVE_DEPARTURE)) {
             statement.setDate(1, Date.valueOf(date));
-            statement.setInt(2,cityArriveId);
-            statement.setInt(3,cityDepartureId);
+            statement.setInt(2, cityArriveId);
+            statement.setInt(3, cityDepartureId);
             resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 list.add(new OrderBeanMapper().mapRow(resultSet));
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }finally {
+        } finally {
             closeResultSet(resultSet);
             closeConnection(connection);
         }
@@ -374,14 +374,14 @@ public class JDBCOrderDao implements OrderDao {
         ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDERS_BY_DATE_ARRIVE)) {
             statement.setDate(1, Date.valueOf(date));
-            statement.setInt(2,cityArriveId);
+            statement.setInt(2, cityArriveId);
             resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 list.add(new OrderBeanMapper().mapRow(resultSet));
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }finally {
+        } finally {
             closeResultSet(resultSet);
             closeConnection(connection);
         }
@@ -394,14 +394,14 @@ public class JDBCOrderDao implements OrderDao {
         ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDERS_BY_DATE_DEPARTURE)) {
             statement.setDate(1, Date.valueOf(date));
-            statement.setInt(2,cityDepartureId);
+            statement.setInt(2, cityDepartureId);
             resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 list.add(new OrderBeanMapper().mapRow(resultSet));
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }finally {
+        } finally {
             closeResultSet(resultSet);
             closeConnection(connection);
         }
@@ -415,12 +415,12 @@ public class JDBCOrderDao implements OrderDao {
         try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDERS_BY_DATE)) {
             statement.setDate(1, Date.valueOf(date));
             resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 list.add(new OrderBeanMapper().mapRow(resultSet));
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }finally {
+        } finally {
             closeResultSet(resultSet);
             closeConnection(connection);
         }
@@ -432,15 +432,15 @@ public class JDBCOrderDao implements OrderDao {
         List<OrderBean> list = new ArrayList<>();
         ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDERS_BY_ARRIVE_DEPARTURE)) {
-            statement.setInt(1,cityArriveId);
-            statement.setInt(2,cityDepartureId);
+            statement.setInt(1, cityArriveId);
+            statement.setInt(2, cityDepartureId);
             resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 list.add(new OrderBeanMapper().mapRow(resultSet));
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }finally {
+        } finally {
             closeResultSet(resultSet);
             closeConnection(connection);
         }
@@ -452,14 +452,14 @@ public class JDBCOrderDao implements OrderDao {
         List<OrderBean> list = new ArrayList<>();
         ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDERS_BY_ARRIVE)) {
-            statement.setInt(1,cityArriveId);
+            statement.setInt(1, cityArriveId);
             resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 list.add(new OrderBeanMapper().mapRow(resultSet));
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }finally {
+        } finally {
             closeResultSet(resultSet);
             closeConnection(connection);
         }
@@ -471,14 +471,14 @@ public class JDBCOrderDao implements OrderDao {
         List<OrderBean> list = new ArrayList<>();
         ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ORDERS_BY_DEPARTURE)) {
-            statement.setInt(1,cityDepartureId);
+            statement.setInt(1, cityDepartureId);
             resultSet = statement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 list.add(new OrderBeanMapper().mapRow(resultSet));
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
-        }finally {
+        } finally {
             closeResultSet(resultSet);
             closeConnection(connection);
         }
@@ -487,24 +487,20 @@ public class JDBCOrderDao implements OrderDao {
 
     @Override
     public void deleteOrder(int orderId) {
-        PreparedStatement statementQuery = null;
-        PreparedStatement statementDeleteOrder = null;
-        PreparedStatement statementDeleteParcel = null;
         ResultSet resultSet = null;
         int parcelId = 0;
-        try {
+        try (PreparedStatement statementQuery = connection.prepareStatement(SQL_FIND_ORDER_BY_ID);
+             PreparedStatement statementDeleteOrder = connection.prepareStatement(SQL_DELETE_ORDER_BY_ID);
+             PreparedStatement statementDeleteParcel = connection.prepareStatement(SQL_DELETE_PARCEL)) {
             connection.setAutoCommit(false);
-            statementQuery = connection.prepareStatement(SQL_FIND_ORDER_BY_ID);
-            statementQuery.setInt(1,orderId);
+            statementQuery.setInt(1, orderId);
             resultSet = statementQuery.executeQuery();
-            statementDeleteOrder = connection.prepareStatement(SQL_DELETE_ORDER_BY_ID);
-            statementDeleteOrder.setInt(1,orderId);
+            statementDeleteOrder.setInt(1, orderId);
             statementDeleteOrder.executeUpdate();
-            statementDeleteParcel = connection.prepareStatement(SQL_DELETE_PARCEL);
-            while (resultSet.next()){
-             parcelId= resultSet.getInt("parsels_id");
+            while (resultSet.next()) {
+                parcelId = resultSet.getInt("parsels_id");
             }
-            statementDeleteParcel.setInt(1,parcelId);
+            statementDeleteParcel.setInt(1, parcelId);
             statementDeleteParcel.executeUpdate();
             connection.commit();
         } catch (SQLException exception) {
@@ -513,13 +509,10 @@ public class JDBCOrderDao implements OrderDao {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        }finally {
+        } finally {
             try {
                 connection.setAutoCommit(true);
                 closeResultSet(resultSet);
-                closeStatement(statementQuery);
-                closeStatement(statementDeleteOrder);
-                closeStatement(statementDeleteParcel);
                 closeConnection(connection);
             } catch (SQLException exception) {
                 exception.printStackTrace();
@@ -614,7 +607,11 @@ public class JDBCOrderDao implements OrderDao {
 
     @Override
     public void close() {
-
+        try {
+            connection.close();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 
     private static class OrderBeanMapper implements EntityMapper<OrderBean> {
