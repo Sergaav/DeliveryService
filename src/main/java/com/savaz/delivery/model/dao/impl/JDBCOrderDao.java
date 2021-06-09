@@ -7,8 +7,6 @@ import com.savaz.delivery.model.entity.bean.OrderBean;
 import com.savaz.delivery.model.entity.enums.Status;
 import com.savaz.delivery.service.EntityService;
 import com.savaz.delivery.service.UserService;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -16,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JDBCOrderDao implements OrderDao {
-    static Logger log = LogManager.getLogger(JDBCOrderDao.class);
 
     private static final String SQL_SELECT_USER_ORDERS = "SELECT * FROM orders WHERE users_id=?";
     private static final String SQL_FIND_PARCEL_BY_ID = "SELECT * FROM parsels WHERE id=?";
@@ -176,7 +173,6 @@ public class JDBCOrderDao implements OrderDao {
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
-            log.error("SQL exception ",exception);
         } finally {
             closeResultSet(resultSet);
             closeConnection(connection);
@@ -189,7 +185,6 @@ public class JDBCOrderDao implements OrderDao {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         List<OrderBean> orderBeanList = new ArrayList<>();
-        log.trace("Trace log");
         try {
             statement = connection.prepareStatement(SQL_FIND_ALL_ORDERS_STATUS);
             statement.setString(1, status.name());

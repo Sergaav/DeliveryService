@@ -1,25 +1,23 @@
 package com.savaz.delivery.controller.command;
 
 import com.savaz.delivery.Path;
-import com.savaz.delivery.model.dao.OrderDao;
 import com.savaz.delivery.model.entity.bean.OrderBean;
 import com.savaz.delivery.model.entity.enums.City;
 import com.savaz.delivery.model.entity.enums.Status;
 import com.savaz.delivery.service.OrderService;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ReportsCommand implements Command {
-    final static Logger log = LogManager.getLogger(ReportsCommand.class);
+    final static Logger logger = LogManager.getLogger();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -37,7 +35,7 @@ public class ReportsCommand implements Command {
         return Path.PAGE_REPORTS;
     }
 
-    private Map<String,Number> createReportParam(List<OrderBean> bean) {
+    private Map<String, Number> createReportParam(List<OrderBean> bean) {
         Map<String, Number> map = new HashMap<>();
         map.put("total_orders", bean.size());
         map.put("paid_orders", (int) bean.stream().filter(x -> x.getStatus() == Status.PAID).count());
@@ -60,13 +58,13 @@ public class ReportsCommand implements Command {
             cityArriveId = Integer.parseInt(request.getParameter("city_arr"));
             isCityArrive = true;
         } catch (NumberFormatException numberFormatException) {
-           log.info("Number format exception",numberFormatException);
+            logger.error("Number format exception");
         }
         try {
             cityDepartureId = Integer.parseInt(request.getParameter("city_dep"));
             isCityDeparture = true;
         } catch (NumberFormatException numberFormatException) {
-            log.info("Number format exception",numberFormatException);
+            logger.error("Number format exception");
         }
         LocalDate date = null;
 
