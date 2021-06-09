@@ -6,6 +6,8 @@ import com.savaz.delivery.model.entity.bean.OrderBean;
 import com.savaz.delivery.model.entity.enums.City;
 import com.savaz.delivery.model.entity.enums.Status;
 import com.savaz.delivery.service.OrderService;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +19,8 @@ import java.util.List;
 import java.util.Map;
 
 public class ReportsCommand implements Command {
+    final static Logger log = LogManager.getLogger(ReportsCommand.class);
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
@@ -56,13 +60,13 @@ public class ReportsCommand implements Command {
             cityArriveId = Integer.parseInt(request.getParameter("city_arr"));
             isCityArrive = true;
         } catch (NumberFormatException numberFormatException) {
-            numberFormatException.printStackTrace();
+           log.info("Number format exception",numberFormatException);
         }
         try {
             cityDepartureId = Integer.parseInt(request.getParameter("city_dep"));
             isCityDeparture = true;
         } catch (NumberFormatException numberFormatException) {
-            numberFormatException.printStackTrace();
+            log.info("Number format exception",numberFormatException);
         }
         LocalDate date = null;
 

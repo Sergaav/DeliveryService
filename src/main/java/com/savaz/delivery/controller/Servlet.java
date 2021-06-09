@@ -2,9 +2,8 @@ package com.savaz.delivery.controller;
 
 
 import com.savaz.delivery.controller.command.*;
-import org.apache.logging.log4j.LogManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -17,13 +16,13 @@ import java.util.HashSet;
 
 
 public class Servlet extends HttpServlet {
-
+    final static Logger log = LogManager.getLogger(Servlet.class);
 
     @Override
     public void init(ServletConfig servletConfig) {
         servletConfig.getServletContext()
                 .setAttribute("loggedUsers", new HashSet<String>());
-
+        log.error("khgfjhkgkj");
     }
 
     @Override
@@ -46,7 +45,10 @@ public class Servlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        log.debug("ncjsdncnsad");
+        log.trace("Hello");
+        log.error("Error log");
+        log.info("Info log");
         String commandName = request.getParameter("command");
         Command command = CommandContainer.get(commandName);
         String forward = command.execute(request, response);

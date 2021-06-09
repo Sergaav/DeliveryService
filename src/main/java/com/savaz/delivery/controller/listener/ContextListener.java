@@ -1,5 +1,7 @@
 package com.savaz.delivery.controller.listener;
 
+import org.apache.log4j.PropertyConfigurator;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -17,7 +19,7 @@ public class ContextListener implements ServletContextListener {
         log("Servlet context initialization starts");
 
         ServletContext servletContext = event.getServletContext();
-       // initLog4J(servletContext);
+        initLog4J(servletContext);
         initCommandContainer();
         initI18N(servletContext);
 
@@ -45,14 +47,14 @@ public class ContextListener implements ServletContextListener {
 
     }
 
-//    private void initLog4J(ServletContext servletContext) {
-//        try {
-//            PropertyConfigurator.configure(servletContext.getRealPath(
-//                    "WEB-INF/log4j.properties"));
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//    }
+    private void initLog4J(ServletContext servletContext) {
+        try {
+            PropertyConfigurator.configure(servletContext.getRealPath(
+                    "WEB-INF/log4j.properties"));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
     private void initCommandContainer() {
 
