@@ -31,11 +31,6 @@ Csrc/main/java/com/savaz/delivery/exception/ValidationException.java,d\3\d3d3bd
 Lsrc/main/java/com/savaz/delivery/exception/AbstractApplicationException.java,a\5\a5b5be083641f231ae69687f419e22d1f4e5dbdf
 x
 Hsrc/main/java/com/savaz/delivery/model/entity/bean/DestinationsBean.java,d\b\dbfc9c1e93c5db814f8992d1ac42d5689b9d8e4b
-v
-Fsrc/main/java/com/savaz/delivery/controller/command/LogoutCommand.java,4\a\4ae795a3d65900054078a18ed23be6ee8acb6a5c
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 X
 (src/main/webapp/WEB-INF/jspf/header.jspf,2\a\2ab077fb178d8de54a399cf6df71b66da5dadaa8
 y
@@ -70,8 +65,6 @@ Asrc/main/java/com/savaz/delivery/model/entity/bean/OrderBean.java,6\2\622a3516
 Msrc/main/java/com/savaz/delivery/controller/filters/AuthenticationFilter.java,f\e\fecb267957986fcf0caa0da902c0128a80b5d37a
 n
 >src/main/java/com/savaz/delivery/model/dao/DestinationDao.java,1\2\12063a378011ae57bd35be7c2ba921988665bd2f
-{
-Ksrc/main/java/com/savaz/delivery/controller/command/DestinationCommand.java,4\c\4ceefeca2dafe06b3bf121b95ebb4c5af4639ca7
 `
 0src/main/webapp/WEB-INF/jsp/common/errorPage.jsp,3\1\31803863d23d56e29ff1e17ab8e2dd620b2b78f8
 i
@@ -110,8 +103,6 @@ k
 ;src/main/java/com/savaz/delivery/service/EntityService.java,a\2\a272ae8cd25fa8944c7886b8b477e0783ff624cd
 a
 1src/main/webapp/WEB-INF/jsp/user/create_order.jsp,2\e\2e60f4ec4d9a4a00ff1d6d9c19e1a07505b7da23
-m
-=src/main/java/com/savaz/delivery/model/entity/enums/City.java,3\d\3d4508d545d671fa9667d439f8efc7bc2946cef4
 l
 <src/main/java/com/savaz/delivery/service/AccountService.java,6\1\61e7d28ba71157247abac9085d04921779b5a943
 v
@@ -148,8 +139,6 @@ Z
 Lsrc/main/java/com/savaz/delivery/controller/command/ConfirmOrderCommand.java,8\6\86ebeb6002c847b4dc74ef4b3aaed1daf2ee518e
 b
 2src/main/webapp/WEB-INF/jsp/common/changeOrder.jsp,d\9\d94e0942aba877bd63672ba61130e4df9dd578f0
-{
-Ksrc/main/java/com/savaz/delivery/controller/command/CreateOrderCommand.java,2\f\2f899682336b0244de5694bdef2eb5535b16b7c4
 _
 /src/main/webapp/WEB-INF/jsp/admin/adminMenu.jsp,4\b\4b6e49920728fd74f58799ba494aa957c76e0e5b
 ]
@@ -182,7 +171,10 @@ Isrc/main/java/com/savaz/delivery/controller/command/CalculateCommand.java,b\a\
 ,src/main/webapp/WEB-INF/jsp/registration.jsp,8\6\863750b17f37d1bcb7d6ce621e6f066177b3cf66
 U
 %src/main/webapp/WEB-INF/jsp/login.jsp,5\8\582bc84275d5b626d3b0f12b82e66269f2fac2a7
-u
-Esrc/main/java/com/savaz/delivery/controller/command/LoginCommand.java,d\c\dcf5dd01c690f49d0397f516ef37970b811d9425
 y
 Isrc/main/java/com/savaz/delivery/controller/listener/SessionListener.java,3\7\378bcb217a315ef71becfbb79e6325dee0de393e
+C
+DeliveryService.iml,4\9\499d5ee2aeb5bd19a4855ec3fd92964a7e0b1930
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302

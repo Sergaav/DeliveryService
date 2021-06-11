@@ -4,16 +4,16 @@
         <File name="File1" filename="logs/delivery.log" bufferedIO="true" immediateFlush="true">
             <PatternLayout pattern="%d{HH:mm:ss} %-5level %logger{1} - %msg%n" />
         </File>
-        <Console name="console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss} %-5level %logger{1} - %msg%n" />
-        </Console>
+<!--        <Console name="console" target="SYSTEM_OUT">-->
+<!--            <PatternLayout pattern="%d{HH:mm:ss} %-5level %logger{1} - %msg%n" />-->
+<!--        </Console>-->
     </Appenders>
     <Loggers>
         <Logger name="LOG_FILE" level="trace" additivity="false">
             <AppenderRef ref="File1"/>
         </Logger>
         <Root level="debug" >
-            <AppenderRef ref="console" />
+<!--            <AppenderRef ref="console" />-->
             <AppenderRef ref="File1"/>
         </Root>
     </Loggers>
