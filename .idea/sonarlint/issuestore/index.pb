@@ -122,9 +122,3 @@ q
 Asrc/main/java/com/savaz/delivery/model/dao/impl/JDBCOrderDao.java,7\5\750b1df9785c8c94a7ce08d8079cbe327a3cfe42
 m
 =src/main/java/com/savaz/delivery/model/entity/enums/City.java,3\d\3d4508d545d671fa9667d439f8efc7bc2946cef4
-
-Osrc/test/java/com/savaz/delivery/controller/command/CreateOrderCommandTest.java,8\8\88ab97624b0050626f648d904f28bc694dbb2714
-z
-Jsrc/test/java/com/savaz/delivery/controller/command/LogoutCommandTest.java,c\2\c2703e2be695a9c93f77a8a77e037d0e5f466d45
-n
->src/test/java/com/savaz/delivery/service/OrderServiceTest.java,3\d\3d935eb4cd38ac0117774373a59739e78a105044
