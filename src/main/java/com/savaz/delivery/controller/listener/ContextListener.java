@@ -17,7 +17,6 @@ public class ContextListener implements ServletContextListener {
         log("Servlet context initialization starts");
 
         ServletContext servletContext = event.getServletContext();
-//        initLog4J(servletContext);
         initCommandContainer();
         initI18N(servletContext);
 
@@ -44,15 +43,6 @@ public class ContextListener implements ServletContextListener {
 
 
     }
-
-//    private void initLog4J(ServletContext servletContext) {
-//        try {
-//            PropertyConfigurator.configure(servletContext.getRealPath(
-//                    "WEB-INF/log4j.properties"));
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//    }
 
     private void initCommandContainer() {
 

@@ -5,6 +5,8 @@ import com.savaz.delivery.model.entity.bean.OrderBean;
 import com.savaz.delivery.model.dao.Service;
 import com.savaz.delivery.model.entity.enums.Status;
 import com.savaz.delivery.service.OrderService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AccountServiceDao implements Service {
+    static final Logger logger = LogManager.getLogger(AccountServiceDao.class);
+
     private static final String SQL_TRANSACTION_POPUP = "UPDATE users SET balance = balance+? WHERE id = ?";
     private static final String SQL_TRANSACTION_PAY_FOR_ORDER = "UPDATE users SET balance = balance-? WHERE id = ?";
     Connection connection;
@@ -30,10 +34,12 @@ public class AccountServiceDao implements Service {
             statement.setInt(2, userId);
             statement.executeUpdate();
             connection.commit();
+            logger.info("topUpAccount successfully");
         } catch (SQLException throwables) {
             try {
                 connection.rollback();
             } catch (SQLException exception) {
+                logger.info("Something went wrong with top up an account!! Roll backed!!");
                 throw new ValidationException("Something went wrong with top up an account!!");
             }
         } finally {
@@ -56,8 +62,9 @@ public class AccountServiceDao implements Service {
             try {
                 connection.rollback();
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
+               logger.error(throwables);
             }
+            logger.info("Something went wrong with top up an account!! Roll backed!!");
             throw new ValidationException("Transaction fail");
         }finally {
             try {

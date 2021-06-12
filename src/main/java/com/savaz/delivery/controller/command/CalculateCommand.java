@@ -8,6 +8,8 @@ import com.savaz.delivery.model.dao.PriceDao;
 import com.savaz.delivery.model.entity.bean.CalculateBean;
 import com.savaz.delivery.model.entity.bean.PriceBean;
 import com.savaz.delivery.model.entity.enums.City;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +20,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CalculateCommand implements Command {
+
+    static final Logger logger = LogManager.getLogger(CalculateCommand.class);
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
@@ -54,6 +58,7 @@ public class CalculateCommand implements Command {
         } catch (NumberFormatException e) {
             errorMessage = "Choose please cities and weight";
             request.setAttribute("errorMessage", errorMessage);
+            logger.error(errorMessage);
             return Path.PAGE_CALCULATE;
         }
         if (request.getParameter("length") != null && !request.getParameter("length").isEmpty() &&
@@ -69,11 +74,13 @@ public class CalculateCommand implements Command {
             } catch (NumberFormatException e) {
                 errorMessage = "Wrong parameter of parcel, it must be number from 1 to 50 cm!!";
                 request.setAttribute("errorMessage", errorMessage);
+                logger.error(errorMessage);
                 return Path.PAGE_CALCULATE;
             }
         }
         int cost = calculateShippingCost(calculateBean);
         session.setAttribute("cost", cost);
+        logger.info("Successful calculate and redirect!");
 
         return "redirect:" + Path.PAGE_CALCULATE;
     }

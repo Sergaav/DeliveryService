@@ -11,7 +11,7 @@ public class PriceService {
 
     public  List<PriceBean> getPriceBeanList (){
         DaoFactory daoFactory = DaoFactory.getInstance();
-        List<PriceBean> priceBeans = new ArrayList<>();
+        List<PriceBean> priceBeans;
         try (PriceDao dao = daoFactory.createPriceDao()){
             priceBeans = dao.findAll();
         }

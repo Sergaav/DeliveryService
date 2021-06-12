@@ -8,7 +8,7 @@ public class UserService {
 
     public User getUserById(int id) {
         DaoFactory daoFactory = DaoFactory.getInstance();
-        User user = new User();
+        User user;
         try (UserDao dao = daoFactory.createUserDao()) {
             user = dao.findById(id);
         }

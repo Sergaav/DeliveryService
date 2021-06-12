@@ -5,6 +5,8 @@ import com.savaz.delivery.model.entity.bean.OrderBean;
 import com.savaz.delivery.model.entity.enums.City;
 import com.savaz.delivery.model.entity.enums.Status;
 import com.savaz.delivery.service.OrderService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +20,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class AdminListOrdersCommand implements Command {
-
+    static final Logger logger = LogManager.getLogger(AdminListOrdersCommand.class);
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         int pageNumber = Integer.parseInt(request.getParameter("page"));
@@ -29,6 +31,7 @@ public class AdminListOrdersCommand implements Command {
         session.setAttribute("pageNumber", pageNumber);
         session.setAttribute("city", City.values());
         session.setAttribute("statuses", Status.values());
+        logger.info("Admin forward to orders menu");
         return Path.PAGE_ADMIN_ORDERS;
     }
 

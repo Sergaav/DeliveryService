@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ReportsCommand implements Command {
-    final static Logger logger = LogManager.getLogger();
+    final static Logger logger = LogManager.getLogger(ReportsCommand.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

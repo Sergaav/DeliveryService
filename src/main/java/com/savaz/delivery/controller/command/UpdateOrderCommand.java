@@ -10,6 +10,8 @@ import com.savaz.delivery.service.EntityService;
 import com.savaz.delivery.service.OrderService;
 import com.savaz.delivery.service.PriceService;
 import com.savaz.delivery.service.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,12 +21,14 @@ import java.util.List;
 import java.util.Map;
 
 public class UpdateOrderCommand implements Command {
+    static final Logger logger = LogManager.getLogger(UpdateOrderCommand.class);
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         Map<String, String[]> parameters = request.getParameterMap();
         if (!new CreateOrderCommand().validateInput(parameters)) {
             session.setAttribute("errorMessage", "Fill the form correctly");
+            logger.error("Fill the form correctly");
             return Path.UPDATE_ORDER;
         }
         OrderBean orderBean = mapOrderBean(request);

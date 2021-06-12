@@ -24,7 +24,6 @@ public class OrderService {
         DaoFactory daoFactory = DaoFactory.getInstance();
         try (OrderDao dao = daoFactory.createOrderDao()) {
            dao.deleteOrder(orderID);
-
         }
     }
 

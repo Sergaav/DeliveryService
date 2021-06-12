@@ -36,11 +36,6 @@ public class JDBCDaoFactory extends DaoFactory {
     }
 
     @Override
-    public CalculateDao createCalculateDao() {
-        return new JDBCCalculateDao(getConnection());
-    }
-
-    @Override
     public AccountServiceDao createAccountServiceDao() {
         return new AccountServiceDao(getConnection());
     }

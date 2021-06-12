@@ -14,8 +14,6 @@ public class CommandContainer {
         commands.put("logout", new LogoutCommand());
         commands.put("login", new LoginCommand());
         commands.put("registration", new RegistrationCommand());
-        commands.put("exception", new ExceptionCommand());
-        commands.put("noCommand", new NoCommand());
         commands.put("price", new PriceCommand());
         commands.put("destination", new DestinationCommand());
         commands.put("changeLocale", new LocaleChangeCommand());
@@ -24,13 +22,11 @@ public class CommandContainer {
         commands.put("topup", new TopUpCommand());
         commands.put("updateOrder", new UpdateOrderCommand());
        //  client commands
-        commands.put("userMenu", new UserMenuCommand());
         commands.put("createOrder", new CreateOrderCommand());
         commands.put("confirmOrder", new ConfirmOrderCommand());
         commands.put("userOrders", new UserOrdersCommand());
 
        // admin commands
-        commands.put("adminMenu", new AdminMenuCommand());
         commands.put("listOrders", new AdminListOrdersCommand());
         commands.put("deleteOrder", new DeleteOrderCommand());
         commands.put("viewOrder", new ViewOrderCommand());
