@@ -25,19 +25,20 @@ public class LoginCommand implements Command {
         String errorMessage = null;
         String forward = Path.PAGE_LOGIN;
         DaoFactory daoFactory = DaoFactory.getInstance();
-        logger.trace("Login command trace");
-        logger.error("Login command error");
+
         try (UserDao dao = daoFactory.createUserDao()) {
 
             if (login == null || password == null || login.isEmpty() || password.isEmpty()) {
                 errorMessage = "Login/password cannot be empty";
                 request.setAttribute("errorMessage", errorMessage);
+                logger.error("Login/password cannot be empty");
                 return forward;
             }
             String regexLogin = "^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$";
             if (login.matches(regexLogin)) {
                 errorMessage = "Login/password must be valid";
                 request.setAttribute("errorMessage", errorMessage);
+                logger.error("Login/password must be valid");
                 return forward;
             }
 
@@ -46,15 +47,17 @@ public class LoginCommand implements Command {
             if (user == null || !password.equals(user.getPassword())) {
                 errorMessage = "Cannot find user with such login/password";
                 request.setAttribute("errorMessage", errorMessage);
-
+               logger.error("Cannot find user with such login/password");
                 return forward;
             } else {
                 Roles userRole = Roles.values()[user.getRole()];
 
                 if (userRole == Roles.ADMIN)
+                    logger.info("Logged in as "+user.getLogin());
                     forward = "redirect:" + Path.PAGE_ADMIN_MENU;
 
                 if (userRole == Roles.USER)
+                    logger.info("Logged in as "+user.getLogin());
                     forward = "redirect:" + Path.PAGE_USER_MENU;
 
                 session.setAttribute("login", user.getLogin());

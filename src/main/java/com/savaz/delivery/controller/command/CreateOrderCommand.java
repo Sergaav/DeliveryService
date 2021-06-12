@@ -10,6 +10,8 @@ import com.savaz.delivery.model.entity.enums.Status;
 import com.savaz.delivery.service.PriceService;
 import com.savaz.delivery.service.UserService;
 import com.savaz.delivery.service.EntityService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CreateOrderCommand implements Command {
+    final static Logger logger = LogManager.getLogger(CreateOrderCommand.class);
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
@@ -28,15 +31,18 @@ public class CreateOrderCommand implements Command {
         session.setAttribute("priceBeans", priceBeans);
         Map<String, String[]> parameters = request.getParameterMap();
         if (parameters.size() == 1 && parameters.get("command")[0].equals("createOrder")) {
+            logger.info("First forward to page create order");
             return "redirect:" + Path.PAGE_CREATE_ORDER_FORM;
         }
         if (!validateInput(parameters)) {
             session.setAttribute("errorMessage", "Fill the form correctly");
+            logger.error("Not correct filled order form");
             return Path.PAGE_CREATE_ORDER_FORM;
         }
         OrderBean orderBean = mapOrderBean(request);
         session.setAttribute("orderBean", orderBean);
         session.setAttribute("city",City.values());
+        logger.info("Successful redirect to confirm order");
         return "redirect:" + Path.PAGE_CONFIRM_ORDER_FORM;
     }
 

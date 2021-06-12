@@ -45,19 +45,18 @@ public class Servlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        logger.error("first error");
-        logger.trace("first trace");
-        logger.info("first info");
         String commandName = request.getParameter("command");
+        logger.info("Processing command "+commandName);
         Command command = CommandContainer.get(commandName);
         String forward = command.execute(request, response);
         if (forward != null && !forward.contains("redirect:")) {
             RequestDispatcher disp = request.getRequestDispatcher(forward);
+            logger.info("End of processing command "+commandName+"  and request forward");
             disp.forward(request, response);
 
         } else if (forward != null && forward.contains("redirect:")) {
             String temp = forward.replace("redirect:", "");
-
+            logger.info("End of processing command "+commandName+" and redirect");
             response.sendRedirect(temp);
         }
     }
