@@ -1,10 +1,13 @@
 package com.savaz.delivery.controller.command;
 
 import com.savaz.delivery.Path;
+import com.savaz.delivery.controller.Servlet;
 import com.savaz.delivery.model.dao.DaoFactory;
 import com.savaz.delivery.model.dao.UserDao;
 import com.savaz.delivery.model.entity.User;
 import com.savaz.delivery.model.entity.enums.Roles;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
 
 public class LoginCommand implements Command {
+    final static Logger logger = LogManager.getLogger(LoginCommand.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -21,7 +25,8 @@ public class LoginCommand implements Command {
         String errorMessage = null;
         String forward = Path.PAGE_LOGIN;
         DaoFactory daoFactory = DaoFactory.getInstance();
-
+        logger.trace("Login command trace");
+        logger.error("Login command error");
         try (UserDao dao = daoFactory.createUserDao()) {
 
             if (login == null || password == null || login.isEmpty() || password.isEmpty()) {
@@ -47,23 +52,23 @@ public class LoginCommand implements Command {
                 Roles userRole = Roles.values()[user.getRole()];
 
                 if (userRole == Roles.ADMIN)
-                    forward = "redirect:"+Path.PAGE_ADMIN_MENU;
+                    forward = "redirect:" + Path.PAGE_ADMIN_MENU;
 
                 if (userRole == Roles.USER)
-                    forward = "redirect:"+Path.PAGE_USER_MENU;
+                    forward = "redirect:" + Path.PAGE_USER_MENU;
 
                 session.setAttribute("login", user.getLogin());
-                session.setAttribute("password",user.getPassword());
+                session.setAttribute("password", user.getPassword());
                 session.setAttribute("role", user.getRole());
-                session.setAttribute("firstName",user.getFirstName());
-                session.setAttribute("balance",user.getBalance());
-                session.setAttribute("userId",user.getId());
+                session.setAttribute("firstName", user.getFirstName());
+                session.setAttribute("balance", user.getBalance());
+                session.setAttribute("userId", user.getId());
                 String locale = user.getLocale();
-                if (locale.equals("RU")){
-                    locale="uk";
+                if (locale.equals("RU")) {
+                    locale = "uk";
                 }
-                Config.set(session, "javax.servlet.jsp.jstl.fmt.locale",locale);
-                session.getServletContext().setAttribute("login",login);
+                Config.set(session, "javax.servlet.jsp.jstl.fmt.locale", locale);
+                session.getServletContext().setAttribute("login", login);
 
                 // work with i18n
                 String userLocaleName = user.getLocale();

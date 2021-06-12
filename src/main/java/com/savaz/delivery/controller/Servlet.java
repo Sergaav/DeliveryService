@@ -16,7 +16,7 @@ import java.util.HashSet;
 
 
 public class Servlet extends HttpServlet {
-    final static Logger logger = LogManager.getLogger();
+    final static Logger logger = LogManager.getLogger(Servlet.class);
 
     @Override
     public void init(ServletConfig servletConfig) {
