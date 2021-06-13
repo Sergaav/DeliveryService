@@ -186,14 +186,14 @@ public class JDBCUserDao implements UserDao {
         public User mapRow(ResultSet rs) {
             try {
                 User user = new User();
-                user.setId(rs.getInt(Fields.USER__ID));
-                user.setLogin(rs.getString(Fields.USER__LOGIN));
-                user.setPassword(rs.getString(Fields.USER__PASSWORD));
-                user.setFirstName(rs.getString(Fields.USER__FIRST_NAME));
-                user.setLastName(rs.getString(Fields.USER__LAST_NAME));
+                user.setId(rs.getInt(Fields.USER_ID));
+                user.setLogin(rs.getString(Fields.USER_LOGIN));
+                user.setPassword(rs.getString(Fields.USER_PASSWORD));
+                user.setFirstName(rs.getString(Fields.USER_FIRST_NAME));
+                user.setLastName(rs.getString(Fields.USER_LAST_NAME));
                 user.setBalance(rs.getLong(Fields.USER_BALANCE));
-                user.setLocale(rs.getString(Fields.USER__LOCALE));
-                user.setRole(rs.getInt(Fields.USER__ROLE));
+                user.setLocale(rs.getString(Fields.USER_LOCALE));
+                user.setRole(rs.getInt(Fields.USER_ROLE));
                 return user;
             } catch (SQLException e) {
                 throw new IllegalStateException(e);
