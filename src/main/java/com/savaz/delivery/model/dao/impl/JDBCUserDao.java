@@ -24,8 +24,6 @@ public class JDBCUserDao implements UserDao {
     private static final String SQL_FIND_USER_BY_ID =
             "SELECT * FROM users WHERE id=?";
 
-    private static final String SQL_UPDATE_USER =
-            "UPDATE users SET password=?, first_name=?, last_name=?, locale_name=? WHERE id=?";
 
     private static final String SQL_CREATE_USER =
             "INSERT INTO users VALUES (default,?,?,?,?,default,?,?)";
