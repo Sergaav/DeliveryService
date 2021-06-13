@@ -38,7 +38,6 @@ public class EntityService {
         try (OrderDao dao = daoFactory.createOrderDao()){
             parcel = dao.findParcel(id);
         }
-        logger.info("Return parcel");
         return parcel;
     }
 }

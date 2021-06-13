@@ -1,7 +1,5 @@
 package com.savaz.delivery.model;
 
-import com.savaz.delivery.model.entity.enums.Roles;
-
 public final class Fields {
 
     // entities

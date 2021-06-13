@@ -10,7 +10,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AccountServiceDao implements Service {
@@ -62,11 +61,11 @@ public class AccountServiceDao implements Service {
             try {
                 connection.rollback();
             } catch (SQLException throwables) {
-               logger.error(throwables);
+                logger.error(throwables);
             }
             logger.info("Something went wrong with top up an account!! Roll backed!!");
             throw new ValidationException("Transaction fail");
-        }finally {
+        } finally {
             try {
                 connection.setAutoCommit(true);
                 connection.close();
@@ -74,7 +73,6 @@ public class AccountServiceDao implements Service {
                 exception.printStackTrace();
             }
         }
-
 
 
     }
@@ -89,15 +87,6 @@ public class AccountServiceDao implements Service {
         }
     }
 
-    public static void closeResultSet(ResultSet resultSet) {
-        if (resultSet != null) {
-            try {
-                resultSet.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        }
-    }
 
     public void closeConnection() {
         try {
@@ -109,6 +98,6 @@ public class AccountServiceDao implements Service {
 
     @Override
     public void close() throws Exception {
-
+        connection.close();
     }
 }
